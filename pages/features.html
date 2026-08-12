@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features &amp; AI Intelligence Suite – TrustLens AI</title>
+  <meta name="description" content="Explore the full suite of document intelligence modules powered by TrustLens AI.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/logo/logo.png">
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .features-hero {
+      padding: 90px 0 60px 0;
+      background: var(--cream-surface);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .module-showcase-card {
+      background: var(--surface-white);
+      border-radius: var(--radius-xl);
+      padding: 44px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 48px;
+      transition: var(--transition-smooth);
+    }
+    .module-showcase-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    .module-grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR WITH CIRCULAR LOGO & LOGO FONT -->
+  <nav class="navbar scrolled">
+    <div class="container nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../assets/logo/logo.png" alt="TrustLens AI Logo Circular">
+        <span class="nav-logo-text">TrustLens AI</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="features.html" class="active">Features</a></li>
+        <li><a href="../index.html#how-it-works">How It Works</a></li>
+        <li><a href="analyze.html">Verify Studio</a></li>
+        <li><a href="../index.html#compare">Compare Engine</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="analyze.html" class="btn-editorial btn-editorial-primary btn-sm">Try Verification Studio</a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Toggle Menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-overlay"></div>
+  <div class="mobile-nav-drawer">
+    <div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:32px;">
+        <a href="../index.html" class="nav-logo">
+          <img src="../assets/logo/logo.png" alt="TrustLens AI Logo">
+          <span class="nav-logo-text">TrustLens AI</span>
+        </a>
+        <button class="mobile-close-btn" style="font-size:1.6rem; color:var(--green-dark);">&times;</button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="analyze.html">Verify Studio</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <header class="features-hero">
+    <div class="container" style="text-align:center; max-width:840px; margin:0 auto;">
+      <span class="badge-pill-editorial">INTELLIGENCE SUITE ARCHITECTURE</span>
+      <h1 style="font-family:var(--font-display); font-weight:800; font-size:3.8rem; color:var(--green-deep); margin:18px 0 20px 0; line-height:1.12;">
+        Built to Demystify Complex Documents
+      </h1>
+      <p style="font-size:1.2rem; color:var(--text-body); line-height:1.65; margin-bottom:32px;">
+        TrustLens AI combines custom NLP processing, Optical Character Recognition (OCR), and structural analysis into an accessible, human-first document intelligence platform.
+      </p>
+
+      <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
+        <span class="badge-pill-editorial" style="cursor:pointer; background:var(--green-dark); color:white;">All 6 Intelligence Modules</span>
+        <span class="badge-pill-editorial" style="cursor:pointer;">Analysis &amp; Summarization</span>
+        <span class="badge-pill-editorial" style="cursor:pointer;">Risk &amp; Source Verification</span>
+        <span class="badge-pill-editorial" style="cursor:pointer;">Compare &amp; Privacy Shield</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN SHOWCASE MODULES (6 FULL-WIDTH CARDS) -->
+  <main class="container" style="padding:80px 0 110px 0;">
+
+    <!-- MODULE 1: AI DOCUMENT SUMMARIZATION -->
+    <div class="module-showcase-card hero-feature-bg">
+      <div class="module-grid-2col">
+        <div>
+          <div class="feature-icon-circle">
+            <svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <span class="badge-pill-editorial" style="font-size:0.75rem; margin-bottom:12px;">MODULE 01</span>
+          <h2 style="font-family:var(--font-display); font-weight:800; font-size:2.4rem; color:var(--green-deep); margin-bottom:16px;">
+            AI Document Summarization
+          </h2>
+          <p style="font-size:1.05rem; color:var(--text-body); line-height:1.65; margin-bottom:24px;">
+            Turn lengthy, convoluted legal notices, academic guidelines, and government circulars into clear, concise executive summaries in seconds.
+          </p>
+          <a href="analyze.html" class="btn-editorial btn-editorial-primary btn-sm">Try Summarizer Studio &rarr;</a>
+        </div>
+
+        <div class="feature-ui-mockup">
+          <div class="mockup-header-bar">
+            <span>&#128196; Legal_Notice_Scan.pdf (14 Pages)</span>
+            <span style="color:var(--green-vibrant); font-weight:800;">✓ Summary Stream Ready</span>
+          </div>
+          <div style="padding:20px; background:var(--surface-white);">
+            <div style="height:150px; border-radius:10px; overflow:hidden; margin-bottom:16px;">
+              <img src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=800&q=80" alt="Tablet scanning legal document" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <div style="font-size:0.8rem; padding:8px 12px; border-radius:6px; background:var(--green-surface); font-weight:700; color:var(--green-dark);">
+                ✓ Key Obligation: Fee payable by 15 August 2026
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 2: RISK & URGENCY DETECTION -->
+    <div class="module-showcase-card risk-feature-bg">
+      <div class="module-grid-2col">
+        <div class="feature-ui-mockup" style="background:var(--surface-white); padding:20px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+            <span style="font-family:var(--font-mono); font-size:0.8rem; font-weight:800; color:var(--coral-deep);">AUDIT RISK INDEX</span>
+            <span class="badge-pill-editorial coral-theme" style="padding:2px 10px; font-size:0.75rem;">78 / 100 HIGH RISK</span>
+          </div>
+          <div style="height:160px; border-radius:10px; overflow:hidden; position:relative;">
+            <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80" alt="Magnifying glass inspecting contract text" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+        </div>
+
+        <div>
+          <div class="feature-icon-circle" style="background:var(--coral-soft); color:var(--coral-deep);">
+            <svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+          </div>
+          <span class="badge-pill-editorial coral-theme" style="font-size:0.75rem; margin-bottom:12px;">MODULE 02</span>
+          <h2 style="font-family:var(--font-display); font-weight:800; font-size:2.4rem; color:var(--green-deep); margin-bottom:16px;">
+            Risk &amp; Urgency Detection Engine
+          </h2>
+          <p style="font-size:1.05rem; color:var(--text-body); line-height:1.65; margin-bottom:24px;">
+            Identify potentially suspicious language, urgent pressure phrasing ("Act within 24 hours"), predatory terms, and unverified document claims automatically.
+          </p>
+          <a href="analyze.html" class="btn-editorial btn-editorial-coral btn-sm">Inspect Risk Analyzer &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 3: SOURCE VERIFICATION ENGINE -->
+    <div class="module-showcase-card">
+      <div class="module-grid-2col">
+        <div>
+          <div class="feature-icon-circle">
+            <svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          </div>
+          <span class="badge-pill-editorial" style="font-size:0.75rem; margin-bottom:12px;">MODULE 03</span>
+          <h2 style="font-family:var(--font-display); font-weight:800; font-size:2.4rem; color:var(--green-deep); margin-bottom:16px;">
+            Source Verification Engine
+          </h2>
+          <p style="font-size:1.05rem; color:var(--text-body); line-height:1.65; margin-bottom:24px;">
+            Cross-references embedded hyper-links, email domains, contact phone numbers, and official university credentials to highlight unverified external destinations.
+          </p>
+          <a href="analyze.html" class="btn-editorial btn-editorial-primary btn-sm">Verify Source Domain &rarr;</a>
+        </div>
+
+        <div class="feature-ui-mockup">
+          <div class="mockup-header-bar">
+            <span>&#127891; Official Stamp &amp; Portal Inspector</span>
+            <span style="color:var(--green-vibrant); font-weight:800;">✓ Authority Verified</span>
+          </div>
+          <div style="padding:20px; background:var(--surface-white); display:flex; align-items:center; gap:16px;">
+            <div style="width:70px; height:70px; border-radius:12px; overflow:hidden; flex-shrink:0;">
+              <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=400&q=80" alt="Official government stamp seal" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <div style="font-size:0.82rem; font-weight:800; color:var(--green-dark); background:var(--green-surface); padding:6px 12px; border-radius:4px;">
+                ✓ official-portal.edu.in (Verified University Domain)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 4: DOCUMENT COMPARE ENGINE (USP) -->
+    <div class="module-showcase-card hero-feature-bg">
+      <div class="module-grid-2col">
+        <div class="feature-ui-mockup">
+          <div class="mockup-header-bar" style="background:var(--green-deep); color:white;">
+            <span>&#9878; Side-by-Side Diff Engine</span>
+            <span class="badge-pill-editorial coral-theme" style="font-size:0.65rem; padding:2px 8px;">3 Differences Found</span>
+          </div>
+          <div style="height:160px; border-radius:8px; overflow:hidden; margin:12px;">
+            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80" alt="Side-by-side contract comparison on laptop" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+        </div>
+
+        <div>
+          <div class="feature-icon-circle">
+            <svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M10 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h5v-2H5V5h5V3zm9 0h-5v2h5v14h-5v2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+          </div>
+          <span class="badge-pill-editorial" style="font-size:0.75rem; margin-bottom:12px;">MODULE 04 (USP)</span>
+          <h2 style="font-family:var(--font-display); font-weight:800; font-size:2.4rem; color:var(--green-deep); margin-bottom:16px;">
+            Side-by-Side Document Compare
+          </h2>
+          <p style="font-size:1.05rem; color:var(--text-body); line-height:1.65; margin-bottom:24px;">
+            Compare two versions of a document side-by-side to immediately spotlight modified clauses, deadline shifts, fee alterations, and critical inconsistencies.
+          </p>
+          <a href="../index.html#compare" class="btn-editorial btn-editorial-primary btn-sm">Launch Compare Engine &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 5: ATOMIC CLAIM SCANNER (FIXED: FULL SHOWCASE CARD) -->
+    <div class="module-showcase-card">
+      <div class="module-grid-2col">
+        <div>
+          <div class="feature-icon-circle">
+            <svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+          </div>
+          <span class="badge-pill-editorial" style="font-size:0.75rem; margin-bottom:12px;">MODULE 05</span>
+          <h2 style="font-family:var(--font-display); font-weight:800; font-size:2.4rem; color:var(--green-deep); margin-bottom:16px;">
+            Atomic Claim Scanner
+          </h2>
+          <p style="font-size:1.05rem; color:var(--text-body); line-height:1.65; margin-bottom:24px;">
+            Deconstruct complex documents into individual testable factual assertions, evaluating each statement independently with verification confidence ratings.
+          </p>
+          <a href="analyze.html" class="btn-editorial btn-editorial-primary btn-sm">Scan Document Claims &rarr;</a>
+        </div>
+
+        <div class="feature-ui-mockup" style="padding:20px; background:var(--surface-white);">
+          <div style="font-size:0.8rem; font-weight:800; color:var(--text-light); margin-bottom:10px;">ATOMIC CLAIMS DECOMPOSITION</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="font-size:0.85rem; font-weight:700; padding:10px 14px; border-radius:8px; background:var(--green-surface); color:var(--green-dark); border-left:4px solid var(--green-bright);">
+              Claim #1: "Merit scholarship waiver applicable" (Verified Authority)
+            </div>
+            <div style="font-size:0.85rem; font-weight:700; padding:10px 14px; border-radius:8px; background:var(--coral-bg); color:var(--coral-deep); border-left:4px solid var(--coral-primary);">
+              Claim #2: "Deposit fee to third-party bank" (Unverified Flag)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 6: PRIVACY & PII SHIELD (FIXED: FULL SHOWCASE CARD) -->
+    <div class="module-showcase-card privacy-feature-bg">
+      <div class="module-grid-2col">
+        <div class="feature-ui-mockup" style="background:rgba(0,0,0,0.3); border-color:rgba(255,255,255,0.15); padding:24px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; color:var(--surface-white); margin-bottom:14px;">
+            <span style="font-size:0.88rem; font-weight:800;">&#128274; PII Masking Preview</span>
+            <button class="privacy-toggle-btn" style="font-size:0.8rem; font-weight:800; color:var(--coral-primary); text-decoration:underline;">Toggle Redaction</button>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); padding:10px 16px; border-radius:8px; font-family:var(--font-mono); font-size:0.88rem; color:var(--green-soft);">
+              Email: <span data-entity="email">scholarshiphelp@gmail.com</span>
+            </div>
+            <div style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); padding:10px 16px; border-radius:8px; font-family:var(--font-mono); font-size:0.88rem; color:var(--green-soft);">
+              Phone: <span data-entity="phone">9876543210</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="feature-icon-circle" style="background:rgba(255,255,255,0.15); color:var(--green-soft);">
+            <svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+          </div>
+          <span class="badge-pill-editorial" style="background:rgba(255,255,255,0.15); color:var(--green-soft); border-color:rgba(255,255,255,0.2); font-size:0.75rem; margin-bottom:12px;">MODULE 06</span>
+          <h2 style="font-family:var(--font-display); font-weight:800; font-size:2.4rem; color:var(--surface-white); margin-bottom:16px;">
+            Privacy &amp; PII Shield
+          </h2>
+          <p style="font-size:1.05rem; color:var(--green-soft); line-height:1.65; margin-bottom:24px;">
+            Automatically detect sensitive personal data including email addresses, phone numbers, external URLs, and confidential IDs to protect privacy before sharing reports.
+          </p>
+          <a href="analyze.html" class="btn-editorial btn-editorial-secondary btn-sm" style="background:rgba(255,255,255,0.15); color:white; border-color:rgba(255,255,255,0.2);">Activate Privacy Shield &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- REDESIGNED FOOTER -->
+  <footer class="footer-editorial">
+    <div class="container">
+      <div class="footer-grid-editorial">
+        <div class="footer-brand-box">
+          <div style="display:flex; align-items:center; gap:16px; margin-bottom:16px;">
+            <img src="../assets/logo/logo.png" alt="TrustLens AI Logo Circular">
+            <span class="footer-brand-name">TrustLens AI</span>
+          </div>
+          <p style="color:var(--green-soft); font-size:1rem; max-width:340px; line-height:1.7;">
+            Intelligent Document Verification &amp; Analysis Platform. Empowering users through explainable AI insights.
+          </p>
+          <div style="margin-top:24px; font-family:var(--font-logo); font-size:1.2rem; color:var(--coral-primary);">
+            Understand &bull; Analyze &bull; Trust
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-links-list">
+            <li><a href="../index.html">&rarr; Home</a></li>
+            <li><a href="features.html">&rarr; Features</a></li>
+            <li><a href="../index.html#how-it-works">&rarr; How It Works</a></li>
+            <li><a href="analyze.html">&rarr; Verify Studio</a></li>
+            <li><a href="../index.html#compare">&rarr; Compare Engine</a></li>
+            <li><a href="about.html">&rarr; About Project</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Capabilities</h4>
+          <ul class="footer-links-list">
+            <li><a href="features.html">&rarr; AI Summarization</a></li>
+            <li><a href="features.html">&rarr; Risk Analysis</a></li>
+            <li><a href="features.html">&rarr; Source Verification</a></li>
+            <li><a href="features.html">&rarr; Claim Scanner</a></li>
+            <li><a href="features.html">&rarr; Privacy Shield</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">MCA Major Project</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html">&rarr; Project Overview</a></li>
+            <li><a href="about.html">&rarr; System Architecture</a></li>
+            <li><a href="about.html">&rarr; AI Safety &amp; Ethics</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 TrustLens AI. All rights reserved. Intelligence Suite.</div>
+        <a href="#navbar" class="back-to-top-btn">Back to Top &uarr;</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+</body>
+</html>

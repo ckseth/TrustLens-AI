@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Verification &amp; Compare Studio – TrustLens AI</title>
+  <meta name="description" content="Upload documents, compare versions, extract key entities, and inspect risk scores with TrustLens AI Analysis Studio.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/logo/logo.png">
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .studio-header {
+      padding: 50px 0 30px 0;
+      background: var(--cream-surface);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .studio-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      padding: 50px 0 100px 0;
+    }
+    .studio-panel {
+      background: var(--surface-white);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+    }
+    .studio-panel-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: var(--green-deep);
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1.5px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR WITH CIRCULAR LOGO & LOGO FONT -->
+  <nav class="navbar scrolled">
+    <div class="container nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../assets/logo/logo.png" alt="TrustLens AI Logo Circular">
+        <span class="nav-logo-text">TrustLens AI</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="../index.html#how-it-works">How It Works</a></li>
+        <li><a href="analyze.html" class="active">Verify Studio</a></li>
+        <li><a href="../index.html#compare">Compare Engine</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="analyze.html" class="btn-editorial btn-editorial-primary btn-sm">New Workspace</a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Toggle Menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-overlay"></div>
+  <div class="mobile-nav-drawer">
+    <div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:32px;">
+        <a href="../index.html" class="nav-logo">
+          <img src="../assets/logo/logo.png" alt="TrustLens AI Logo">
+          <span class="nav-logo-text">TrustLens AI</span>
+        </a>
+        <button class="mobile-close-btn" style="font-size:1.6rem; color:var(--green-dark);">&times;</button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="analyze.html">Verify Studio</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STUDIO HEADER -->
+  <header class="studio-header">
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
+        <div>
+          <span class="badge-pill-editorial">INTERACTIVE STUDIO WORKSPACE</span>
+          <h1 style="font-family:var(--font-display); font-weight:800; font-size:2.8rem; color:var(--green-deep); margin-top:10px;">
+            Document Intelligence Studio
+          </h1>
+        </div>
+        <div style="display:flex; gap:14px;">
+          <button class="btn-editorial btn-editorial-primary btn-sm">Single Verification</button>
+          <button class="btn-editorial btn-editorial-secondary btn-sm">Document Compare Mode</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN STUDIO CONTENT -->
+  <main class="container studio-layout">
+    
+    <!-- LEFT PANEL: DOCUMENT INPUT -->
+    <div class="studio-panel">
+      <div class="studio-panel-title">
+        <span>Document Workspace</span>
+        <span class="badge-pill-editorial" style="font-size:0.7rem;">PDF / Image / Text</span>
+      </div>
+
+      <!-- Upload Tabs -->
+      <div class="upload-tab-switcher" style="margin-bottom:24px;">
+        <button class="tab-btn-pill active" data-tab="file">
+          <svg class="icon-svg icon-sm" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+          File Upload
+        </button>
+        <button class="tab-btn-pill" data-tab="text">
+          <svg class="icon-svg icon-sm" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+          Paste Content
+        </button>
+      </div>
+
+      <!-- Dropzone -->
+      <div class="dropzone-editorial" onclick="document.getElementById('studio-file-input').click()" style="padding:40px 24px;">
+        <div style="width:60px; height:60px; border-radius:50%; background:var(--surface-white); color:var(--green-dark); display:flex; align-items:center; justify-content:center; margin:0 auto 14px auto; box-shadow:var(--shadow-sm);">
+          <svg class="icon-svg icon-lg" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+        </div>
+        <h3 class="dropzone-title" style="font-family:var(--font-display); font-weight:800; font-size:1.4rem; color:var(--green-deep); margin-bottom:6px;">
+          Government_Notice_2026.pdf
+        </h3>
+        <p class="dropzone-subtitle" style="font-size:0.88rem; color:var(--text-muted); margin-bottom:16px;">
+          Click to replace &bull; 2.4 MB &bull; Scanned PDF Document
+        </p>
+        <button class="btn-editorial btn-editorial-secondary btn-sm" type="button">Replace File</button>
+        <input type="file" id="studio-file-input" style="display:none;" accept=".pdf,.png,.jpg,.txt">
+      </div>
+
+      <!-- Text Paste Area -->
+      <div class="text-paste-area" style="display:none; margin-top:20px;">
+        <textarea style="width:100%; height:180px; padding:16px; border-radius:var(--radius-md); border:1.5px solid var(--green-soft); background:var(--cream-bg); font-size:0.95rem; outline:none;" placeholder="Paste notice or contract text here..."></textarea>
+      </div>
+
+      <!-- Extracted Text Preview -->
+      <div style="margin-top:32px;">
+        <h4 style="font-size:0.85rem; font-weight:800; color:var(--text-light); text-transform:uppercase; margin-bottom:12px;">
+          Extracted OCR Text Stream
+        </h4>
+        <div style="background:var(--cream-bg); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:20px; font-size:0.9rem; color:var(--text-main); line-height:1.65; max-height:220px; overflow-y:auto;">
+          <strong>NOTICE REF: SCH-2026/08/14</strong><br><br>
+          This is to notify all registered post-graduate students regarding the state technical scholarship scheme. Eligible candidates are instructed to apply via <em>scholarshiphelp@gmail.com</em> before the deadline of 30 August 2026. Required registration fee of &#8377;50,000 must be deposited to the authorized portal link: <u>example-site.com/claim</u>.
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL: AI RESULTS -->
+    <div class="studio-panel" style="background:var(--green-surface); border-color:var(--green-soft);">
+      <div class="studio-panel-title">
+        <span>Analysis Findings</span>
+        <span class="badge-pill-editorial coral-theme" style="font-size:0.75rem;">Risk Score: 78/100</span>
+      </div>
+
+      <!-- Gauge Widget -->
+      <div class="score-radial-container" style="background:var(--surface-white); margin-bottom:28px;">
+        <div class="radial-gauge">
+          <div class="radial-gauge-inner">
+            <span class="radial-score-val" data-target="78">78</span>
+            <span class="radial-score-max">/ 100</span>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-family:var(--font-display); font-weight:800; font-size:1.15rem; color:var(--green-deep);">Moderate Caution Advised</h4>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:4px;">Financial fee request detected without official domain verification.</p>
+          <span class="badge-pill-editorial coral-theme" style="padding:2px 10px; font-size:0.7rem;">Medium Risk</span>
+        </div>
+      </div>
+
+      <!-- Extracted Metadata -->
+      <div style="margin-bottom:28px;">
+        <h4 style="font-size:0.85rem; font-weight:800; color:var(--text-light); text-transform:uppercase; margin-bottom:12px;">
+          Key Extracted Entities
+        </h4>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+          <div class="extracted-data-card" style="padding:14px;">
+            <div style="font-size:0.75rem; font-weight:800; color:var(--text-light);">Deadline Date</div>
+            <div style="font-weight:800; font-size:1rem; color:var(--green-deep);">30 August 2026</div>
+          </div>
+          <div class="extracted-data-card" style="padding:14px;">
+            <div style="font-size:0.75rem; font-weight:800; color:var(--text-light);">Registration Fee</div>
+            <div style="font-weight:800; font-size:1rem; color:var(--coral-deep);">&#8377;50,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Audit Checklist -->
+      <div class="audit-checklist" style="margin-bottom:28px;">
+        <div class="audit-item pass">
+          <span>
+            <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--green-mid); margin-right:6px;"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            Structural Formatting Passed
+          </span>
+        </div>
+        <div class="audit-item flag">
+          <span>
+            <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-deep); margin-right:6px;"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+            Unverified External Redirection Link
+          </span>
+        </div>
+        <div class="audit-item flag">
+          <span>
+            <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-deep); margin-right:6px;"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+            High Financial Demand Flagged
+          </span>
+        </div>
+      </div>
+
+      <!-- Mandatory Disclaimer -->
+      <div style="background:var(--coral-soft); border:1px solid var(--peach); border-radius:var(--radius-sm); padding:16px; font-size:0.85rem; color:#8C3236; font-weight:700; display:flex; align-items:center; gap:10px;">
+        <svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+        <span>TrustLens AI provides AI-assisted analysis and does not replace official verification.</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- REDESIGNED FOOTER -->
+  <footer class="footer-editorial">
+    <div class="container">
+      <div class="footer-grid-editorial">
+        <div class="footer-brand-box">
+          <div style="display:flex; align-items:center; gap:16px; margin-bottom:16px;">
+            <img src="../assets/logo/logo.png" alt="TrustLens AI Logo Circular">
+            <span class="footer-brand-name">TrustLens AI</span>
+          </div>
+          <p style="color:var(--green-soft); font-size:1rem; max-width:340px; line-height:1.7;">
+            Intelligent Document Verification &amp; Analysis Platform. Empowering users through explainable AI insights.
+          </p>
+          <div style="margin-top:24px; font-family:var(--font-logo); font-size:1.2rem; color:var(--coral-primary);">
+            Understand &bull; Analyze &bull; Trust
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-links-list">
+            <li><a href="../index.html">&rarr; Home</a></li>
+            <li><a href="features.html">&rarr; Features</a></li>
+            <li><a href="../index.html#how-it-works">&rarr; How It Works</a></li>
+            <li><a href="analyze.html">&rarr; Verify Studio</a></li>
+            <li><a href="../index.html#compare">&rarr; Compare Engine</a></li>
+            <li><a href="about.html">&rarr; About Project</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Capabilities</h4>
+          <ul class="footer-links-list">
+            <li><a href="features.html">&rarr; AI Summarization</a></li>
+            <li><a href="features.html">&rarr; Risk Analysis</a></li>
+            <li><a href="features.html">&rarr; Source Verification</a></li>
+            <li><a href="features.html">&rarr; Claim Scanner</a></li>
+            <li><a href="features.html">&rarr; Privacy Shield</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">MCA Major Project</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html">&rarr; Project Overview</a></li>
+            <li><a href="about.html">&rarr; System Architecture</a></li>
+            <li><a href="about.html">&rarr; AI Safety &amp; Ethics</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 TrustLens AI. All rights reserved. Verification Studio.</div>
+        <a href="#navbar" class="back-to-top-btn">Back to Top &uarr;</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+</body>
+</html>
