@@ -1,13 +1,8 @@
-/* ==========================================================================
-   TRUSTLENS AI - INTERACTIVE FRONTEND CONTROLLER
-   Vanilla JavaScript (No external libraries / Frameworks)
-   ========================================================================== */
+// TrustLens AI - Frontend Controller
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --------------------------------------------------------------------------
-  // 1. STICKY NAVBAR ELEVATION ON SCROLL
-  // --------------------------------------------------------------------------
+  // 1. Sticky Navbar Elevation
   const navbar = document.getElementById('navbar');
   if (navbar) {
     window.addEventListener('scroll', () => {
@@ -19,9 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --------------------------------------------------------------------------
-  // 2. RESPONSIVE MOBILE DRAWER MENU
-  // --------------------------------------------------------------------------
+  // 2. Responsive Mobile Drawer Menu
   const mobileToggle = document.querySelector('.mobile-toggle');
   const mobileDrawer = document.querySelector('.mobile-nav-drawer');
   const mobileOverlay = document.querySelector('.mobile-nav-overlay');
@@ -51,14 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', closeMobileMenu);
   });
 
-  // --------------------------------------------------------------------------
-  // 3. 3D FLIP CARD MOBILE TAP & CLICK SUPPORT
-  // --------------------------------------------------------------------------
+  // 3. 3D Flip Card Mobile Tap & Click Support
   const flipCard = document.getElementById('hero-flip-card');
   const flipVisualHint = document.querySelector('.flip-visual-hint span');
 
   if (flipCard) {
-    // Detect mobile touch
     const isMobile = window.innerWidth <= 768 || ('ontouchstart' in window);
 
     if (flipVisualHint && isMobile) {
@@ -70,9 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --------------------------------------------------------------------------
-  // 4. UPLOAD TAB SWITCHER (FILE vs RAW TEXT)
-  // --------------------------------------------------------------------------
+  // 4. Upload Tab Switcher (File vs Text)
   const tabBtns = document.querySelectorAll('.tab-btn-pill');
   const dropzone = document.querySelector('.dropzone-editorial');
   const textPasteArea = document.querySelector('.text-paste-area');
@@ -93,9 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --------------------------------------------------------------------------
-  // 5. FILE UPLOAD SELECTION & DRAG-AND-DROP HANDLER
-  // --------------------------------------------------------------------------
+  // 5. File Upload Selection & Drag-and-Drop Handler
   const fileInput = document.getElementById('file-upload-input') || document.getElementById('studio-file-input');
 
   if (dropzone && fileInput) {
@@ -137,9 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (subtitleEl) subtitleEl.innerText = `Size: ${(file.size / (1024 * 1024)).toFixed(2)} MB • Ready for analysis`;
   }
 
-  // --------------------------------------------------------------------------
-  // 6. DOCUMENT COMPARE TAB SWITCHER (USP ENGINE)
-  // --------------------------------------------------------------------------
+  // 6. Document Compare Tab Switcher
   const compareTabBtns = document.querySelectorAll('.compare-tab-pill');
   const cardA = document.getElementById('doc-card-a');
   const cardB = document.getElementById('doc-card-b');
@@ -164,9 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --------------------------------------------------------------------------
-  // 7. PRIVACY SCANNER & PII SHIELD MASKING TOGGLE
-  // --------------------------------------------------------------------------
+  // 7. Privacy Scanner & PII Masking Toggle
   const privacyToggleBtns = document.querySelectorAll('.privacy-toggle-btn');
   let isMasked = false;
 
@@ -196,9 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --------------------------------------------------------------------------
-  // 8. RADIAL SCORE GAUGE COUNT-UP ANIMATION
-  // --------------------------------------------------------------------------
+  // 8. Radial Score Gauge Animation
   const scoreValEls = document.querySelectorAll('.radial-score-val');
   scoreValEls.forEach(scoreEl => {
     const target = parseInt(scoreEl.getAttribute('data-target') || '82', 10);

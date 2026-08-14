@@ -1,7 +1,4 @@
-/* ==========================================================================
-   TRUSTLENS AI - PREMIUM EDITORIAL DESIGN SYSTEM WITH ANIMATIONS & SVG ICONS
-   Intelligent Document Verification & Analysis Platform
-   ========================================================================== */
+/* TrustLens AI Stylesheet */
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap');
 
@@ -67,9 +64,7 @@
   --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ==========================================================================
-   RESET & BASE STYLES
-   ========================================================================== */
+/* Reset & Base Styles */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -117,9 +112,7 @@ button {
   padding: 0 24px;
 }
 
-/* ==========================================================================
-   INLINE SVG VECTOR ICON STYLES
-   ========================================================================== */
+/* Inline SVG Vector Icons */
 
 .icon-svg {
   display: inline-block;
@@ -134,9 +127,7 @@ button {
 .icon-md { width: 22px; height: 22px; }
 .icon-lg { width: 28px; height: 28px; }
 
-/* ==========================================================================
-   HIGH-IMPACT TYPOGRAPHY & BADGES
-   ========================================================================== */
+/* Typography & Badges */
 
 .font-display { font-family: var(--font-display); }
 .font-serif { font-family: var(--font-serif); }
@@ -186,9 +177,7 @@ button {
   100% { box-shadow: 0 0 0 0 rgba(92, 184, 96, 0); }
 }
 
-/* ==========================================================================
-   BUTTON SYSTEM
-   ========================================================================== */
+/* Button System */
 
 .btn-editorial {
   display: inline-flex;
@@ -268,9 +257,7 @@ button {
   color: var(--text-muted);
 }
 
-/* ==========================================================================
-   NAVIGATION BAR
-   ========================================================================== */
+/* Navigation Bar */
 
 .navbar {
   position: sticky;
@@ -416,9 +403,7 @@ button {
   color: var(--text-main);
 }
 
-/* ==========================================================================
-   HERO SECTION WITH PINK BACKDROP CARD & SHORTENED COMPACT 3D FLIP CARD
-   ========================================================================== */
+/* Hero Section */
 
 .hero-editorial {
   padding: 28px 0 44px 0;
@@ -470,7 +455,7 @@ button {
   max-width: 520px;
 }
 
-/* HERO SCANNER CARD WRAPPER WITH SHORTENED HEIGHT */
+/* Hero Scanner Card */
 .hero-scanner-card-wrapper {
   position: relative;
   width: 100%;
@@ -491,7 +476,7 @@ button {
   transform: rotate(-2deg);
 }
 
-/* SHORTENED 3D FLIP CONTAINER */
+/* 3D Flip Container */
 .flip-card {
   position: relative;
   z-index: 2;
@@ -688,9 +673,7 @@ button {
   gap: 6px;
 }
 
-/* ==========================================================================
-   TRUST STRIP TICKER
-   ========================================================================== */
+/* Trust Advantage Grid */
 
 .trust-strip-editorial {
   padding: 22px 0;
@@ -719,9 +702,7 @@ button {
   color: var(--green-soft);
 }
 
-/* ==========================================================================
-   UPLOAD PREVIEW SECTION
-   ========================================================================== */
+/* Upload Preview Section */
 
 .upload-section-editorial {
   padding: 30px 0 80px 0;
@@ -797,10 +778,7 @@ button {
   background: var(--green-bg);
 }
 
-/* ==========================================================================
-   FEATURES SECTION ("One Lens. Multiple Ways to Understand.")
-   EQUAL UNIFORM GRID CARDS - NEAT & WELL ORGANIZED
-   ========================================================================== */
+/* Features Showcase Grid */
 
 .features-section-editorial {
   padding: 90px 0;
@@ -907,9 +885,7 @@ button {
   line-height: 1.55;
 }
 
-/* ==========================================================================
-   DOCUMENT COMPARE USP SECTION ("What Changed?")
-   ========================================================================== */
+/* Compare Engine */
 
 .compare-section-editorial {
   padding: 90px 0;
@@ -1034,9 +1010,7 @@ button {
   gap: 12px;
 }
 
-/* ==========================================================================
-   SMART INFORMATION EXTRACTION SECTION
-   ========================================================================== */
+/* Interactive Demo Studio */
 
 .extraction-section-editorial {
   padding: 90px 0;
@@ -1075,9 +1049,7 @@ button {
   border: 1px solid var(--green-soft);
 }
 
-/* ==========================================================================
-   HOW IT WORKS TIMELINE (4 STEPS)
-   ========================================================================== */
+/* Timeline Process */
 
 .how-section-editorial {
   padding: 90px 0;
@@ -1145,9 +1117,7 @@ button {
   object-fit: cover;
 }
 
-/* ==========================================================================
-   EDITORIAL USE CASES
-   ========================================================================== */
+/* Use Cases */
 
 .usecases-section-editorial {
   padding: 90px 0;
@@ -1211,9 +1181,7 @@ button {
   margin-bottom: 8px;
 }
 
-/* ==========================================================================
-   AI EXPLANATION SECTION
-   ========================================================================== */
+/* AI Explanation */
 
 .explain-section-editorial {
   padding: 90px 0;
@@ -1237,9 +1205,7 @@ button {
   border: 1px solid var(--green-soft);
 }
 
-/* ==========================================================================
-   FINAL CTA SECTION
-   ========================================================================== */
+/* Final CTA Section */
 
 .final-cta-editorial {
   padding: 90px 0;
@@ -1265,9 +1231,7 @@ button {
   margin-bottom: 18px;
 }
 
-/* ==========================================================================
-   REDESIGNED MULTI-LAYERED MODERN FOOTER
-   ========================================================================== */
+/* Footer Section */
 
 .footer-editorial {
   background: linear-gradient(180deg, #061E0E 0%, #031007 100%);
@@ -1362,9 +1326,7 @@ button {
   color: var(--green-deep);
 }
 
-/* ==========================================================================
-   RESPONSIVE BREAKPOINTS
-   ========================================================================== */
+/* Responsive Breakpoints */
 
 @media (max-width: 1024px) {
   .hero-title-editorial { font-size: 2.8rem; }
