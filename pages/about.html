@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About TrustLens AI – MCA Major Project</title>
-  <meta name="description" content="Learn about TrustLens AI, an intelligent document verification and analysis platform built as an MCA Major Project.">
+  <title>About TrustLens AI – Intelligent Verification Platform</title>
+  <meta name="description"
+    content="Learn about TrustLens AI, an intelligent document verification and analysis platform built for explainable trust scoring.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../assets/logo/logo.png">
 
   <!-- Master Stylesheet -->
   <link rel="stylesheet" href="../css/style.css">
+  <script>
+    (function() {
+      const saved = localStorage.getItem('trustlens_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
 </head>
+
 <body>
 
   <!-- Navigation Bar -->
@@ -25,14 +34,16 @@
       <ul class="nav-links">
         <li><a href="../index.html">Home</a></li>
         <li><a href="features.html">Features</a></li>
-        <li><a href="../index.html#how-it-works">How It Works</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
         <li><a href="analyze.html">Verify Studio</a></li>
-        <li><a href="../index.html#compare">Compare Engine</a></li>
+        <li><a href="compare.html">Compare Engine</a></li>
         <li><a href="about.html" class="active">About</a></li>
       </ul>
 
       <div class="nav-actions">
-        <a href="analyze.html" class="btn-editorial btn-editorial-primary btn-sm">Try Verification Studio</a>
+        <button class="theme-toggle-btn" aria-label="Toggle Theme">🌙 Dark</button>
+        <a href="login.html" class="btn-editorial btn-editorial-secondary btn-sm">Log In</a>
+        <a href="signup.html" class="btn-editorial btn-editorial-primary btn-sm">Get Started</a>
       </div>
 
       <button class="mobile-toggle" aria-label="Toggle Menu">&#9776;</button>
@@ -53,50 +64,70 @@
       <ul class="mobile-nav-list">
         <li><a href="../index.html">Home</a></li>
         <li><a href="features.html">Features</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
         <li><a href="analyze.html">Verify Studio</a></li>
+        <li><a href="compare.html">Compare Engine</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <button class="theme-toggle-btn" aria-label="Toggle Theme" style="width:100%;">🌙 Dark Mode</button>
+      <a href="login.html" class="btn-editorial btn-editorial-secondary btn-sm" style="width:100%;">Log In</a>
+      <a href="signup.html" class="btn-editorial btn-editorial-primary btn-sm" style="width:100%;">Get Started</a>
     </div>
   </div>
 
   <!-- About Hero -->
   <header style="padding:90px 0 50px 0; background:var(--cream-surface);">
     <div class="container" style="max-width:860px; margin:0 auto;">
-      <span class="badge-pill-editorial">MCA MAJOR PROJECT PRESENTATION</span>
-      <h1 style="font-family:var(--font-display); font-weight:800; font-size:3.6rem; color:var(--green-deep); margin:18px 0 20px 0; line-height:1.12;">
+      <span class="badge-pill-editorial" style="text-transform:none;">About TrustLens Platform</span>
+      <h1
+        style="font-family:var(--font-display); font-weight:800; font-size:3.6rem; color:var(--green-deep); margin:18px 0 20px 0; line-height:1.12;">
         Empowering Digital Citizens Through Explainable Document Intelligence
       </h1>
       <p style="font-size:1.2rem; color:var(--text-body); line-height:1.65;">
-        TrustLens AI was conceived as an MCA Major Project to combat misinformation, misleading official notices, and predatory digital documents through transparent, human-centered artificial intelligence.
+        TrustLens AI was conceived as an enterprise-grade AI solution to combat misinformation, misleading official
+        notices, and predatory digital documents through transparent, human-centered artificial intelligence.
       </p>
     </div>
   </header>
 
   <!-- About Content -->
   <main class="container" style="padding:70px 0 110px 0; max-width:860px;">
-    
-    <article style="background:var(--surface-white); border-radius:var(--radius-lg); padding:56px; border:1px solid var(--border-subtle); box-shadow:var(--shadow-sm); line-height:1.8; color:var(--text-main);">
-      
-      <h2 style="font-family:var(--font-display); font-weight:800; font-size:2.2rem; color:var(--green-deep); margin-bottom:16px;">
+
+    <article
+      style="background:var(--surface-white); border-radius:var(--radius-lg); padding:56px; border:1px solid var(--border-subtle); box-shadow:var(--shadow-sm); line-height:1.8; color:var(--text-main);">
+
+      <h2
+        style="font-family:var(--font-display); font-weight:800; font-size:2.2rem; color:var(--green-deep); margin-bottom:16px;">
         The Core Problem
       </h2>
       <p style="margin-bottom:28px; color:var(--text-body); font-size:1.05rem;">
-        Every day, millions of students, job seekers, and tenants receive digital circulars, offer letters, and rental agreements via messaging apps and social channels. Many of these documents contain altered numbers, predatory registration fee demands, or unverified links designed to deceive.
+        Every day, millions of students, job seekers, and tenants receive digital circulars, offer letters, and rental
+        agreements via messaging apps and social channels. Many of these documents contain altered numbers, predatory
+        registration fee demands, or unverified links designed to deceive.
       </p>
 
-      <h2 style="font-family:var(--font-display); font-weight:800; font-size:2.2rem; color:var(--green-deep); margin-bottom:16px;">
+      <h2
+        style="font-family:var(--font-display); font-weight:800; font-size:2.2rem; color:var(--green-deep); margin-bottom:16px;">
         The TrustLens Solution
       </h2>
       <p style="margin-bottom:28px; color:var(--text-body); font-size:1.05rem;">
-        TrustLens AI acts as an intelligent visual filter — extracting structured data, calculating a transparent Trust Rating score, spotlighting side-by-side document inconsistencies, and explaining exactly <em>why</em> a document requires further official verification.
+        TrustLens AI acts as an intelligent visual filter — extracting structured data, calculating a transparent Trust
+        Rating score, spotlighting side-by-side document inconsistencies, and explaining exactly <em>why</em> a document
+        requires further official verification.
       </p>
 
-      <div style="background:var(--green-surface); border-left:5px solid var(--green-dark); padding:28px; border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin:36px 0; border:1px solid var(--green-soft); border-left-width:5px;">
-        <h3 style="font-family:var(--font-display); font-weight:800; font-size:1.4rem; color:var(--green-deep); margin-bottom:8px;">
+      <div
+        style="background:var(--green-surface); border-left:5px solid var(--green-dark); padding:28px; border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin:36px 0; border:1px solid var(--green-soft); border-left-width:5px;">
+        <h3
+          style="font-family:var(--font-display); font-weight:800; font-size:1.4rem; color:var(--green-deep); margin-bottom:8px;">
           Modular Architecture Prepared for Integration
         </h3>
         <p style="font-size:1rem; color:var(--green-dark); margin:0; line-height:1.65;">
-          This frontend prototype has been engineered using semantic HTML5, CSS3 design tokens, and modular Vanilla JavaScript. It is structured to easily connect with Express/Node.js, Multer file upload pipelines, Python OCR, and NLP models in subsequent project phases.
+          This platform has been engineered using semantic HTML5, CSS3 design tokens, and modular Vanilla JavaScript. It
+          is structured to easily connect with Express/Node.js, Multer file upload pipelines, Python OCR, and NLP
+          models.
         </p>
       </div>
 
@@ -130,10 +161,10 @@
           <ul class="footer-links-list">
             <li><a href="../index.html">&rarr; Home</a></li>
             <li><a href="features.html">&rarr; Features</a></li>
-            <li><a href="../index.html#how-it-works">&rarr; How It Works</a></li>
+            <li><a href="how-it-works.html">&rarr; How It Works</a></li>
             <li><a href="analyze.html">&rarr; Verify Studio</a></li>
-            <li><a href="../index.html#compare">&rarr; Compare Engine</a></li>
-            <li><a href="about.html">&rarr; About Project</a></li>
+            <li><a href="compare.html">&rarr; Compare Engine</a></li>
+            <li><a href="about.html">&rarr; About</a></li>
           </ul>
         </div>
 
@@ -149,9 +180,9 @@
         </div>
 
         <div>
-          <h4 class="footer-col-title">MCA Major Project</h4>
+          <h4 class="footer-col-title">Platform</h4>
           <ul class="footer-links-list">
-            <li><a href="about.html">&rarr; Project Overview</a></li>
+            <li><a href="about.html">&rarr; Platform Overview</a></li>
             <li><a href="about.html">&rarr; System Architecture</a></li>
             <li><a href="about.html">&rarr; AI Safety &amp; Ethics</a></li>
           </ul>
@@ -159,7 +190,7 @@
       </div>
 
       <div class="footer-bottom-bar">
-        <div>&copy; 2026 TrustLens AI. All rights reserved. MCA Major Project Prototype.</div>
+        <div>&copy; 2026 TrustLens AI. All rights reserved. Enterprise AI Platform.</div>
         <a href="#navbar" class="back-to-top-btn">Back to Top &uarr;</a>
       </div>
     </div>
@@ -167,4 +198,5 @@
 
   <script src="../js/script.js"></script>
 </body>
+
 </html>

@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TrustLens AI – Intelligent Document Verification & Analysis Platform</title>
-  <meta name="description" content="Turn complex documents, screenshots and digital information into clear, explainable insights with TrustLens AI document intelligence.">
+  <meta name="description"
+    content="Turn complex documents, screenshots and digital information into clear, explainable insights with TrustLens AI document intelligence.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/logo/logo.png">
 
   <!-- Master Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function() {
+      const saved = localStorage.getItem('trustlens_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', saved);
+  <!-- Export Libraries (PDF & PNG) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
+
+
 <body>
 
   <!-- Navigation Bar -->
@@ -24,16 +35,17 @@
 
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#how-it-works">How It Works</a></li>
-        <li><a href="pages/analyze.html">Verify</a></li>
-        <li><a href="#compare">Compare</a></li>
+        <li><a href="pages/features.html">Features</a></li>
+        <li><a href="pages/how-it-works.html">How It Works</a></li>
+        <li><a href="pages/analyze.html">Verify Studio</a></li>
+        <li><a href="pages/compare.html">Compare Engine</a></li>
         <li><a href="pages/about.html">About</a></li>
       </ul>
 
       <div class="nav-actions">
-        <a href="pages/analyze.html" class="btn-editorial btn-editorial-secondary btn-sm">Log In</a>
-        <a href="pages/analyze.html" class="btn-editorial btn-editorial-primary btn-sm">Get Started</a>
+        <button class="theme-toggle-btn" aria-label="Toggle Theme">🌙 Dark</button>
+        <a href="pages/login.html" class="btn-editorial btn-editorial-secondary btn-sm">Log In</a>
+        <a href="pages/signup.html" class="btn-editorial btn-editorial-primary btn-sm">Get Started</a>
       </div>
 
       <button class="mobile-toggle" aria-label="Toggle Menu">&#9776;</button>
@@ -53,16 +65,16 @@
       </div>
       <ul class="mobile-nav-list">
         <li><a href="index.html">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="pages/features.html">Features</a></li>
+        <li><a href="pages/how-it-works.html">How It Works</a></li>
         <li><a href="pages/analyze.html">Verify Studio</a></li>
-        <li><a href="#compare">Compare Engine</a></li>
+        <li><a href="pages/compare.html">Compare Engine</a></li>
         <li><a href="pages/about.html">About</a></li>
       </ul>
     </div>
     <div style="display:flex; flex-direction:column; gap:12px;">
-      <a href="pages/analyze.html" class="btn-editorial btn-editorial-secondary btn-sm" style="width:100%;">Log In</a>
-      <a href="pages/analyze.html" class="btn-editorial btn-editorial-primary btn-sm" style="width:100%;">Get Started</a>
+      <a href="pages/login.html" class="btn-editorial btn-editorial-secondary btn-sm" style="width:100%;">Log In</a>
+      <a href="pages/signup.html" class="btn-editorial btn-editorial-primary btn-sm" style="width:100%;">Get Started</a>
     </div>
   </div>
 
@@ -73,9 +85,9 @@
     <div class="container hero-grid-editorial">
       <div class="hero-content">
         <div style="margin-bottom:12px;">
-          <span class="badge-pill-editorial">
+          <span class="badge-pill-editorial" style="text-transform:none;">
             <span class="badge-pulse-dot"></span>
-            AI-POWERED DOCUMENT INTELLIGENCE
+            AI-Powered Document Intelligence
           </span>
         </div>
 
@@ -88,12 +100,16 @@
         </p>
 
         <p class="hero-desc-editorial">
-          TrustLens AI helps you summarize documents, detect potentially suspicious information, compare content, identify inconsistencies and understand important details — all in one place.
+          TrustLens AI helps you summarize documents, detect potentially suspicious information, compare content,
+          identify inconsistencies and understand important details — all in one place.
         </p>
 
         <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
           <a href="pages/analyze.html" class="btn-editorial btn-editorial-primary btn-sm">
-            <svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M19.5 12c0 4.14-3.36 7.5-7.5 7.5S4.5 16.14 4.5 12 7.86 4.5 12 4.5s7.5 3.36 7.5 7.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <svg class="icon-svg icon-md" viewBox="0 0 24 24">
+              <path
+                d="M19.5 12c0 4.14-3.36 7.5-7.5 7.5S4.5 16.14 4.5 12 7.86 4.5 12 4.5s7.5 3.36 7.5 7.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+            </svg>
             Analyze Document &rarr;
           </a>
           <a href="#how-it-works" class="btn-editorial btn-editorial-secondary btn-sm">
@@ -108,7 +124,7 @@
 
         <div class="flip-card" id="hero-flip-card">
           <div class="flip-card-inner">
-            
+
             <!-- Card Front -->
             <div class="flip-card-front">
               <div class="scanner-laser-beam"></div>
@@ -117,14 +133,18 @@
                 <div class="scanner-header">
                   <div class="scanner-doc-badge">
                     <div class="scanner-doc-icon">
-                      <svg class="icon-svg icon-lg" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                      <svg class="icon-svg icon-lg" viewBox="0 0 24 24">
+                        <path
+                          d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+                      </svg>
                     </div>
                     <div>
                       <div style="font-weight:800; font-size:1rem; color:var(--green-deep);">Government_Notice.pdf</div>
-                      <div style="font-size:0.75rem; color:var(--text-muted);">Scanned 2 mins ago &bull; Official Circular</div>
+                      <div style="font-size:0.75rem; color:var(--text-muted);">Scanned 2 mins ago &bull; Official
+                        Circular</div>
                     </div>
                   </div>
-                  <span class="badge-pill-editorial coral-theme" style="font-size:0.7rem; padding:3px 10px;">ANALYSIS COMPLETE</span>
+                  <span class="badge-pill-editorial coral-theme" style="font-size:var(--font-size-xs); padding:4px 10px; text-transform:none;">Analysis Complete</span>
                 </div>
 
                 <div class="score-radial-container">
@@ -135,9 +155,13 @@
                     </div>
                   </div>
                   <div>
-                    <h4 style="font-family:var(--font-display); font-weight:800; font-size:1.05rem; color:var(--green-deep);">TrustLens Rating</h4>
-                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:4px;">High structural clarity with minor external risk flags.</p>
-                    <span class="badge-pill-editorial coral-theme" style="padding:2px 10px; font-size:0.68rem;">RISK: MEDIUM</span>
+                    <h2
+                      style="font-family:var(--font-display); font-weight:800; font-size:1.05rem; color:var(--green-deep); margin:0 0 4px 0;">
+                      TrustLens Rating</h2>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:4px;">High structural clarity
+                      with minor external risk flags.</p>
+                    <span class="badge-pill-editorial coral-theme" style="padding:2px 10px; font-size:0.68rem;">RISK:
+                      MEDIUM</span>
                   </div>
                 </div>
               </div>
@@ -145,28 +169,38 @@
               <div class="audit-checklist">
                 <div class="audit-item pass">
                   <span>
-                    <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--green-mid); margin-right:6px;"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--green-mid); margin-right:6px;">
+                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                    </svg>
                     Summary generated
                   </span>
                   <span style="font-family:var(--font-mono); font-size:0.75rem;">VERIFIED</span>
                 </div>
                 <div class="audit-item pass">
                   <span>
-                    <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--green-mid); margin-right:6px;"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--green-mid); margin-right:6px;">
+                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                    </svg>
                     Important information extracted
                   </span>
                   <span style="font-family:var(--font-mono); font-size:0.75rem;">EXTRACTED</span>
                 </div>
                 <div class="audit-item flag">
                   <span>
-                    <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-deep); margin-right:6px;"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                    <svg class="icon-svg icon-sm" viewBox="0 0 24 24"
+                      style="color:var(--coral-deep); margin-right:6px;">
+                      <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+                    </svg>
                     Suspicious link detected
                   </span>
                   <span style="font-family:var(--font-mono); font-size:0.75rem;">REVIEW NEEDED</span>
                 </div>
                 <div class="audit-item flag">
                   <span>
-                    <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-deep); margin-right:6px;"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                    <svg class="icon-svg icon-sm" viewBox="0 0 24 24"
+                      style="color:var(--coral-deep); margin-right:6px;">
+                      <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+                    </svg>
                     Source requires verification
                   </span>
                   <span style="font-family:var(--font-mono); font-size:0.75rem;">UNVERIFIED</span>
@@ -181,28 +215,37 @@
             <!-- Card Back -->
             <div class="flip-card-back">
               <div>
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; padding-bottom:12px; border-bottom:1.5px solid var(--green-soft);">
-                  <h3 style="font-family:var(--font-display); font-weight:800; font-size:1.4rem; color:var(--green-deep);">Detailed Analysis</h3>
+                <div
+                  style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; padding-bottom:12px; border-bottom:1.5px solid var(--green-soft);">
+                  <h3
+                    style="font-family:var(--font-display); font-weight:800; font-size:1.4rem; color:var(--green-deep);">
+                    Detailed Analysis</h3>
                   <span class="badge-pill-editorial coral-theme" style="font-size:0.7rem;">Interactive Breakdown</span>
                 </div>
 
                 <div style="display:flex; flex-direction:column; gap:14px;">
                   <div>
-                    <div style="font-size:0.75rem; font-weight:800; color:var(--text-light); text-transform:uppercase;">Key Clauses</div>
-                    <p style="font-size:0.88rem; color:var(--green-dark); font-weight:600; line-height:1.45; margin-top:2px;">
-                      Important terms and conditions extracted from the official notice. Fee payable before 15 August 2026.
+                    <div style="font-size:0.75rem; font-weight:800; color:var(--text-light); text-transform:uppercase;">
+                      Key Clauses</div>
+                    <p
+                      style="font-size:0.88rem; color:var(--green-dark); font-weight:600; line-height:1.45; margin-top:2px;">
+                      Important terms and conditions extracted from the official notice. Fee payable before 15 August
+                      2026.
                     </p>
                   </div>
 
                   <div>
-                    <div style="font-size:0.75rem; font-weight:800; color:var(--coral-deep); text-transform:uppercase;">Risk Indicators</div>
-                    <p style="font-size:0.88rem; color:var(--coral-deep); font-weight:700; line-height:1.45; margin-top:2px;">
+                    <div style="font-size:0.75rem; font-weight:800; color:var(--coral-deep); text-transform:uppercase;">
+                      Risk Indicators</div>
+                    <p
+                      style="font-size:0.88rem; color:var(--coral-deep); font-weight:700; line-height:1.45; margin-top:2px;">
                       ⚠ 2 potential risk factors detected: Unverified domain redirection &amp; urgent language.
                     </p>
                   </div>
 
                   <div>
-                    <div style="font-size:0.75rem; font-weight:800; color:var(--text-light); text-transform:uppercase;">AI Summary</div>
+                    <div style="font-size:0.75rem; font-weight:800; color:var(--text-light); text-transform:uppercase;">
+                      AI Summary</div>
                     <p style="font-size:0.88rem; color:var(--text-body); line-height:1.45; margin-top:2px;">
                       Document contains important information requiring attention prior to signing or payment.
                     </p>
@@ -210,9 +253,11 @@
                 </div>
               </div>
 
-              <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:var(--surface-white); border-radius:var(--radius-sm); border:1px solid var(--green-soft); margin-top:16px;">
+              <div
+                style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:var(--surface-white); border-radius:var(--radius-sm); border:1px solid var(--green-soft); margin-top:16px;">
                 <span style="font-size:0.88rem; font-weight:800; color:var(--green-deep);">Overall Assessment</span>
-                <span class="badge-pill-editorial coral-theme" style="padding:3px 12px; font-size:0.75rem;">MEDIUM RISK</span>
+                <span class="badge-pill-editorial coral-theme" style="padding:3px 12px; font-size:0.75rem;">MEDIUM
+                  RISK</span>
               </div>
             </div>
 
@@ -229,26 +274,41 @@
   <!-- Trust Strip -->
   <div class="trust-strip-editorial">
     <div class="container trust-strip-grid">
-      <span style="font-family:var(--font-display); font-weight:800; font-size:1rem; color:var(--cream-bg);">Core Capabilities:</span>
-      
+      <span style="font-family:var(--font-display); font-weight:800; font-size:1rem; color:var(--cream-bg);">Core
+        Capabilities:</span>
+
       <div class="trust-strip-pill">
-        <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-primary);"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-primary);">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+        </svg>
         AI Summarization
       </div>
       <div class="trust-strip-pill">
-        <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-primary);"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+        <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-primary);">
+          <path
+            d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+        </svg>
         Risk Analysis
       </div>
       <div class="trust-strip-pill">
-        <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-primary);"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-primary);">
+          <path
+            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+        </svg>
         Source Verification
       </div>
       <div class="trust-strip-pill">
-        <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-primary);"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-primary);">
+          <path
+            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+        </svg>
         Claim Scanner
       </div>
       <div class="trust-strip-pill">
-        <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-primary);"><path d="M10 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h5v-2H5V5h5V3zm9 0h-5v2h5v14h-5v2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+        <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-primary);">
+          <path
+            d="M10 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h5v-2H5V5h5V3zm9 0h-5v2h5v14h-5v2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+        </svg>
         Document Compare
       </div>
     </div>
@@ -260,7 +320,8 @@
       <div class="section-header-editorial">
         <span class="badge-pill-editorial">INTERACTIVE STUDIO PREVIEW</span>
         <h2 class="section-title">Instant Verification &amp; Inspection</h2>
-        <p class="section-subtitle">Select a document or paste raw text below to test the TrustLens AI verification engine.</p>
+        <p class="section-subtitle">Select a document or paste raw text below to test the TrustLens AI verification
+          engine.</p>
       </div>
 
       <div class="upload-box-layered">
@@ -268,21 +329,32 @@
         <div class="upload-box-main">
           <div class="upload-tab-switcher">
             <button class="tab-btn-pill active" data-tab="file">
-              <svg class="icon-svg icon-sm" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+              <svg class="icon-svg icon-sm" viewBox="0 0 24 24">
+                <path
+                  d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z" />
+              </svg>
               Upload Document
             </button>
             <button class="tab-btn-pill" data-tab="text">
-              <svg class="icon-svg icon-sm" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+              <svg class="icon-svg icon-sm" viewBox="0 0 24 24">
+                <path
+                  d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+              </svg>
               Paste Raw Text
             </button>
           </div>
 
           <!-- Dropzone -->
           <div class="dropzone-editorial" onclick="document.getElementById('file-upload-input').click()">
-            <div style="width:64px; height:64px; border-radius:50%; background:var(--surface-white); color:var(--green-dark); display:flex; align-items:center; justify-content:center; margin:0 auto 16px auto; box-shadow:var(--shadow-sm);">
-              <svg class="icon-svg icon-lg" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+            <div
+              style="width:64px; height:64px; border-radius:50%; background:var(--surface-white); color:var(--green-dark); display:flex; align-items:center; justify-content:center; margin:0 auto 16px auto; box-shadow:var(--shadow-sm);">
+              <svg class="icon-svg icon-lg" viewBox="0 0 24 24">
+                <path
+                  d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z" />
+              </svg>
             </div>
-            <h3 class="dropzone-title" style="font-family:var(--font-display); font-weight:800; font-size:1.6rem; color:var(--green-deep); margin-bottom:6px;">
+            <h3 class="dropzone-title"
+              style="font-family:var(--font-display); font-weight:800; font-size:1.6rem; color:var(--green-deep); margin-bottom:6px;">
               Drop your document here
             </h3>
             <p class="dropzone-subtitle" style="color:var(--text-muted); font-size:0.9rem; margin-bottom:20px;">
@@ -294,10 +366,58 @@
 
           <!-- Raw Text Paste Area -->
           <div class="text-paste-area" style="display:none;">
-            <textarea style="width:100%; height:160px; padding:18px; border-radius:var(--radius-md); border:1.5px solid var(--green-soft); background:var(--cream-bg); font-size:0.95rem; outline:none;" placeholder="Paste the text of a notice, email, agreement, or scholarship circular here..."></textarea>
+            <textarea id="home-text-paste-area"
+              style="width:100%; height:160px; padding:18px; border-radius:var(--radius-md); border:1.5px solid var(--green-soft); background:var(--cream-bg); font-size:0.95rem; outline:none;"
+              placeholder="Paste the text of a notice, email, agreement, or scholarship circular here..."></textarea>
             <div style="margin-top:14px; text-align:right;">
-              <a href="pages/analyze.html" class="btn-editorial btn-editorial-primary btn-sm">Analyze Pasted Text &rarr;</a>
+              <button type="button" class="btn-editorial btn-editorial-primary btn-sm"
+                id="home-analyze-text-btn">Analyze Pasted Text &rarr;</button>
             </div>
+          </div>
+
+          <!-- Task Selector Action Buttons Bar -->
+          <div class="task-selector-bar">
+            <span class="task-selector-title">Select Task Engine:</span>
+            <div class="task-buttons-grid">
+              <button class="task-btn-pill active" data-task="summary">
+                <span>📝</span> AI Summarization
+              </button>
+              <button class="task-btn-pill" data-task="risk">
+                <span>⚠️</span> Risk Analysis
+              </button>
+              <button class="task-btn-pill" data-task="source">
+                <span>🎓</span> Source Verification
+              </button>
+              <button class="task-btn-pill" data-task="compare">
+                <span>⚖️</span> Document Compare
+              </button>
+              <button class="task-btn-pill" data-task="claims">
+                <span>🔍</span> Claim Scanner
+              </button>
+              <button class="task-btn-pill" data-task="privacy">
+                <span>🔒</span> Privacy Shield
+              </button>
+            </div>
+          </div>
+
+          <!-- Export Actions Group -->
+          <div style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+            <div class="export-actions-group">
+              <button class="btn-export btn-export-pdf" id="export-pdf-home-btn" title="Download PDF Report">
+                <svg class="icon-svg icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9.5 8.5c0 .83-.67 1.5-1.5 1.5H7v2H5.5V9H8c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V9H13c.83 0 1.5.67 1.5 1.5v3zm4-3H17v1h1.5V13H17v2h-1.5V9h3v1.5z"/></svg>
+                Download PDF
+              </button>
+              <button class="btn-export btn-export-png" id="export-png-home-btn" title="Download PNG Image">
+                <svg class="icon-svg icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                Download PNG
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Task Output Result Container -->
+          <div class="task-output-panel" id="task-output-panel">
+
+            <!-- Dynamic task analysis results rendered by JS script -->
           </div>
         </div>
       </div>
@@ -310,19 +430,23 @@
       <div class="section-header-editorial">
         <span class="badge-pill-editorial">COMPREHENSIVE TOOLKIT</span>
         <h2 class="section-title">One Lens. Multiple Ways to Understand.</h2>
-        <p class="section-subtitle">Multi-layered analysis designed for students, legal professionals, and digital citizens.</p>
+        <p class="section-subtitle">Multi-layered analysis designed for students, legal professionals, and digital
+          citizens.</p>
       </div>
 
       <div class="features-grid-editorial">
-        
+
         <!-- CARD 1: AI Document Summarization -->
         <div class="feature-card-editorial hero-feature-bg">
           <div>
             <div class="feature-icon-circle">
-              <svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              <svg class="icon-svg icon-md" viewBox="0 0 24 24">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
             </div>
             <h3 class="feature-card-title">AI Document Summarization</h3>
-            <p class="feature-card-desc">Turn lengthy, convoluted legal notices, academic guidelines, and government circulars into clear, concise executive summaries in seconds.</p>
+            <p class="feature-card-desc">Turn lengthy, convoluted legal notices, academic guidelines, and government
+              circulars into clear, concise executive summaries in seconds.</p>
           </div>
 
           <div class="feature-ui-mockup">
@@ -331,10 +455,12 @@
               <span style="color:var(--green-vibrant); font-weight:800;">✓ Summary Ready</span>
             </div>
             <div style="padding:14px; background:var(--surface-white);">
-              <div style="font-size:0.78rem; padding:6px 10px; border-radius:6px; background:var(--green-surface); font-weight:700; color:var(--green-dark); margin-bottom:6px;">
+              <div
+                style="font-size:0.78rem; padding:6px 10px; border-radius:6px; background:var(--green-surface); font-weight:700; color:var(--green-dark); margin-bottom:6px;">
                 ✓ Fee payable by 15 August 2026
               </div>
-              <div style="font-size:0.78rem; padding:6px 10px; border-radius:6px; background:var(--green-surface); font-weight:700; color:var(--green-dark);">
+              <div
+                style="font-size:0.78rem; padding:6px 10px; border-radius:6px; background:var(--green-surface); font-weight:700; color:var(--green-dark);">
                 ✓ Amount: &#8377;10,000 per semester
               </div>
             </div>
@@ -345,18 +471,26 @@
         <div class="feature-card-editorial risk-feature-bg">
           <div>
             <div class="feature-icon-circle" style="background:var(--coral-soft); color:var(--coral-deep);">
-              <svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+              <svg class="icon-svg icon-md" viewBox="0 0 24 24">
+                <path
+                  d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+              </svg>
             </div>
             <h3 class="feature-card-title">Risk Analysis</h3>
-            <p class="feature-card-desc">Identify potentially suspicious language, urgent pressure phrasing, predatory terms, and unverified document claims.</p>
+            <p class="feature-card-desc">Identify potentially suspicious language, urgent pressure phrasing, predatory
+              terms, and unverified document claims.</p>
           </div>
 
           <div class="feature-ui-mockup" style="background:var(--surface-white); padding:14px;">
             <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
-              <span style="font-family:var(--font-mono); font-size:0.75rem; font-weight:800; color:var(--coral-deep);">RISK SCORE</span>
-              <span class="badge-pill-editorial coral-theme" style="padding:2px 8px; font-size:0.7rem;">78 / 100 HIGH</span>
+              <span
+                style="font-family:var(--font-mono); font-size:0.75rem; font-weight:800; color:var(--coral-deep);">RISK
+                SCORE</span>
+              <span class="badge-pill-editorial coral-theme" style="padding:2px 8px; font-size:0.7rem;">78 / 100
+                HIGH</span>
             </div>
-            <div style="font-size:0.78rem; font-weight:700; padding:6px 10px; border-radius:6px; background:var(--coral-bg); color:var(--coral-deep);">
+            <div
+              style="font-size:0.78rem; font-weight:700; padding:6px 10px; border-radius:6px; background:var(--coral-bg); color:var(--coral-deep);">
               ⚠ Predatory Fee Clause Flagged
             </div>
           </div>
@@ -366,10 +500,14 @@
         <div class="feature-card-editorial">
           <div>
             <div class="feature-icon-circle">
-              <svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              <svg class="icon-svg icon-md" viewBox="0 0 24 24">
+                <path
+                  d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+              </svg>
             </div>
             <h3 class="feature-card-title">Source Verification</h3>
-            <p class="feature-card-desc">Check whether important institutional claims, domain links, and source seals require further official verification.</p>
+            <p class="feature-card-desc">Check whether important institutional claims, domain links, and source seals
+              require further official verification.</p>
           </div>
 
           <div class="feature-ui-mockup">
@@ -378,10 +516,12 @@
               <span style="color:var(--green-vibrant); font-weight:800;">✓ Verified</span>
             </div>
             <div style="padding:14px; background:var(--surface-white); display:flex; flex-direction:column; gap:6px;">
-              <div style="font-size:0.75rem; font-weight:800; color:var(--green-dark); background:var(--green-surface); padding:4px 8px; border-radius:4px;">
+              <div
+                style="font-size:0.75rem; font-weight:800; color:var(--green-dark); background:var(--green-surface); padding:4px 8px; border-radius:4px;">
                 ✓ official-portal.edu.in
               </div>
-              <div style="font-size:0.75rem; font-weight:800; color:var(--coral-deep); background:var(--coral-bg); padding:4px 8px; border-radius:4px;">
+              <div
+                style="font-size:0.75rem; font-weight:800; color:var(--coral-deep); background:var(--coral-bg); padding:4px 8px; border-radius:4px;">
                 ⚠ unverified-domain.com
               </div>
             </div>
@@ -392,10 +532,14 @@
         <div class="feature-card-editorial hero-feature-bg">
           <div>
             <div class="feature-icon-circle">
-              <svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M10 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h5v-2H5V5h5V3zm9 0h-5v2h5v14h-5v2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+              <svg class="icon-svg icon-md" viewBox="0 0 24 24">
+                <path
+                  d="M10 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h5v-2H5V5h5V3zm9 0h-5v2h5v14h-5v2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+              </svg>
             </div>
             <h3 class="feature-card-title">Document Compare</h3>
-            <p class="feature-card-desc">Compare two versions of a document side-by-side to spotlight modified clauses, deadline shifts, and fee alterations.</p>
+            <p class="feature-card-desc">Compare two versions of a document side-by-side to spotlight modified clauses,
+              deadline shifts, and fee alterations.</p>
           </div>
 
           <div class="feature-ui-mockup">
@@ -405,7 +549,9 @@
             </div>
             <div style="padding:12px; background:var(--surface-white); font-size:0.78rem;">
               <div style="color:var(--green-dark); font-weight:700;">Doc A: &#8377;10,000</div>
-              <div style="color:var(--coral-deep); font-weight:800; background:var(--coral-bg); padding:2px 6px; border-radius:4px; margin-top:2px;">Doc B: &#8377;50,000 ⚠</div>
+              <div
+                style="color:var(--coral-deep); font-weight:800; background:var(--coral-bg); padding:2px 6px; border-radius:4px; margin-top:2px;">
+                Doc B: &#8377;50,000 ⚠</div>
             </div>
           </div>
         </div>
@@ -414,18 +560,25 @@
         <div class="feature-card-editorial">
           <div>
             <div class="feature-icon-circle">
-              <svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+              <svg class="icon-svg icon-md" viewBox="0 0 24 24">
+                <path
+                  d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+              </svg>
             </div>
             <h3 class="feature-card-title">Claim Scanner</h3>
-            <p class="feature-card-desc">Deconstruct complex documents into individual factual claims and evaluate each statement independently.</p>
+            <p class="feature-card-desc">Deconstruct complex documents into individual factual claims and evaluate each
+              statement independently.</p>
           </div>
 
           <div class="feature-ui-mockup" style="padding:14px; background:var(--surface-white);">
-            <div style="font-size:0.75rem; font-weight:800; color:var(--text-light); margin-bottom:6px;">FACT CLAIMS</div>
-            <div style="font-size:0.78rem; font-weight:700; padding:6px 10px; border-radius:6px; background:var(--green-surface); color:var(--green-dark); margin-bottom:4px;">
+            <div style="font-size:0.75rem; font-weight:800; color:var(--text-light); margin-bottom:6px;">FACT CLAIMS
+            </div>
+            <div
+              style="font-size:0.78rem; font-weight:700; padding:6px 10px; border-radius:6px; background:var(--green-surface); color:var(--green-dark); margin-bottom:4px;">
               Claim #1: Verified Waiver
             </div>
-            <div style="font-size:0.78rem; font-weight:700; padding:6px 10px; border-radius:6px; background:var(--coral-bg); color:var(--coral-deep);">
+            <div
+              style="font-size:0.78rem; font-weight:700; padding:6px 10px; border-radius:6px; background:var(--coral-bg); color:var(--coral-deep);">
               Claim #2: Unverified Deposit
             </div>
           </div>
@@ -435,13 +588,18 @@
         <div class="feature-card-editorial privacy-feature-bg">
           <div>
             <div class="feature-icon-circle" style="background:rgba(255,255,255,0.15); color:var(--green-soft);">
-              <svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+              <svg class="icon-svg icon-md" viewBox="0 0 24 24">
+                <path
+                  d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
+              </svg>
             </div>
             <h3 class="feature-card-title">Privacy Shield</h3>
-            <p class="feature-card-desc">Automatically detect sensitive personal data including email addresses, phone numbers, and IDs to protect privacy.</p>
+            <p class="feature-card-desc">Automatically detect sensitive personal data including email addresses, phone
+              numbers, and IDs to protect privacy.</p>
           </div>
 
-          <div class="feature-ui-mockup" style="background:rgba(0,0,0,0.3); border-color:rgba(255,255,255,0.15); padding:14px;">
+          <div class="feature-ui-mockup"
+            style="background:rgba(0,0,0,0.3); border-color:rgba(255,255,255,0.15); padding:14px;">
             <div style="font-size:0.78rem; font-weight:700; color:var(--green-soft);">
               &#128274; PII Masked: <span data-entity="email">sc*********lp@gmail.com</span>
             </div>
@@ -456,10 +614,12 @@
   <section class="compare-section-editorial" id="compare">
     <div class="container">
       <div style="text-align:center; max-width:720px; margin:0 auto 40px auto;">
-        <span class="badge-pill-editorial" style="background:rgba(255,255,255,0.12); color:var(--cream-bg); border-color:rgba(255,255,255,0.2);">
+        <span class="badge-pill-editorial"
+          style="background:rgba(255,255,255,0.12); color:var(--cream-bg); border-color:rgba(255,255,255,0.2);">
           TRUSTLENS EXCLUSIVE COMPARISON ENGINE
         </span>
-        <h2 style="font-family:var(--font-display); font-weight:800; font-size:3rem; color:var(--surface-white); margin:14px 0 14px 0;">
+        <h2
+          style="font-family:var(--font-display); font-weight:800; font-size:3rem; color:var(--surface-white); margin:14px 0 14px 0;">
           What Changed?
         </h2>
         <p style="color:var(--green-soft); font-size:1.05rem;">
@@ -498,7 +658,8 @@
 
         <!-- Document B -->
         <div class="compare-card-box modified-flagged" id="doc-card-b">
-          <div class="compare-card-tag" style="color:var(--coral-deep);">&#9888; DOCUMENT B &bull; CIRCULATED MODIFIED</div>
+          <div class="compare-card-tag" style="color:var(--coral-deep);">&#9888; DOCUMENT B &bull; CIRCULATED MODIFIED
+          </div>
           <h3 class="compare-doc-title">Scholarship Notice_Modified.pdf</h3>
 
           <div class="field-item">
@@ -519,7 +680,9 @@
       </div>
 
       <div class="compare-banner-alert">
-        <svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+        <svg class="icon-svg icon-md" viewBox="0 0 24 24">
+          <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+        </svg>
         3 important inconsistencies detected between Document A and Document B.
       </div>
 
@@ -536,39 +699,54 @@
     <div class="container extraction-grid-editorial">
       <div>
         <span class="badge-pill-editorial">ENTITIES &amp; DATA PRIVACY</span>
-        <h2 style="font-family:var(--font-display); font-weight:800; font-size:2.6rem; color:var(--green-deep); margin:14px 0 16px 0;">
+        <h2
+          style="font-family:var(--font-display); font-weight:800; font-size:2.6rem; color:var(--green-deep); margin:14px 0 16px 0;">
           Smart Entity &amp; Privacy Extraction
         </h2>
         <p style="color:var(--text-body); font-size:1.05rem; line-height:1.6; margin-bottom:24px;">
-          TrustLens automatically structures key contact details, financial numbers, key dates, and external links into actionable data points while shielding private personal info.
+          TrustLens automatically structures key contact details, financial numbers, key dates, and external links into
+          actionable data points while shielding private personal info.
         </p>
-        <a href="pages/analyze.html" class="btn-editorial btn-editorial-primary btn-sm">Explore Entity Scanner &rarr;</a>
+        <a href="pages/analyze.html" class="btn-editorial btn-editorial-primary btn-sm">Explore Entity Scanner
+          &rarr;</a>
       </div>
 
       <div class="extracted-cards-grid">
         <div class="extracted-data-card">
-          <div style="font-size:0.75rem; font-weight:800; color:var(--text-light); text-transform:uppercase;">Detected Email</div>
-          <div style="font-weight:800; font-size:1rem; color:var(--green-deep); margin-top:4px;" data-entity="email">scholarshiphelp@gmail.com</div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--text-light); text-transform:uppercase;">Detected
+            Email</div>
+          <div style="font-weight:800; font-size:1rem; color:var(--green-deep); margin-top:4px;" data-entity="email">
+            scholarshiphelp@gmail.com</div>
         </div>
         <div class="extracted-data-card">
-          <div style="font-size:0.75rem; font-weight:800; color:var(--text-light); text-transform:uppercase;">Detected Phone</div>
-          <div style="font-weight:800; font-size:1rem; color:var(--green-deep); margin-top:4px;" data-entity="phone">9876543210</div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--text-light); text-transform:uppercase;">Detected
+            Phone</div>
+          <div style="font-weight:800; font-size:1rem; color:var(--green-deep); margin-top:4px;" data-entity="phone">
+            9876543210</div>
         </div>
         <div class="extracted-data-card">
-          <div style="font-size:0.75rem; font-weight:800; color:var(--text-light); text-transform:uppercase;">Detected URL Link</div>
-          <div style="font-weight:800; font-size:1rem; color:var(--coral-dark); margin-top:4px;">example-site.com/claim</div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--text-light); text-transform:uppercase;">Detected
+            URL Link</div>
+          <div style="font-weight:800; font-size:1rem; color:var(--coral-dark); margin-top:4px;">example-site.com/claim
+          </div>
         </div>
         <div class="extracted-data-card">
-          <div style="font-size:0.75rem; font-weight:800; color:var(--text-light); text-transform:uppercase;">Financial Amount</div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--text-light); text-transform:uppercase;">Financial
+            Amount</div>
           <div style="font-weight:800; font-size:1rem; color:var(--green-dark); margin-top:4px;">&#8377;50,000</div>
         </div>
 
         <div class="privacy-banner-card">
-          <div style="font-size:0.85rem; font-weight:800; color:var(--green-deep); display:flex; align-items:center; gap:8px;">
-            <svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+          <div
+            style="font-size:0.85rem; font-weight:800; color:var(--green-deep); display:flex; align-items:center; gap:8px;">
+            <svg class="icon-svg icon-md" viewBox="0 0 24 24">
+              <path
+                d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
+            </svg>
             Potentially Sensitive Info Detected
           </div>
-          <button class="privacy-toggle-btn" style="font-size:0.82rem; font-weight:800; color:var(--green-dark); text-decoration:underline;">
+          <button class="privacy-toggle-btn"
+            style="font-size:0.82rem; font-weight:800; color:var(--green-dark); text-decoration:underline;">
             Hide Sensitive Info
           </button>
         </div>
@@ -591,7 +769,8 @@
           <h3 class="step-card-title">UPLOAD</h3>
           <p class="step-card-desc">Upload PDF, scanned image, screenshot or paste text directly into the studio.</p>
           <div class="step-img-frame">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Person selecting document file to upload on screen">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
+              alt="Person selecting document file to upload on screen">
           </div>
         </div>
 
@@ -600,25 +779,30 @@
           <h3 class="step-card-title">EXTRACT</h3>
           <p class="step-card-desc">Text is extracted with clean document layout parsing and OCR processing.</p>
           <div class="step-img-frame">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="OCR text data extraction analytics screen">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
+              alt="OCR text data extraction analytics screen">
           </div>
         </div>
 
         <div class="step-card-editorial">
           <div class="step-badge-num">03</div>
           <h3 class="step-card-title">ANALYZE</h3>
-          <p class="step-card-desc">AI, NLP, and machine learning models analyze language tone, links, and entity consistency.</p>
+          <p class="step-card-desc">AI, NLP, and machine learning models analyze language tone, links, and entity
+            consistency.</p>
           <div class="step-img-frame">
-            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80" alt="AI NLP neural analytics model evaluating text data">
+            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80"
+              alt="AI NLP neural analytics model evaluating text data">
           </div>
         </div>
 
         <div class="step-card-editorial">
           <div class="step-badge-num">04</div>
           <h3 class="step-card-title">UNDERSTAND</h3>
-          <p class="step-card-desc">Receive clear summaries, risk indicators, side-by-side diffs, and explainable insights.</p>
+          <p class="step-card-desc">Receive clear summaries, risk indicators, side-by-side diffs, and explainable
+            insights.</p>
           <div class="step-img-frame">
-            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" alt="Person reviewing clear verification report document on desk">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80"
+              alt="Person reviewing clear verification report document on desk">
           </div>
         </div>
       </div>
@@ -631,74 +815,199 @@
       <div class="section-header-editorial">
         <span class="badge-pill-editorial">REAL-WORLD APPLICATIONS</span>
         <h2 class="section-title">Designed for Critical Scenarios</h2>
-        <p class="section-subtitle">Protecting individuals and organizations across everyday verification touchpoints.</p>
+        <p class="section-subtitle">Protecting individuals and organizations across everyday verification touchpoints.
+        </p>
       </div>
 
       <div class="usecases-grid-editorial">
         <div class="usecase-card-editorial">
           <div class="usecase-img-box">
-            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="University students on campus reviewing college admission circular paperwork">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80"
+              alt="University students on campus reviewing college admission circular paperwork">
           </div>
           <div class="usecase-body">
             <div class="usecase-category-tag">ACADEMIC &amp; CAMPUS</div>
             <h3 class="usecase-title">Students</h3>
-            <p style="font-size:0.9rem; color:var(--text-body);">Understand scholarship notices, college circulars, fee notifications, and exam guidelines with complete clarity.</p>
+            <p style="font-size:0.9rem; color:var(--text-body);">Understand scholarship notices, college circulars, fee
+              notifications, and exam guidelines with complete clarity.</p>
           </div>
         </div>
 
         <div class="usecase-card-editorial">
           <div class="usecase-img-box">
-            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80" alt="Official government public gazette notice with wax seal stamp">
+            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+              alt="Official government public gazette notice with wax seal stamp">
           </div>
           <div class="usecase-body">
             <div class="usecase-category-tag">CIVIC &amp; PUBLIC</div>
             <h3 class="usecase-title">Government Notices</h3>
-            <p style="font-size:0.9rem; color:var(--text-body);">Verify public circulars, taxation updates, gazette notifications, and official government announcements.</p>
+            <p style="font-size:0.9rem; color:var(--text-body);">Verify public circulars, taxation updates, gazette
+              notifications, and official government announcements.</p>
           </div>
         </div>
 
         <div class="usecase-card-editorial">
           <div class="usecase-img-box">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="Job applicant holding printed employment offer letter contract">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
+              alt="Job applicant holding printed employment offer letter contract">
           </div>
           <div class="usecase-body">
             <div class="usecase-category-tag">CAREER</div>
             <h3 class="usecase-title">Job Seekers</h3>
-            <p style="font-size:0.9rem; color:var(--text-body);">Detect predatory offer letters, fraudulent recruiter demands, registration fee traps, and suspicious contract clauses.</p>
+            <p style="font-size:0.9rem; color:var(--text-body);">Detect predatory offer letters, fraudulent recruiter
+              demands, registration fee traps, and suspicious contract clauses.</p>
           </div>
         </div>
 
         <div class="usecase-card-editorial">
           <div class="usecase-img-box">
-            <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80" alt="Person signing residential rental lease agreement document with pen">
+            <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80"
+              alt="Person signing residential rental lease agreement document with pen">
           </div>
           <div class="usecase-body">
             <div class="usecase-category-tag">LEGAL &amp; RENTAL</div>
             <h3 class="usecase-title">Agreements</h3>
-            <p style="font-size:0.9rem; color:var(--text-body);">Scan rental leases, non-disclosure contracts, freelance terms, and service level agreements for hidden risks.</p>
+            <p style="font-size:0.9rem; color:var(--text-body);">Scan rental leases, non-disclosure contracts, freelance
+              terms, and service level agreements for hidden risks.</p>
           </div>
         </div>
 
         <div class="usecase-card-editorial">
           <div class="usecase-img-box">
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Student receiving university financial aid scholarship document">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
+              alt="Student receiving university financial aid scholarship document">
           </div>
           <div class="usecase-body">
             <div class="usecase-category-tag">FINANCIAL AID</div>
             <h3 class="usecase-title">Scholarship Info</h3>
-            <p style="font-size:0.9rem; color:var(--text-body);">Verify eligibility criteria, true disbursement amounts, application portals, and submission deadlines.</p>
+            <p style="font-size:0.9rem; color:var(--text-body);">Verify eligibility criteria, true disbursement amounts,
+              application portals, and submission deadlines.</p>
           </div>
         </div>
 
         <div class="usecase-card-editorial">
           <div class="usecase-img-box">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Corporate office bulletin board circular notice document">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80"
+              alt="Corporate office bulletin board circular notice document">
           </div>
           <div class="usecase-body">
             <div class="usecase-category-tag">INSTITUTIONAL</div>
             <h3 class="usecase-title">Official Circulars</h3>
-            <p style="font-size:0.9rem; color:var(--text-body);">Distinguish authentic internal policy directives from unauthorized, edited WhatsApp circular screenshots.</p>
+            <p style="font-size:0.9rem; color:var(--text-body);">Distinguish authentic internal policy directives from
+              unauthorized, edited WhatsApp circular screenshots.</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlight Offer Cards Feature Showcase (Reference Card Feature) -->
+  <section class="container" style="padding:40px 0 90px 0;">
+    <div class="section-header-editorial">
+      <span class="badge-pill-editorial">POPULAR VERIFICATION SUITES</span>
+      <h2 class="section-title">Specialized Inspection Cards</h2>
+      <p class="section-subtitle">Experience our interactive card design with hover elevate effects, rating metrics, and
+        outlined action buttons.</p>
+    </div>
+
+    <div class="hotel-card-grid">
+      <!-- Card 1 -->
+      <div class="hotel-style-card">
+        <div class="hotel-card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=600&q=80"
+            alt="Bella Vista Resort Style - Academic Notice">
+        </div>
+        <div class="hotel-card-content">
+          <div>
+            <h3 class="hotel-card-title">Academic Notice Suite</h3>
+            <div class="hotel-card-stars">★ ★ ★</div>
+            <div class="hotel-card-sub">Universities &amp; Colleges</div>
+          </div>
+          <div class="hotel-card-price-row">
+            <span class="hotel-card-price">$ 56</span>
+            <span class="hotel-card-price-unit"> / verification credit</span>
+          </div>
+          <a href="pages/analyze.html" class="hotel-card-btn">View more</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="hotel-style-card">
+        <div class="hotel-card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
+            alt="Island Palace Style - Scholarship Verifier">
+        </div>
+        <div class="hotel-card-content">
+          <div>
+            <h3 class="hotel-card-title">Scholarship Verifier</h3>
+            <div class="hotel-card-stars">★ ★ ★ ★</div>
+            <div class="hotel-card-sub">Financial Aid &amp; Grants</div>
+          </div>
+          <div class="hotel-card-price-row">
+            <span class="hotel-card-price">$ 180</span>
+            <span class="hotel-card-price-unit"> / audit scan</span>
+          </div>
+          <a href="pages/analyze.html" class="hotel-card-btn">View more</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="hotel-style-card">
+        <div class="hotel-card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80"
+            alt="Serenity Cove Style - Gazette Portal">
+        </div>
+        <div class="hotel-card-content">
+          <div>
+            <h3 class="hotel-card-title">Gazette &amp; Legal Portal</h3>
+            <div class="hotel-card-stars">★ ★ ★ ★ ★</div>
+            <div class="hotel-card-sub">Public Administration</div>
+          </div>
+          <div class="hotel-card-price-row">
+            <span class="hotel-card-price">$ 240</span>
+            <span class="hotel-card-price-unit"> / official check</span>
+          </div>
+          <a href="pages/analyze.html" class="hotel-card-btn">View more</a>
+        </div>
+      </div>
+
+      <!-- Card 4 (ACTIVE HIGHLIGHT MATCHING SCREENSHOT) -->
+      <div class="hotel-style-card active-card">
+        <div class="hotel-card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80"
+            alt="White Sea Hotel Style - Enterprise Contract Suite">
+        </div>
+        <div class="hotel-card-content">
+          <div>
+            <h3 class="hotel-card-title">Enterprise Contract Engine</h3>
+            <div class="hotel-card-stars">★ ★ ★</div>
+            <div class="hotel-card-sub">Corporate &amp; Legal</div>
+          </div>
+          <div class="hotel-card-price-row">
+            <span class="hotel-card-price">$ 380</span>
+            <span class="hotel-card-price-unit"> / deep comparison</span>
+          </div>
+          <a href="pages/analyze.html" class="hotel-card-btn">View more</a>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="hotel-style-card">
+        <div class="hotel-card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+            alt="LuxEco Style - Offer Letter Inspector">
+        </div>
+        <div class="hotel-card-content">
+          <div>
+            <h3 class="hotel-card-title">Job Offer Shield</h3>
+            <div class="hotel-card-stars">★ ★ ★ ★</div>
+            <div class="hotel-card-sub">Recruitment &amp; HR</div>
+          </div>
+          <div class="hotel-card-price-row">
+            <span class="hotel-card-price">$ 324</span>
+            <span class="hotel-card-price-unit"> / PII audit</span>
+          </div>
+          <a href="pages/analyze.html" class="hotel-card-btn">View more</a>
         </div>
       </div>
     </div>
@@ -709,44 +1018,58 @@
     <div class="container explain-grid-editorial">
       <div>
         <span class="badge-pill-editorial">EXPLAINABLE AI ENGINE</span>
-        <h2 style="font-family:var(--font-display); font-weight:800; font-size:3rem; color:var(--green-deep); margin:14px 0 16px 0; line-height:1.12;">
+        <h2
+          style="font-family:var(--font-display); font-weight:800; font-size:3rem; color:var(--green-deep); margin:14px 0 16px 0; line-height:1.12;">
           Don't just get an answer.<br><span class="text-coral-accent">Know why.</span>
         </h2>
         <p style="color:var(--text-body); font-size:1.05rem; line-height:1.6; margin-bottom:28px;">
-          TrustLens AI never returns a black-box percentage. Every trust rating is backed by itemized, transparent audit logs detailing exact flags, claims, and verified entity sources.
+          TrustLens AI never returns a black-box percentage. Every trust rating is backed by itemized, transparent audit
+          logs detailing exact flags, claims, and verified entity sources.
         </p>
-        <a href="pages/features.html" class="btn-editorial btn-editorial-primary btn-sm">Explore Explainable AI &rarr;</a>
+        <a href="pages/features.html" class="btn-editorial btn-editorial-primary btn-sm">Explore Explainable AI
+          &rarr;</a>
       </div>
 
       <div class="explain-audit-card">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-          <h3 style="font-family:var(--font-display); font-weight:800; font-size:1.35rem; color:var(--green-deep);">Audit Trail Breakdown</h3>
+          <h3 style="font-family:var(--font-display); font-weight:800; font-size:1.35rem; color:var(--green-deep);">
+            Audit Trail Breakdown</h3>
           <span class="badge-pill-editorial coral-theme" style="font-size:0.7rem;">Risk Score: 78/100</span>
         </div>
 
         <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px;">
           <div class="audit-item pass">
             <span>
-              <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--green-mid); margin-right:6px;"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--green-mid); margin-right:6px;">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+              </svg>
               Financial claim detected (&#8377;50,000 scholarship)
             </span>
           </div>
           <div class="audit-item flag">
             <span>
-              <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-deep); margin-right:6px;"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+              <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-deep); margin-right:6px;">
+                <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+              </svg>
               No official university domain source found
             </span>
           </div>
           <div class="audit-item flag">
             <span>
-              <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-deep); margin-right:6px;"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+              <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-deep); margin-right:6px;">
+                <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+              </svg>
               Urgent wording detected ("Apply within 24 hours")
             </span>
           </div>
         </div>
 
-        <div style="background:var(--coral-soft); border:1px solid var(--peach); border-radius:var(--radius-sm); padding:14px; font-size:0.82rem; color:#8C3236; font-weight:700; display:flex; align-items:center; gap:10px;">
-          <svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+        <div
+          style="background:var(--coral-soft); border:1px solid var(--peach); border-radius:var(--radius-sm); padding:14px; font-size:0.82rem; color:#8C3236; font-weight:700; display:flex; align-items:center; gap:10px;">
+          <svg class="icon-svg icon-md" viewBox="0 0 24 24">
+            <path
+              d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+          </svg>
           <span>AI-assisted analysis, not a replacement for official verification.</span>
         </div>
       </div>
@@ -761,7 +1084,8 @@
         <p style="font-size:1.1rem; color:var(--text-muted); max-width:580px; margin:0 auto 32px auto;">
           Analyze documents and make better-informed decisions with TrustLens AI.
         </p>
-        <a href="pages/analyze.html" class="btn-editorial btn-editorial-primary btn-sm" style="padding:14px 36px; font-size:1.05rem;">
+        <a href="pages/analyze.html" class="btn-editorial btn-editorial-primary btn-sm"
+          style="padding:14px 36px; font-size:1.05rem;">
           Analyze Your Document Now &rarr;
         </a>
       </div>
@@ -789,11 +1113,11 @@
           <h4 class="footer-col-title">Navigation</h4>
           <ul class="footer-links-list">
             <li><a href="index.html">&rarr; Home</a></li>
-            <li><a href="#features">&rarr; Features</a></li>
-            <li><a href="#how-it-works">&rarr; How It Works</a></li>
+            <li><a href="pages/features.html">&rarr; Features</a></li>
+            <li><a href="pages/how-it-works.html">&rarr; How It Works</a></li>
             <li><a href="pages/analyze.html">&rarr; Verify Studio</a></li>
-            <li><a href="#compare">&rarr; Compare Engine</a></li>
-            <li><a href="pages/about.html">&rarr; About Project</a></li>
+            <li><a href="pages/compare.html">&rarr; Compare Engine</a></li>
+            <li><a href="pages/about.html">&rarr; About</a></li>
           </ul>
         </div>
 
@@ -809,9 +1133,9 @@
         </div>
 
         <div>
-          <h4 class="footer-col-title">MCA Major Project</h4>
+          <h4 class="footer-col-title">Platform</h4>
           <ul class="footer-links-list">
-            <li><a href="pages/about.html">&rarr; Project Overview</a></li>
+            <li><a href="pages/about.html">&rarr; Platform Overview</a></li>
             <li><a href="pages/about.html">&rarr; System Architecture</a></li>
             <li><a href="pages/about.html">&rarr; AI Safety &amp; Ethics</a></li>
           </ul>
@@ -819,7 +1143,7 @@
       </div>
 
       <div class="footer-bottom-bar">
-        <div>&copy; 2026 TrustLens AI. All rights reserved. MCA Major Project Prototype.</div>
+        <div>&copy; 2026 TrustLens AI. All rights reserved. Enterprise AI Platform.</div>
         <a href="#navbar" class="back-to-top-btn">Back to Top &uarr;</a>
       </div>
     </div>
@@ -827,4 +1151,5 @@
 
   <script src="js/script.js"></script>
 </body>
+
 </html>

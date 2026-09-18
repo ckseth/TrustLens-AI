@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Compare Engine – TrustLens AI</title>
+  <meta name="description"
+    content="Compare two versions of a document side-by-side. Spot altered clauses, fee inflation, shifted deadlines, and missing seals.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/logo/logo.png">
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+    (function() {
+      const saved = localStorage.getItem('trustlens_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
+  <style>
+    .compare-hero-header {
+      padding: 80px 0 50px 0;
+      background: var(--green-deep);
+      color: var(--surface-white);
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
+  <!-- Export Libraries (PDF & PNG) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../assets/logo/logo.png" alt="TrustLens AI Logo Circular">
+        <span class="nav-logo-text">TrustLens AI</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="analyze.html">Verify Studio</a></li>
+        <li><a href="compare.html" class="active">Compare Engine</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" aria-label="Toggle Theme">🌙 Dark</button>
+        <a href="login.html" class="btn-editorial btn-editorial-secondary btn-sm">Log In</a>
+        <a href="signup.html" class="btn-editorial btn-editorial-primary btn-sm">Get Started</a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Toggle Menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-overlay"></div>
+  <div class="mobile-nav-drawer">
+    <div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:32px;">
+        <a href="../index.html" class="nav-logo">
+          <img src="../assets/logo/logo.png" alt="TrustLens AI Logo">
+          <span class="nav-logo-text">TrustLens AI</span>
+        </a>
+        <button class="mobile-close-btn" style="font-size:1.6rem; color:var(--green-dark);">&times;</button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="analyze.html">Verify Studio</a></li>
+        <li><a href="compare.html">Compare Engine</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <button class="theme-toggle-btn" aria-label="Toggle Theme" style="width:100%;">🌙 Dark Mode</button>
+      <a href="analyze.html" class="btn-editorial btn-editorial-secondary btn-sm" style="width:100%;">Log In</a>
+      <a href="analyze.html" class="btn-editorial btn-editorial-primary btn-sm" style="width:100%;">Get Started</a>
+    </div>
+  </div>
+
+  <!-- Compare Engine Hero -->
+  <header class="compare-hero-header">
+    <div class="container" style="max-width:920px; margin:0 auto; text-align:center;">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:16px; margin-bottom:20px;">
+        <div>
+          <span class="badge-pill-editorial"
+            style="background:rgba(255,255,255,0.12); color:var(--surface-white); border-color:rgba(255,255,255,0.2); text-transform:none;">
+            Interactive Side-by-Side Diff Engine
+          </span>
+          <h1
+            style="font-family:var(--font-display); font-weight:800; font-size:2.8rem; color:var(--surface-white); margin:12px 0 8px 0;">
+            Document Comparison Studio
+          </h1>
+        </div>
+        <div style="display:inline-flex; background:rgba(0,0,0,0.25); padding:4px; border-radius:10px; gap:6px;">
+          <a href="analyze.html" class="btn-editorial btn-editorial-secondary btn-sm" style="color:var(--text-main); background:var(--surface-white); border-color:var(--surface-white); font-weight:600;">Single Verification</a>
+          <a href="compare.html" class="btn-editorial btn-editorial-primary btn-sm" aria-current="page">Document Compare Mode &rarr;</a>
+        </div>
+      </div>
+      <p style="color:var(--green-soft); font-size:1.15rem; line-height:1.6; text-align:center;">
+        Upload two versions of an official notice, agreement, or circular to pinpoint every subtle alteration, deadline
+        shift, and fee override.
+      </p>
+    </div>
+  </header>
+
+  <!-- Interactive Comparison Main Workspace -->
+  <main class="compare-section-editorial" style="padding:60px 0 90px 0;">
+    <div class="container">
+
+      <!-- Preset Selector Buttons -->
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:36px;">
+        <span
+          style="color:var(--green-soft); font-size:0.9rem; font-weight:700; display:flex; align-items:center; margin-right:8px;">
+          Load Demo Preset:
+        </span>
+        <button class="compare-tab-pill active" onclick="loadCompareSample('scholarship')">Scholarship Circular
+          Diff</button>
+        <button class="compare-tab-pill" onclick="loadCompareSample('fee')">Tuition Fee Circular Diff</button>
+        <button class="compare-tab-pill" onclick="loadCompareSample('offer')">Offer Letter Contract Diff</button>
+      </div>
+
+      <!-- Compare Tab Switcher & Export Controls -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:24px;">
+        <div class="compare-tabs-container" style="margin-bottom:0;">
+          <button class="compare-tab-pill active" data-compare-mode="all">All Differences</button>
+          <button class="compare-tab-pill" data-compare-mode="docA">Document A Only</button>
+          <button class="compare-tab-pill" data-compare-mode="docB">Document B Only</button>
+        </div>
+        <div class="export-actions-group">
+          <button class="btn-export btn-export-pdf" id="export-pdf-compare-btn" title="Download PDF Comparison Report">
+            <svg class="icon-svg icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9.5 8.5c0 .83-.67 1.5-1.5 1.5H7v2H5.5V9H8c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V9H13c.83 0 1.5.67 1.5 1.5v3zm4-3H17v1h1.5V13H17v2h-1.5V9h3v1.5z"/></svg>
+            Download PDF
+          </button>
+          <button class="btn-export btn-export-png" id="export-png-compare-btn" title="Download PNG Comparison Image">
+            <svg class="icon-svg icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            Download PNG
+          </button>
+        </div>
+      </div>
+
+      <!-- Side-by-Side Diff Cards Container -->
+      <div id="comparison-report-container">
+        <div class="compare-grid-editorial">
+
+
+        <!-- Document A -->
+        <div class="compare-card-box" id="doc-card-a">
+          <div class="compare-card-tag">DOCUMENT A &bull; OFFICIAL ORIGINAL</div>
+          <h3 class="compare-doc-title" id="docA-title">Scholarship Notice v1.pdf</h3>
+
+          <div class="field-item">
+            <div class="field-item-label">Scholarship / Fee Amount</div>
+            <div class="field-item-val" id="docA-field1">&#8377;10,000 per semester</div>
+          </div>
+
+          <div class="field-item">
+            <div class="field-item-label">Submission Deadline</div>
+            <div class="field-item-val" id="docA-field2">15 August 2026</div>
+          </div>
+
+          <div class="field-item">
+            <div class="field-item-label">Target Eligibility</div>
+            <div class="field-item-val" id="docA-field3">Eligible merit students</div>
+          </div>
+
+          <div class="field-item">
+            <div class="field-item-label">Official Portal Domain</div>
+            <div class="field-item-val" id="docA-field4">scholarship.edu.in</div>
+          </div>
+        </div>
+
+        <!-- Document B -->
+        <div class="compare-card-box modified-flagged" id="doc-card-b">
+          <div class="compare-card-tag" style="color:var(--coral-deep);">&#9888; DOCUMENT B &bull; CIRCULATED MODIFIED
+          </div>
+          <h3 class="compare-doc-title" id="docB-title">Scholarship Notice_Modified.pdf</h3>
+
+          <div class="field-item">
+            <div class="field-item-label">Scholarship / Fee Amount</div>
+            <div class="field-item-val diff-alert" id="docB-field1">&#8377;50,000 per semester</div>
+          </div>
+
+          <div class="field-item">
+            <div class="field-item-label">Submission Deadline</div>
+            <div class="field-item-val diff-alert" id="docB-field2">30 August 2026</div>
+          </div>
+
+          <div class="field-item">
+            <div class="field-item-label">Target Eligibility</div>
+            <div class="field-item-val diff-alert" id="docB-field3">All students (No criteria)</div>
+          </div>
+
+          <div class="field-item">
+            <div class="field-item-label">Official Portal Domain</div>
+            <div class="field-item-val diff-alert" id="docB-field4">unverified-claim-portal.com</div>
+          </div>
+        </div>
+
+      <!-- Inconsistency Banner Alert -->
+      <div class="compare-banner-alert" id="compare-alert-banner">
+        <svg class="icon-svg icon-md" viewBox="0 0 24 24">
+          <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+        </svg>
+        <span>4 critical discrepancies detected between Document A and Document B.</span>
+      </div>
+      </div><!-- End #comparison-report-container -->
+
+
+      <div style="text-align:center; margin-top:36px;">
+        <a href="analyze.html" class="btn-editorial btn-editorial-coral">
+          Upload Custom Files to Compare &rarr;
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Reference Offer Card Feature Grid section -->
+  <section class="container" style="padding:70px 0 100px 0;">
+    <div class="section-header-editorial">
+      <span class="badge-pill-editorial">COMPARISON TEMPLATES</span>
+      <h2 class="section-title">Common Verification Use Cases</h2>
+      <p class="section-subtitle">Select a comparison profile below to inspect pre-configured rules.</p>
+    </div>
+
+    <div class="hotel-card-grid">
+
+      <!-- Card 1 -->
+      <div class="hotel-style-card">
+        <div class="hotel-card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
+            alt="College Circular Diff">
+        </div>
+        <div class="hotel-card-content">
+          <div>
+            <h3 class="hotel-card-title">College Fee Circular Diff</h3>
+            <div class="hotel-card-stars">★ ★ ★ ★ ★</div>
+            <div class="hotel-card-sub">Academic Notices</div>
+          </div>
+          <div class="hotel-card-price-row">
+            <span class="hotel-card-price">3 Diffs</span>
+            <span class="hotel-card-price-unit"> flagged automatically</span>
+          </div>
+          <a href="analyze.html" class="hotel-card-btn">View more</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="hotel-style-card active-card">
+        <div class="hotel-card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+            alt="Recruitment Offer Diff">
+        </div>
+        <div class="hotel-card-content">
+          <div>
+            <h3 class="hotel-card-title">Recruitment Offer Diff</h3>
+            <div class="hotel-card-stars">★ ★ ★ ★ ★</div>
+            <div class="hotel-card-sub">Employment Contracts</div>
+          </div>
+          <div class="hotel-card-price-row">
+            <span class="hotel-card-price">Salary &amp; Bond</span>
+            <span class="hotel-card-price-unit"> clause check</span>
+          </div>
+          <a href="analyze.html" class="hotel-card-btn">View more</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="hotel-style-card">
+        <div class="hotel-card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80"
+            alt="Rental Lease Agreement Diff">
+        </div>
+        <div class="hotel-card-content">
+          <div>
+            <h3 class="hotel-card-title">Rental Lease Agreement</h3>
+            <div class="hotel-card-stars">★ ★ ★ ★</div>
+            <div class="hotel-card-sub">Property Leases</div>
+          </div>
+          <div class="hotel-card-price-row">
+            <span class="hotel-card-price">Deposit Terms</span>
+            <span class="hotel-card-price-unit"> highlighted</span>
+          </div>
+          <a href="analyze.html" class="hotel-card-btn">View more</a>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="hotel-style-card">
+        <div class="hotel-card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80"
+            alt="Gazette Notification Diff">
+        </div>
+        <div class="hotel-card-content">
+          <div>
+            <h3 class="hotel-card-title">Government Gazette Notification</h3>
+            <div class="hotel-card-stars">★ ★ ★ ★ ★</div>
+            <div class="hotel-card-sub">Public Administration</div>
+          </div>
+          <div class="hotel-card-price-row">
+            <span class="hotel-card-price">Official Seal</span>
+            <span class="hotel-card-price-unit"> verification</span>
+          </div>
+          <a href="analyze.html" class="hotel-card-btn">View more</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-editorial">
+    <div class="container">
+      <div class="footer-grid-editorial">
+        <div class="footer-brand-box">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+            <img src="../assets/logo/logo.png" alt="TrustLens AI Logo Circular">
+            <span class="footer-brand-name">TrustLens AI</span>
+          </div>
+          <p style="color:var(--green-soft); font-size:0.95rem; max-width:320px; line-height:1.65;">
+            Intelligent Document Verification &amp; Analysis Platform. Empowering users through explainable AI insights.
+          </p>
+          <div style="margin-top:20px; font-family:var(--font-logo); font-size:1.15rem; color:var(--coral-primary);">
+            Understand &bull; Analyze &bull; Trust
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-links-list">
+            <li><a href="../index.html">&rarr; Home</a></li>
+            <li><a href="features.html">&rarr; Features</a></li>
+            <li><a href="how-it-works.html">&rarr; How It Works</a></li>
+            <li><a href="analyze.html">&rarr; Verify Studio</a></li>
+            <li><a href="compare.html">&rarr; Compare Engine</a></li>
+            <li><a href="about.html">&rarr; About</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Capabilities</h4>
+          <ul class="footer-links-list">
+            <li><a href="features.html">&rarr; AI Summarization</a></li>
+            <li><a href="features.html">&rarr; Risk Analysis</a></li>
+            <li><a href="features.html">&rarr; Source Verification</a></li>
+            <li><a href="features.html">&rarr; Claim Scanner</a></li>
+            <li><a href="features.html">&rarr; Privacy Shield</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Platform</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html">&rarr; Architecture Overview</a></li>
+            <li><a href="about.html">&rarr; Security &amp; Privacy</a></li>
+            <li><a href="about.html">&rarr; Verification Standards</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 TrustLens AI. All rights reserved. Enterprise AI Platform.</div>
+        <a href="#navbar" class="back-to-top-btn">Back to Top &uarr;</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+  <script>
+    // Preset demo sample loader logic for compare engine
+    function loadCompareSample(type) {
+      const docATitle = document.getElementById('docA-title');
+      const docBTitle = document.getElementById('docB-title');
+      const f1A = document.getElementById('docA-field1');
+      const f1B = document.getElementById('docB-field1');
+      const f2A = document.getElementById('docA-field2');
+      const f2B = document.getElementById('docB-field2');
+      const f3A = document.getElementById('docA-field3');
+      const f3B = document.getElementById('docB-field3');
+      const f4A = document.getElementById('docA-field4');
+      const f4B = document.getElementById('docB-field4');
+      const banner = document.getElementById('compare-alert-banner');
+
+      if (type === 'scholarship') {
+        docATitle.innerText = 'Scholarship Notice v1.pdf';
+        docBTitle.innerText = 'Scholarship Notice_Modified.pdf';
+        f1A.innerText = '₹10,000 per semester';
+        f1B.innerText = '₹50,000 per semester';
+        f2A.innerText = '15 August 2026';
+        f2B.innerText = '30 August 2026';
+        f3A.innerText = 'Eligible merit students';
+        f3B.innerText = 'All students (No criteria)';
+        f4A.innerText = 'scholarship.edu.in';
+        f4B.innerText = 'unverified-claim-portal.com';
+        banner.innerHTML = '<svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg> <span>4 critical discrepancies detected between Document A and Document B.</span>';
+      } else if (type === 'fee') {
+        docATitle.innerText = 'Tuition_Fee_Circular_2026.pdf';
+        docBTitle.innerText = 'Tuition_Fee_Whatsapp_Draft.pdf';
+        f1A.innerText = '₹25,000 Annual Fee';
+        f1B.innerText = '₹45,000 Immediate Deposit';
+        f2A.innerText = '31 July 2026';
+        f2B.innerText = 'Pay within 24 hours';
+        f3A.innerText = 'College Cashier Desk';
+        f3B.innerText = 'UPI Direct Transfer Link';
+        f4A.innerText = 'college-portal.edu.in';
+        f4B.innerText = 'quick-payment-gateway.biz';
+        banner.innerHTML = '<svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg> <span>Predatory payment portal & fee escalation detected!</span>';
+      } else if (type === 'offer') {
+        docATitle.innerText = 'Official_Offer_Letter.pdf';
+        docBTitle.innerText = 'Recruiter_Sent_Offer_v2.pdf';
+        f1A.innerText = '₹6,000,000 CTC';
+        f1B.innerText = '₹4,500,000 CTC (Reduced)';
+        f2A.innerText = 'No Registration Fee';
+        f2B.innerText = '₹5,000 Laptop Security Deposit';
+        f3A.innerText = 'Standard 30 Days Notice';
+        f3B.innerText = 'Mandatory 3 Years Bond';
+        f4A.innerText = 'careers@techcorp.com';
+        f4B.innerText = 'hr-techcorp@gmail.com';
+        banner.innerHTML = '<svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg> <span>Suspicious Gmail domain & deposit trap detected!</span>';
+      }
+    }
+  </script>
+</body>
+
+</html>
