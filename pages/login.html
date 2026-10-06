@@ -4,200 +4,506 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign In – TrustLens AI Document Verification Studio</title>
+  <title>Sign In – TrustLens AI Verification Studio</title>
   <meta name="description"
-    content="Sign in to your TrustLens AI account to access document analysis tools, risk scanners, and compare studio.">
+    content="Sign in to your TrustLens AI account with secure Trust Pass identity and device verification.">
+  <meta name="robots" content="noindex, nofollow">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../assets/logo/logo.png">
 
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
   <!-- Master Stylesheet -->
   <link rel="stylesheet" href="../css/style.css">
   <script>
-    (function() {
-      const saved = localStorage.getItem('trustlens_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    (function () {
+      const saved = localStorage.getItem('trustlens_theme') || 'dark';
       document.documentElement.setAttribute('data-theme', saved);
     })();
   </script>
 </head>
 
-<body class="auth-page-body">
+<body class="auth-page-body identity-theme">
 
-  <!-- Top Simple Nav Bar -->
-  <header class="auth-nav">
-    <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
-      <a href="../index.html" class="nav-logo">
-        <img src="../assets/logo/logo.png" alt="TrustLens AI Logo Circular">
-        <span class="nav-logo-text" style="color:var(--surface-white);">TrustLens AI</span>
-      </a>
-      <div style="display:flex; align-items:center; gap:12px;">
-        <button class="theme-toggle-btn" aria-label="Toggle Theme">🌙 Dark</button>
-        <a href="../index.html" class="btn-editorial btn-editorial-secondary btn-sm"
-          style="background:rgba(255,255,255,0.08); color:var(--surface-white); border-color:rgba(255,255,255,0.2);">
-          &larr; Back to Home
-        </a>
-      </div>
+  <!-- Ambient Light Orbs -->
+  <div class="auth-ambient-orb orb-cyan"></div>
+  <div class="auth-ambient-orb orb-teal"></div>
+
+  <!-- Top Navigation Action Bar -->
+  <header class="auth-top-bar">
+    <div class="auth-top-actions">
+      <button type="button" id="security-activity-toggle" class="btn-sec-activity" title="View Security Activity">
+        🛡️ Security Activity
+      </button>
+      <button type="button" class="theme-toggle-btn" aria-label="Toggle Theme">🌙 Dark</button>
+      <a href="../index.html" class="btn-back-home">&larr; Back to Home</a>
     </div>
   </header>
 
   <!-- Auth Main Container -->
   <main class="auth-container">
-    <div class="auth-card-wrapper">
+    <div class="auth-card-wrapper identity-card-wrapper mode-login" id="main-auth-card">
 
-      <!-- Left Brand Showcase -->
-      <div class="auth-brand-side">
-        <div class="auth-brand-backdrop-glow"></div>
-
-        <div>
-          <span class="badge-pill-editorial"
-            style="background:rgba(255,255,255,0.12); color:var(--green-soft); border-color:rgba(255,255,255,0.2); text-transform:none;">
-            Enterprise AI Authentication
-          </span>
-          <h2>Understand Before You <span class="text-coral-accent">Trust.</span></h2>
-          <p>Sign in to access your secure document intelligence workspace, risk scanners, and side-by-side comparison
-            engine.</p>
-
-          <div class="auth-feature-list">
-            <div class="auth-feature-item">
-              <div class="auth-feature-icon">✓</div>
-              <span>Multi-layer AI Document Summarization</span>
-            </div>
-            <div class="auth-feature-item">
-              <div class="auth-feature-icon">✓</div>
-              <span>Transparent Risk Indicator Audit Trail</span>
-            </div>
-            <div class="auth-feature-item">
-              <div class="auth-feature-icon">✓</div>
-              <span>PII Shield Sensitive Information Masking</span>
-            </div>
-            <div class="auth-feature-item">
-              <div class="auth-feature-icon">✓</div>
-              <span>Side-by-Side Inconsistency Diff Spotter</span>
-            </div>
+      <!-- VISUAL BRAND SIDE (Left for Login) — Futuristic Cyber Eye HUD Graphic -->
+      <div class="auth-brand-side identity-brand-side" id="auth-visual-panel">
+        <!-- Brand Header -->
+        <div class="identity-brand-header">
+          <div class="logo-glass-badge">
+            <img src="../assets/logo/logo.png" alt="TrustLens AI Logo" class="identity-logo-img">
           </div>
-        </div>
-
-        <div class="auth-trust-badge">
-          <svg class="icon-svg icon-lg" viewBox="0 0 24 24" style="color:var(--green-bright);">
-            <path
-              d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
-          </svg>
           <div>
-            <div style="font-weight:800; font-size:0.9rem; color:var(--surface-white);">256-Bit Encrypted Workspace
-            </div>
-            <div style="font-size:0.78rem; color:var(--green-soft);">Your uploaded documents are processed securely
-              &amp; never shared.</div>
+            <h2 class="identity-brand-title">TrustLens AI</h2>
+            <div class="identity-brand-tag">Verify before you trust</div>
           </div>
+        </div>
+
+        <!-- Cyber Eye HUD Interactive Graphic -->
+        <div class="cyber-eye-stage" id="cyber-eye-stage">
+          <svg class="cyber-eye-svg" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- Radial Gradients for Cyber Eye HUD -->
+              <radialGradient id="eyeSclera" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#0E4264" />
+                <stop offset="60%" stop-color="#061E30" />
+                <stop offset="100%" stop-color="#020C14" />
+              </radialGradient>
+
+              <radialGradient id="irisGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#38BDF8" />
+                <stop offset="45%" stop-color="#20D4E8" />
+                <stop offset="85%" stop-color="#087EA4" />
+                <stop offset="100%" stop-color="#042C44" />
+              </radialGradient>
+
+              <linearGradient id="laserBeam" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#20D4E8" stop-opacity="0" />
+                <stop offset="50%" stop-color="#20D4E8" stop-opacity="0.9" />
+                <stop offset="100%" stop-color="#20D4E8" stop-opacity="0" />
+              </linearGradient>
+
+              <filter id="glowEffect" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="6" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+
+            <!-- Tech Circuit Grid Lines -->
+            <g opacity="0.25">
+              <line x1="20" y1="160" x2="300" y2="160" stroke="#20D4E8" stroke-width="1" stroke-dasharray="4 4" />
+              <line x1="160" y1="20" x2="160" y2="300" stroke="#20D4E8" stroke-width="1" stroke-dasharray="4 4" />
+              <circle cx="160" cy="160" r="140" stroke="#20D4E8" stroke-width="1" stroke-dasharray="8 8" />
+            </g>
+
+            <!-- Outer Rotating HUD Ring -->
+            <g class="spin-hud-outer">
+              <circle cx="160" cy="160" r="120" stroke="#20D4E8" stroke-width="1.5" stroke-dasharray="15 30 45 30"
+                opacity="0.75" />
+              <circle cx="160" cy="160" r="128" stroke="#087EA4" stroke-width="1" stroke-dasharray="6 12"
+                opacity="0.4" />
+            </g>
+
+            <!-- Inner Counter-Rotating Ring -->
+            <g class="spin-hud-inner">
+              <circle cx="160" cy="160" r="95" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="40 10 20 10"
+                opacity="0.85" />
+            </g>
+
+            <!-- Main Cybernetic Eye Shape -->
+            <g filter="url(#glowEffect)">
+              <!-- Sclera/Outer Eyelid Arc -->
+              <path d="M 40 160 C 90 90, 230 90, 280 160 C 230 230, 90 230, 40 160 Z" fill="url(#eyeSclera)"
+                stroke="#20D4E8" stroke-width="2.5" />
+
+              <!-- Outer Iris Ring -->
+              <circle cx="160" cy="160" r="55" fill="url(#irisGlow)" stroke="#FFFFFF" stroke-width="1.5"
+                opacity="0.95" />
+
+              <!-- Dynamic Interactive Pupil (Shifted via JS mousemove) -->
+              <g id="eye-pupil-group" transform="translate(0, 0)">
+                <circle cx="160" cy="160" r="24" fill="#020A12" stroke="#20D4E8" stroke-width="2" />
+                <circle cx="160" cy="160" r="10" fill="#20D4E8" opacity="0.9" />
+                <circle cx="153" cy="153" r="5" fill="#FFFFFF" opacity="0.95" />
+              </g>
+
+              <!-- Digital HUD Scanning Ray Line -->
+              <line class="laser-scan-beam" x1="40" y1="60" x2="280" y2="60" stroke="url(#laserBeam)"
+                stroke-width="3" />
+            </g>
+
+            <!-- Floating Holographic HUD Node Cards (Matches Reference Image) -->
+            <!-- Node 1: AI (Top Left) -->
+            <g class="floating-node node-delay-1" transform="translate(25, 45)">
+              <rect class="hud-glass-chip" width="48" height="34" />
+              <text class="hud-node-icon" x="24" y="22" text-anchor="middle">AI</text>
+            </g>
+
+            <!-- Node 2: Shield Security (Top Right) -->
+            <g class="floating-node node-delay-2" transform="translate(245, 45)">
+              <rect class="hud-glass-chip" width="48" height="34" />
+              <text class="hud-node-icon" x="24" y="22" text-anchor="middle">🛡️</text>
+            </g>
+
+            <!-- Node 3: Magnifier Search (Far Left) -->
+            <g class="floating-node node-delay-3" transform="translate(10, 140)">
+              <rect class="hud-glass-chip" width="44" height="34" />
+              <text class="hud-node-icon" x="22" y="22" text-anchor="middle">🔍</text>
+            </g>
+
+            <!-- Node 4: Encryption Lock (Far Right) -->
+            <g class="floating-node node-delay-1" transform="translate(265, 140)">
+              <rect class="hud-glass-chip" width="44" height="34" />
+              <text class="hud-node-icon" x="22" y="22" text-anchor="middle">🔒</text>
+            </g>
+
+            <!-- Node 5: Neural Brain (Bottom Left) -->
+            <g class="floating-node node-delay-2" transform="translate(30, 235)">
+              <rect class="hud-glass-chip" width="48" height="34" />
+              <text class="hud-node-icon" x="24" y="22" text-anchor="middle">🧠</text>
+            </g>
+
+            <!-- Node 6: Trust Analytics (Bottom Right) -->
+            <g class="floating-node node-delay-3" transform="translate(240, 235)">
+              <rect class="hud-glass-chip" width="52" height="34" />
+              <text class="hud-node-icon" x="26" y="22" text-anchor="middle">📊</text>
+            </g>
+
+            <!-- Avatar Technician Figure touching HUD Interface (from reference photo) -->
+            <g transform="translate(210, 160)" opacity="0.85">
+              <circle cx="15" cy="10" r="8" fill="#20D4E8" />
+              <path d="M 5 35 C 5 22, 25 22, 25 35 Z" fill="#087EA4" />
+              <!-- Arm extending to Eye HUD -->
+              <path d="M 10 24 L -15 10" stroke="#20D4E8" stroke-width="2.5" stroke-linecap="round" />
+              <circle cx="-15" cy="10" r="3" fill="#FFFFFF" />
+            </g>
+          </svg>
+        </div>
+
+        <!-- Identity Hero Text Block -->
+        <div class="identity-hero-footer">
+          <h1 class="identity-main-headline">
+            Verify before you trust.
+          </h1>
+          <p class="identity-sub-headline">
+            Document verification &bull; AI analysis &bull; Secure identity
+          </p>
         </div>
       </div>
 
-      <!-- Right Auth Form -->
-      <div class="auth-form-side">
-        <div class="auth-form-header">
-          <h1 class="auth-form-title">Welcome back</h1>
-          <p class="auth-form-subtitle">Enter your credentials to access your verification studio</p>
-        </div>
+      <!-- FORM PANEL SIDE (Right for Login, Left for Signup) -->
+      <div class="auth-form-side identity-form-side" id="auth-form-panel">
 
-        <!-- Social OAuth Buttons -->
-        <div class="auth-social-btns">
-          <button type="button" class="btn-social">
-            <svg width="18" height="18" viewBox="0 0 24 24">
-              <path fill="#4285F4"
-                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-              <path fill="#34A853"
-                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-              <path fill="#FBBC05"
-                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
-              <path fill="#EA4335"
-                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
-            </svg>
-            Google
-          </button>
-          <button type="button" class="btn-social">
-            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-            </svg>
-            GitHub
-          </button>
-        </div>
+        <!-- VIEW 1: SIGN IN FORM (Matches Reference Image Layout) -->
+        <div class="auth-animated-form" id="login-view">
+          <span class="auth-top-tag-label">WELCOME BACK</span>
+          <div class="auth-form-header">
+            <h1 class="auth-form-title">Welcome Back</h1>
+            <p class="auth-form-subtitle">Sign in to continue to your TrustLens AI account.</p>
+          </div>
 
-        <div class="auth-divider">Or continue with email</div>
+          <!-- Social OAuth Buttons with Original Logos -->
+          <div class="auth-social-btns">
+            <button type="button" class="btn-social" data-provider="Google" aria-label="Sign in with Google">
+              <svg width="18" height="18" viewBox="0 0 24 24">
+                <path fill="#4285F4"
+                  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                <path fill="#34A853"
+                  d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                <path fill="#FBBC05"
+                  d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+                <path fill="#EA4335"
+                  d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
+              </svg>
+              Google
+            </button>
+            <button type="button" class="btn-social" data-provider="Microsoft" aria-label="Sign in with Microsoft">
+              <svg width="18" height="18" viewBox="0 0 23 23">
+                <path fill="#F25022" d="M1 1h10v10H1z" />
+                <path fill="#7FBA00" d="M12 1h10v10H12z" />
+                <path fill="#00A4EF" d="M1 12h10v10H1z" />
+                <path fill="#FFB900" d="M12 12h10v10H12z" />
+              </svg>
+              Microsoft
+            </button>
+            <button type="button" class="btn-social" data-provider="LinkedIn" aria-label="Sign in with LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#0A66C2">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg>
+              LinkedIn
+            </button>
+          </div>
 
-        <!-- Login Form -->
-        <form id="login-form">
-          <div class="auth-input-group">
-            <label class="auth-input-label" for="login-email">Work or Personal Email</label>
-            <div class="auth-input-wrapper">
-              <div class="auth-input-icon">
-                <svg class="icon-svg icon-sm" viewBox="0 0 24 24">
-                  <path
-                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-                </svg>
+          <div class="auth-divider">
+            <span>Or continue with email</span>
+          </div>
+
+          <!-- Login Form -->
+          <form id="login-form">
+            <div class="auth-input-group">
+              <label class="auth-input-label" for="login-email">Email Address</label>
+              <div class="auth-input-wrapper">
+                <div class="auth-input-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                  </svg>
+                </div>
+                <input type="email" id="login-email" class="auth-input" placeholder="name@organization.com" required
+                  autocomplete="email">
               </div>
-              <input type="email" id="login-email" class="auth-input" placeholder="name@organization.com" required
-                autocomplete="email">
             </div>
-          </div>
 
-          <div class="auth-input-group">
-            <label class="auth-input-label" for="login-password">Password</label>
-            <div class="auth-input-wrapper">
-              <div class="auth-input-icon">
-                <svg class="icon-svg icon-sm" viewBox="0 0 24 24">
-                  <path
-                    d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
-                </svg>
+            <div class="auth-input-group">
+              <label class="auth-input-label" for="login-password">Password</label>
+              <div class="auth-input-wrapper">
+                <div class="auth-input-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
+                  </svg>
+                </div>
+                <input type="password" id="login-password" class="auth-input" placeholder="••••••••••••" required
+                  autocomplete="current-password">
+                <button type="button" class="auth-input-toggle-pass" aria-label="Toggle password visibility">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+                  </svg>
+                </button>
               </div>
-              <input type="password" id="login-password" class="auth-input" placeholder="••••••••••••" required
-                autocomplete="current-password">
-              <button type="button" class="auth-input-toggle-pass" aria-label="Toggle password visibility">
-                <svg class="icon-svg icon-sm" viewBox="0 0 24 24">
-                  <path
-                    d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
-                </svg>
-              </button>
             </div>
+
+            <!-- Security Verification (Bot Protection / CAPTCHA Box from Reference Photo) -->
+            <div class="captcha-box-card">
+              <div class="captcha-header-row">
+                <span class="captcha-title">🛡️ Security Verification (Bot Protection)</span>
+                <div style="display:flex; gap:6px;">
+                  <button type="button" class="btn-captcha-audio" id="audio-captcha-btn"
+                    title="Listen to CAPTCHA">🔊 Speaker</button>
+                  <button type="button" class="btn-captcha-refresh" id="refresh-captcha-btn"
+                    title="Refresh CAPTCHA">🔄 Refresh</button>
+                </div>
+              </div>
+              <div class="captcha-display-flex" style="gap:10px;">
+                <canvas id="captcha-canvas-login" width="120" height="42" style="border-radius:8px; border:1px solid rgba(32,212,232,0.4); cursor:pointer;" title="Click to refresh CAPTCHA"></canvas>
+                <div class="captcha-code-badge" id="captcha-code-text" title="Visible CAPTCHA Code">B G N G Y</div>
+                <input type="text" id="login-captcha-input" class="auth-input" placeholder="Enter Code" required
+                  autocomplete="off" style="padding-left:12px;">
+              </div>
+            </div>
+
+            <div class="auth-row-options">
+              <label class="auth-checkbox-label">
+                <input type="checkbox" id="remember-me" class="auth-checkbox" checked>
+                <span>Remember me</span>
+              </label>
+              <a href="#" id="forgot-password-trigger" class="auth-link">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn-auth-submit" id="btn-login-submit" style="margin-top:8px;">
+              SIGN IN
+            </button>
+            <button type="button" class="btn-quick-demo" id="btn-quick-demo-login">
+              ⚡ Quick Demo Login (Instant Fill)
+            </button>
+          </form>
+
+          <div class="auth-switch-prompt">
+            Don't have an account? <a href="signup.html" id="link-to-signup-toggle" class="auth-link">Create Account</a>
           </div>
-
-          <div class="auth-row-options">
-            <label class="auth-checkbox-label">
-              <input type="checkbox" id="remember-me" class="auth-checkbox" checked>
-              <span>Keep me signed in</span>
-            </label>
-            <a href="#" id="forgot-password-link" class="auth-link">Forgot password?</a>
-          </div>
-
-          <button type="submit" class="btn-auth-submit">
-            Sign In to Studio &rarr;
-          </button>
-        </form>
-
-        <div class="auth-switch-prompt">
-          Don't have an account? <a href="signup.html" class="auth-link">Create an account</a>
         </div>
+
+
+        <!-- VIEW 2: CHECK YOUR INBOX SCREEN -->
+        <div class="auth-animated-form" id="email-sent-view" style="display: none;">
+          <div class="auth-status-hero">
+            <div class="status-icon-circle green">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+            </div>
+            <h2 class="auth-form-title">Check your inbox</h2>
+            <p class="auth-form-subtitle">Your TrustLens verification link has been sent to:</p>
+
+            <div class="email-highlight-box" id="display-verification-email">user@email.com</div>
+          </div>
+
+          <div class="auth-action-stack">
+            <a href="https://mail.google.com" target="_blank" rel="noopener noreferrer"
+              class="btn-auth-submit btn-center-link">
+              Open Email &rarr;
+            </a>
+
+            <button type="button" id="btn-resend-signup-email" class="btn-auth-secondary">
+              Resend verification email
+            </button>
+
+            <button type="button" class="btn-text-link" id="btn-change-email">
+              &larr; Back to sign in
+            </button>
+          </div>
+        </div>
+
+
+        <!-- VIEW 3: NEW DEVICE DETECTED SCREEN -->
+        <div class="auth-animated-form" id="new-device-view" style="display: none;">
+          <div class="auth-status-hero">
+            <span class="auth-badge-tag yellow">NEW DEVICE DETECTED</span>
+            <h2 class="auth-form-title" style="margin-top:10px;">Verify New Device</h2>
+            <p class="auth-form-subtitle">We noticed a sign-in from a device we don't recognize.</p>
+          </div>
+
+          <div class="device-info-card">
+            <div class="device-card-header">
+              <div class="device-icon">💻</div>
+              <div>
+                <div class="device-card-title" id="display-device-name">Chrome · Windows</div>
+                <div class="device-card-sub">Unrecognized Session</div>
+              </div>
+            </div>
+            <span class="trust-status-badge yellow">⚠️ Verification Required</span>
+          </div>
+
+          <p class="auth-notice-text">
+            To protect your TrustLens account, we've sent a secure verification link to your email. Click the link in
+            your email to authorize access.
+          </p>
+
+          <div class="auth-action-stack">
+            <button type="button" id="btn-resend-device-email" class="btn-auth-submit">
+              Resend Verification Link
+            </button>
+
+            <button type="button" class="btn-text-link" id="btn-device-back-login">
+              &larr; Back to Sign In
+            </button>
+          </div>
+        </div>
+
+
+        <!-- VIEW 4: FORGOT PASSWORD REQUEST SCREEN -->
+        <div class="auth-animated-form" id="forgot-password-view" style="display: none;">
+          <div class="auth-form-header">
+            <h2 class="auth-form-title">Reset Password</h2>
+            <p class="auth-form-subtitle">Enter your registered email address to receive a secure password-reset link.
+            </p>
+          </div>
+
+          <form id="forgot-password-form">
+            <div class="auth-input-group">
+              <label class="auth-input-label" for="forgot-email">Email Address</label>
+              <div class="auth-input-wrapper">
+                <div class="auth-input-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                  </svg>
+                </div>
+                <input type="email" id="forgot-email" class="auth-input" placeholder="name@organization.com" required
+                  autocomplete="email">
+              </div>
+            </div>
+
+            <button type="submit" class="btn-auth-submit" id="btn-forgot-submit">
+              Send Reset Link &rarr;
+            </button>
+          </form>
+
+          <div class="auth-switch-prompt">
+            <button type="button" class="btn-text-link" id="btn-forgot-back-login">&larr; Back to Sign In</button>
+          </div>
+        </div>
+
+
+        <!-- VIEW 5: RESET PASSWORD FORM SCREEN -->
+        <div class="auth-animated-form" id="reset-password-view" style="display: none;">
+          <div class="auth-form-header">
+            <h2 class="auth-form-title">Set New Password</h2>
+            <p class="auth-form-subtitle">Choose a strong password to protect your TrustLens account.</p>
+          </div>
+
+          <form id="reset-password-form">
+            <div class="auth-input-group">
+              <label class="auth-input-label" for="new-password">New Password</label>
+              <div class="auth-input-wrapper">
+                <div class="auth-input-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
+                  </svg>
+                </div>
+                <input type="password" id="new-password" class="auth-input" placeholder="Min. 6 characters" required
+                  autocomplete="new-password">
+                <button type="button" class="auth-input-toggle-pass" aria-label="Toggle password visibility">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Password Strength Bar -->
+              <div class="strength-meter-container">
+                <div class="strength-bar">
+                  <div class="strength-bar-fill" id="reset-strength-fill"></div>
+                </div>
+                <div class="strength-text" id="reset-strength-label">Password Strength</div>
+              </div>
+            </div>
+
+            <div class="auth-input-group">
+              <label class="auth-input-label" for="confirm-new-password">Confirm New Password</label>
+              <div class="auth-input-wrapper">
+                <div class="auth-input-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
+                  </svg>
+                </div>
+                <input type="password" id="confirm-new-password" class="auth-input" placeholder="Re-enter password"
+                  required autocomplete="new-password">
+              </div>
+            </div>
+
+            <button type="submit" class="btn-auth-submit" id="btn-reset-pass-submit">
+              Update Password &rarr;
+            </button>
+          </form>
+
+          <div class="auth-switch-prompt">
+            <button type="button" class="btn-text-link" id="btn-reset-back-login">&larr; Back to Sign In</button>
+          </div>
+        </div>
+
       </div>
-
     </div>
   </main>
 
-  <!-- Forgot Password Modal -->
-  <div class="modal-backdrop" id="forgot-modal">
-    <div class="modal-box">
-      <button class="modal-close" id="modal-close-btn">&times;</button>
-      <h3 style="font-family:var(--font-display); font-weight:800; font-size:1.5rem; margin-bottom:10px;">Reset Your
-        Password</h3>
-      <p style="color:var(--green-soft); font-size:0.9rem; margin-bottom:20px;">Enter your registered email address and
-        we will send you instructions to reset your password.</p>
+  <!-- SECURITY ACTIVITY MODAL / DRAWER -->
+  <div class="modal-backdrop" id="security-activity-modal">
+    <div class="modal-box glass-modal" style="max-width:540px;">
+      <button class="modal-close" id="security-modal-close-btn">&times;</button>
+      <div style="margin-bottom:18px;">
+        <span class="auth-badge-tag green">SECURITY ACTIVITY</span>
+        <h3 style="font-family:'Inter', sans-serif; font-weight:800; font-size:1.4rem; margin-top:6px; color:#FFFFFF;">
+          Security Activity &amp; Devices
+        </h3>
+        <p style="color:#94A3B8; font-size:0.85rem; margin-top:4px;">
+          Trust Pass monitors logins and manages trusted session access for your account.
+        </p>
+      </div>
 
-      <form id="forgot-form">
-        <div class="auth-input-group">
-          <label class="auth-input-label" for="reset-email">Email Address</label>
-          <input type="email" id="reset-email" class="auth-input" placeholder="name@example.com" required
-            style="padding-left:16px;">
-        </div>
-        <button type="submit" class="btn-auth-submit" style="margin-top:10px;">Send Reset Link &rarr;</button>
-      </form>
+      <div class="security-activity-list" id="security-activity-container">
+        <!-- Rendered dynamically by auth.js -->
+        <div class="sec-empty-state">Loading session records...</div>
+      </div>
     </div>
   </div>
 

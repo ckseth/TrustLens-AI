@@ -10,10 +10,20 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../assets/logo/logo.png">
 
+  <!-- Open Graph & Canonical SEO Metadata -->
+  <link rel="canonical" href="http://localhost:5000/pages/features.html">
+  <meta property="og:title" content="Features & AI Intelligence Suite – TrustLens AI">
+  <meta property="og:description"
+    content="Explore the full suite of document intelligence modules powered by TrustLens AI.">
+  <meta property="og:image" content="../assets/logo/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:5000/pages/features.html">
+  <meta name="twitter:card" content="summary_large_image">
+
   <!-- Master Stylesheet -->
   <link rel="stylesheet" href="../css/style.css">
   <script>
-    (function() {
+    (function () {
       const saved = localStorage.getItem('trustlens_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', saved);
     })();
@@ -119,16 +129,25 @@
       </p>
 
       <div style="margin-bottom:28px;">
-        <a href="analyze.html" class="btn-editorial btn-editorial-primary btn-sm" style="font-size:1rem; padding:12px 24px;">
+        <a href="analyze.html" class="btn-editorial btn-editorial-primary btn-sm"
+          style="font-size:1rem; padding:12px 24px;">
           Explore Verify Studio &rarr;
         </a>
       </div>
 
       <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
-        <button class="badge-pill-editorial" style="cursor:pointer; background:var(--green-dark); color:white; border:none;">All 6 Intelligence Modules</button>
-        <button class="badge-pill-editorial" style="cursor:pointer; background:var(--surface-white); color:var(--text-main); border:1px solid var(--border-subtle);">Analysis &amp; Summarization</button>
-        <button class="badge-pill-editorial" style="cursor:pointer; background:var(--surface-white); color:var(--text-main); border:1px solid var(--border-subtle);">Risk &amp; Source Verification</button>
-        <button class="badge-pill-editorial" style="cursor:pointer; background:var(--surface-white); color:var(--text-main); border:1px solid var(--border-subtle);">Compare &amp; Privacy Shield</button>
+        <button class="badge-pill-editorial"
+          style="cursor:pointer; background:var(--green-dark); color:white; border:none;">All 6 Intelligence
+          Modules</button>
+        <button class="badge-pill-editorial"
+          style="cursor:pointer; background:var(--surface-white); color:var(--text-main); border:1px solid var(--border-subtle);">Analysis
+          &amp; Summarization</button>
+        <button class="badge-pill-editorial"
+          style="cursor:pointer; background:var(--surface-white); color:var(--text-main); border:1px solid var(--border-subtle);">Risk
+          &amp; Source Verification</button>
+        <button class="badge-pill-editorial"
+          style="cursor:pointer; background:var(--surface-white); color:var(--text-main); border:1px solid var(--border-subtle);">Compare
+          &amp; Privacy Shield</button>
       </div>
     </div>
   </header>
@@ -137,7 +156,7 @@
   <main class="container" style="padding:80px 0 110px 0;">
 
     <!-- Module 1: Summarization -->
-    <div class="module-showcase-card hero-feature-bg">
+    <div class="module-showcase-card hero-feature-bg" id="summary" style="scroll-margin-top: 100px;">
       <div class="module-grid-2col">
         <div>
           <div class="feature-icon-circle">
@@ -154,23 +173,25 @@
             Turn lengthy, convoluted legal notices, academic guidelines, and government circulars into clear, concise
             executive summaries in seconds.
           </p>
-          <a href="analyze.html" class="btn-editorial btn-editorial-primary btn-sm">Try Summarizer Studio &rarr;</a>
+          <a href="analyze.html?task=summary" class="btn-editorial btn-editorial-primary btn-sm">Try Summarizer Studio &rarr;</a>
         </div>
 
         <div class="feature-ui-mockup">
           <div class="mockup-header-bar">
-            <span>&#128196; Legal_Notice_Scan.pdf (14 Pages)</span>
+            <span>📄 Legal_Notice_Scan.pdf (14 Pages)</span>
             <span style="color:var(--green-vibrant); font-weight:800;">✓ Summary Stream Ready</span>
           </div>
           <div style="padding:20px; background:var(--surface-white);">
-            <div style="height:150px; border-radius:10px; overflow:hidden; margin-bottom:16px;">
-              <img src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=800&q=80"
-                alt="Tablet scanning legal document" style="width:100%; height:100%; object-fit:cover;">
-            </div>
-            <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:16px;">
+              <div style="font-size:0.75rem; font-weight:800; color:var(--text-light); text-transform:uppercase;">
+                Extracted Key Takeaways</div>
               <div
-                style="font-size:0.8rem; padding:8px 12px; border-radius:6px; background:var(--green-surface); font-weight:700; color:var(--green-dark);">
-                ✓ Key Obligation: Fee payable by 15 August 2026
+                style="font-size:0.85rem; padding:10px 14px; border-radius:6px; background:var(--green-surface); font-weight:700; color:var(--green-dark); border-left:4px solid var(--green-vibrant);">
+                ✓ Fee payable before 15 August 2026 (₹10,000 / Semester)
+              </div>
+              <div
+                style="font-size:0.85rem; padding:10px 14px; border-radius:6px; background:var(--green-surface); font-weight:700; color:var(--green-dark); border-left:4px solid var(--green-vibrant);">
+                ✓ Required document: Academic Grade Transcript &amp; ID Proof
               </div>
             </div>
           </div>
@@ -179,7 +200,7 @@
     </div>
 
     <!-- Module 2: Risk Detection -->
-    <div class="module-showcase-card risk-feature-bg">
+    <div class="module-showcase-card risk-feature-bg" id="risk" style="scroll-margin-top: 100px;">
       <div class="module-grid-2col">
         <div class="feature-ui-mockup" style="background:var(--surface-white); padding:20px;">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
@@ -189,9 +210,14 @@
             <span class="badge-pill-editorial coral-theme" style="padding:2px 10px; font-size:0.75rem;">78 / 100 HIGH
               RISK</span>
           </div>
-          <div style="height:160px; border-radius:10px; overflow:hidden; position:relative;">
-            <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80"
-              alt="Magnifying glass inspecting contract text" style="width:100%; height:100%; object-fit:cover;">
+          <div
+            style="padding:16px; background:var(--coral-bg); border-radius:10px; border:1px solid var(--coral-dark);">
+            <div
+              style="font-size:0.75rem; font-weight:800; color:var(--coral-deep); text-transform:uppercase; margin-bottom:4px;">
+              ⚠ Flagged Suspicious Clause</div>
+            <div style="font-size:0.88rem; font-weight:700; color:var(--coral-deep); line-height:1.4;">
+              "Remit non-refundable processing fee of ₹5,000 within 24 hours to personal UPI address or lose position."
+            </div>
           </div>
         </div>
 
@@ -211,13 +237,13 @@
             Identify potentially suspicious language, urgent pressure phrasing ("Act within 24 hours"), predatory terms,
             and unverified document claims automatically.
           </p>
-          <a href="analyze.html" class="btn-editorial btn-editorial-coral btn-sm">Inspect Risk Analyzer &rarr;</a>
+          <a href="analyze.html?task=risk" class="btn-editorial btn-editorial-coral btn-sm">Inspect Risk Analyzer &rarr;</a>
         </div>
       </div>
     </div>
 
     <!-- Module 3: Source Verification -->
-    <div class="module-showcase-card">
+    <div class="module-showcase-card" id="source" style="scroll-margin-top: 100px;">
       <div class="module-grid-2col">
         <div>
           <div class="feature-icon-circle">
@@ -235,24 +261,25 @@
             Cross-references embedded hyper-links, email domains, contact phone numbers, and official university
             credentials to highlight unverified external destinations.
           </p>
-          <a href="analyze.html" class="btn-editorial btn-editorial-primary btn-sm">Verify Source Domain &rarr;</a>
+          <a href="analyze.html?task=source" class="btn-editorial btn-editorial-primary btn-sm">Verify Source Domain &rarr;</a>
         </div>
 
         <div class="feature-ui-mockup">
           <div class="mockup-header-bar">
-            <span>&#127891; Official Stamp &amp; Portal Inspector</span>
+            <span>🎓 Official Domain &amp; Seal Inspector</span>
             <span style="color:var(--green-vibrant); font-weight:800;">✓ Authority Verified</span>
           </div>
-          <div style="padding:20px; background:var(--surface-white); display:flex; align-items:center; gap:16px;">
-            <div style="width:70px; height:70px; border-radius:12px; overflow:hidden; flex-shrink:0;">
-              <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=400&q=80"
-                alt="Official government stamp seal" style="width:100%; height:100%; object-fit:cover;">
+          <div style="padding:20px; background:var(--surface-white); display:flex; flex-direction:column; gap:10px;">
+            <div
+              style="font-size:0.85rem; font-weight:800; color:var(--green-dark); background:var(--green-surface); padding:8px 12px; border-radius:6px; display:flex; justify-content:space-between; align-items:center;">
+              <span>https://official-portal.edu.in</span>
+              <span class="badge-pill-editorial" style="padding:2px 8px; font-size:0.68rem;">OFFICIAL DOMAIN</span>
             </div>
-            <div style="display:flex; flex-direction:column; gap:6px;">
-              <div
-                style="font-size:0.82rem; font-weight:800; color:var(--green-dark); background:var(--green-surface); padding:6px 12px; border-radius:4px;">
-                ✓ official-portal.edu.in (Verified University Domain)
-              </div>
+            <div
+              style="font-size:0.85rem; font-weight:800; color:var(--coral-deep); background:var(--coral-bg); padding:8px 12px; border-radius:6px; display:flex; justify-content:space-between; align-items:center;">
+              <span>http://unverified-claim-portal.com</span>
+              <span class="badge-pill-editorial coral-theme" style="padding:2px 8px; font-size:0.68rem;">UNVERIFIED
+                REDIRECTION</span>
             </div>
           </div>
         </div>
@@ -260,17 +287,27 @@
     </div>
 
     <!-- Module 4: Document Compare -->
-    <div class="module-showcase-card hero-feature-bg">
+    <div class="module-showcase-card hero-feature-bg" id="compare" style="scroll-margin-top: 100px;">
       <div class="module-grid-2col">
         <div class="feature-ui-mockup">
           <div class="mockup-header-bar" style="background:var(--green-deep); color:white;">
-            <span>&#9878; Side-by-Side Diff Engine</span>
+            <span>⚖️ Side-by-Side Diff Engine</span>
             <span class="badge-pill-editorial coral-theme" style="font-size:0.65rem; padding:2px 8px;">3 Differences
               Found</span>
           </div>
-          <div style="height:160px; border-radius:8px; overflow:hidden; margin:12px;">
-            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80"
-              alt="Side-by-side contract comparison on laptop" style="width:100%; height:100%; object-fit:cover;">
+          <div
+            style="padding:16px; background:var(--surface-white); display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div style="padding:10px; background:var(--green-surface); border-radius:6px; font-size:0.8rem;">
+              <div style="font-weight:800; color:var(--green-dark);">Doc A (Original)</div>
+              <div style="margin-top:4px;">Deadline: 15 Aug 2026</div>
+              <div>Fee: ₹10,000</div>
+            </div>
+            <div
+              style="padding:10px; background:var(--coral-bg); border-radius:6px; font-size:0.8rem; border:1px solid var(--coral-dark);">
+              <div style="font-weight:800; color:var(--coral-deep);">Doc B (Modified) ⚠</div>
+              <div style="margin-top:4px; font-weight:700; color:var(--coral-deep);">Deadline: 30 Aug 2026</div>
+              <div style="font-weight:800; color:var(--coral-deep);">Fee: ₹50,000</div>
+            </div>
           </div>
         </div>
 
@@ -290,14 +327,14 @@
             Compare two versions of a document side-by-side to immediately spotlight modified clauses, deadline shifts,
             fee alterations, and critical inconsistencies.
           </p>
-          <a href="../index.html#compare" class="btn-editorial btn-editorial-primary btn-sm">Launch Compare Engine
+          <a href="compare.html" class="btn-editorial btn-editorial-primary btn-sm">Launch Compare Engine
             &rarr;</a>
         </div>
       </div>
     </div>
 
     <!-- Module 5: Claim Scanner -->
-    <div class="module-showcase-card">
+    <div class="module-showcase-card" id="claims" style="scroll-margin-top: 100px;">
       <div class="module-grid-2col">
         <div>
           <div class="feature-icon-circle">
@@ -315,7 +352,7 @@
             Deconstruct complex documents into individual testable factual assertions, evaluating each statement
             independently with verification confidence ratings.
           </p>
-          <a href="analyze.html" class="btn-editorial btn-editorial-primary btn-sm">Scan Document Claims &rarr;</a>
+          <a href="analyze.html?task=claims" class="btn-editorial btn-editorial-primary btn-sm">Scan Document Claims &rarr;</a>
         </div>
 
         <div class="feature-ui-mockup" style="padding:20px; background:var(--surface-white);">
@@ -336,7 +373,7 @@
     </div>
 
     <!-- Module 6: Privacy Shield -->
-    <div class="module-showcase-card privacy-feature-bg">
+    <div class="module-showcase-card privacy-feature-bg" id="privacy" style="scroll-margin-top: 100px;">
       <div class="module-grid-2col">
         <div class="feature-ui-mockup"
           style="background:rgba(0,0,0,0.3); border-color:rgba(255,255,255,0.15); padding:24px;">
@@ -377,7 +414,7 @@
             Automatically detect sensitive personal data including email addresses, phone numbers, external URLs, and
             confidential IDs to protect privacy before sharing reports.
           </p>
-          <a href="analyze.html" class="btn-editorial btn-editorial-secondary btn-sm"
+          <a href="analyze.html?task=privacy" class="btn-editorial btn-editorial-secondary btn-sm"
             style="background:rgba(255,255,255,0.15); color:white; border-color:rgba(255,255,255,0.2);">Activate Privacy
             Shield &rarr;</a>
         </div>
@@ -418,20 +455,20 @@
         <div>
           <h4 class="footer-col-title">Capabilities</h4>
           <ul class="footer-links-list">
-            <li><a href="features.html">&rarr; AI Summarization</a></li>
-            <li><a href="features.html">&rarr; Risk Analysis</a></li>
-            <li><a href="features.html">&rarr; Source Verification</a></li>
-            <li><a href="features.html">&rarr; Claim Scanner</a></li>
-            <li><a href="features.html">&rarr; Privacy Shield</a></li>
+            <li><a href="#summary">&rarr; AI Summarization</a></li>
+            <li><a href="#risk">&rarr; Risk Analysis</a></li>
+            <li><a href="#source">&rarr; Source Verification</a></li>
+            <li><a href="#claims">&rarr; Claim Scanner</a></li>
+            <li><a href="#privacy">&rarr; Privacy Shield</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="footer-col-title">Platform</h4>
           <ul class="footer-links-list">
-            <li><a href="about.html">&rarr; Platform Overview</a></li>
-            <li><a href="about.html">&rarr; System Architecture</a></li>
-            <li><a href="about.html">&rarr; AI Safety &amp; Ethics</a></li>
+            <li><a href="about.html#overview">&rarr; Platform Overview</a></li>
+            <li><a href="about.html#architecture">&rarr; System Architecture</a></li>
+            <li><a href="about.html#safety">&rarr; AI Safety &amp; Ethics</a></li>
           </ul>
         </div>
       </div>

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#061E0E"/>
+      <stop offset="100%" stop-color="#11421C"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <rect width="800" height="450" fill="url(#bg)"/>
+  
+  <!-- Header Bar -->
+  <rect x="40" y="24" width="720" height="48" rx="8" fill="#1B4D25" stroke="rgba(92,184,96,0.3)"/>
+  <text x="60" y="54" fill="#9FD4A2" font-family="sans-serif" font-weight="bold" font-size="16">⚖️ TRUSTLENS CONTRACT DIFF ENGINE</text>
+  <rect x="580" y="36" width="160" height="24" rx="12" fill="#FDEEEE" stroke="#CC2929"/>
+  <text x="660" y="52" fill="#CC2929" font-family="sans-serif" font-weight="bold" font-size="12" text-anchor="middle">2 DISCREPANCIES</text>
+  
+  <!-- Document A (Original) -->
+  <g filter="url(#shadow)" transform="translate(40, 96)">
+    <rect width="345" height="310" rx="12" fill="#FFFDF9" stroke="#9FD4A2" stroke-width="2"/>
+    <!-- Banner -->
+    <path d="M0 12 Q0 0 12 0 L333 0 Q345 0 345 12 L345 44 L0 44 Z" fill="#E6F4E8"/>
+    <text x="20" y="28" fill="#11421C" font-family="sans-serif" font-weight="bold" font-size="14">DOCUMENT A (ORIGINAL)</text>
+    <text x="280" y="28" fill="#2A7334" font-family="sans-serif" font-weight="bold" font-size="12">v1.0</text>
+    
+    <!-- Text Lines -->
+    <rect x="20" y="64" width="220" height="10" rx="3" fill="#11421C" opacity="0.2"/>
+    <rect x="20" y="84" width="305" height="8" rx="3" fill="#11421C" opacity="0.15"/>
+    <rect x="20" y="100" width="280" height="8" rx="3" fill="#11421C" opacity="0.15"/>
+    
+    <!-- Clause 1 -->
+    <rect x="20" y="124" width="305" height="48" rx="6" fill="#F0F9F1" stroke="#5CB860"/>
+    <text x="32" y="144" fill="#11421C" font-family="sans-serif" font-weight="bold" font-size="12">Clause 4.1 Security Deposit</text>
+    <text x="32" y="162" fill="#2A7334" font-family="sans-serif" font-size="12">Refundable Amount: ₹20,000</text>
+    
+    <!-- Clause 2 -->
+    <rect x="20" y="184" width="305" height="48" rx="6" fill="#F0F9F1" stroke="#5CB860"/>
+    <text x="32" y="204" fill="#11421C" font-family="sans-serif" font-weight="bold" font-size="12">Clause 9.2 Notice Period</text>
+    <text x="32" y="222" fill="#2A7334" font-family="sans-serif" font-size="12">Required Termination Notice: 30 Days</text>
+    
+    <text x="20" y="275" fill="#577360" font-family="sans-serif" font-size="11">✓ Signed Official Seal &amp; Authority Stamp</text>
+  </g>
+
+  <!-- Document B (Modified Alert) -->
+  <g filter="url(#shadow)" transform="translate(415, 96)">
+    <rect width="345" height="310" rx="12" fill="#FFFDF9" stroke="#F28B92" stroke-width="2"/>
+    <!-- Banner -->
+    <path d="M0 12 Q0 0 12 0 L333 0 Q345 0 345 12 L345 44 L0 44 Z" fill="#FFF3F3"/>
+    <text x="20" y="28" fill="#CC2929" font-family="sans-serif" font-weight="bold" font-size="14">DOCUMENT B (CIRCULATED) ⚠</text>
+    <text x="280" y="28" fill="#CC2929" font-family="sans-serif" font-weight="bold" font-size="12">MODIFIED</text>
+    
+    <!-- Text Lines -->
+    <rect x="20" y="64" width="220" height="10" rx="3" fill="#CC2929" opacity="0.2"/>
+    <rect x="20" y="84" width="305" height="8" rx="3" fill="#11421C" opacity="0.15"/>
+    <rect x="20" y="100" width="280" height="8" rx="3" fill="#11421C" opacity="0.15"/>
+    
+    <!-- Clause 1 Diff Alert -->
+    <rect x="20" y="124" width="305" height="48" rx="6" fill="#FDEEEE" stroke="#CC2929" stroke-width="1.5"/>
+    <text x="32" y="144" fill="#CC2929" font-family="sans-serif" font-weight="bold" font-size="12">Clause 4.1 Deposit [MODIFIED ⚠]</text>
+    <text x="32" y="162" fill="#CC2929" font-family="sans-serif" font-weight="bold" font-size="12">Increased Amount: ₹50,000 (2.5x Shift)</text>
+    
+    <!-- Clause 2 Diff Alert -->
+    <rect x="20" y="184" width="305" height="48" rx="6" fill="#FDEEEE" stroke="#CC2929" stroke-width="1.5"/>
+    <text x="32" y="204" fill="#CC2929" font-family="sans-serif" font-weight="bold" font-size="12">Clause 9.2 Notice [MODIFIED ⚠]</text>
+    <text x="32" y="222" fill="#CC2929" font-family="sans-serif" font-weight="bold" font-size="12">Altered Notice Period: 7 Days</text>
+    
+    <text x="20" y="275" fill="#CC2929" font-family="sans-serif" font-weight="bold" font-size="11">⚠ 2 Unauthorized Modifications Detected</text>
+  </g>
+</svg>

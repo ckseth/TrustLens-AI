@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document Compare Engine – TrustLens AI</title>
   <meta name="description"
-    content="Compare two versions of a document side-by-side. Spot altered clauses, fee inflation, shifted deadlines, and missing seals.">
+    content="Compare two versions of a document side-by-side. Spot altered clauses, fee inflation, shifted deadlines, and missing seals with TrustLens AI.">
+  <meta name="robots" content="noindex, nofollow">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../assets/logo/logo.png">
@@ -14,20 +15,11 @@
   <!-- Master Stylesheet -->
   <link rel="stylesheet" href="../css/style.css">
   <script>
-    (function() {
+    (function () {
       const saved = localStorage.getItem('trustlens_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', saved);
     })();
   </script>
-  <style>
-    .compare-hero-header {
-      padding: 80px 0 50px 0;
-      background: var(--green-deep);
-      color: var(--surface-white);
-      text-align: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-  </style>
   <!-- Export Libraries (PDF & PNG) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -85,55 +77,88 @@
     </div>
     <div style="display:flex; flex-direction:column; gap:12px;">
       <button class="theme-toggle-btn" aria-label="Toggle Theme" style="width:100%;">🌙 Dark Mode</button>
-      <a href="analyze.html" class="btn-editorial btn-editorial-secondary btn-sm" style="width:100%;">Log In</a>
-      <a href="analyze.html" class="btn-editorial btn-editorial-primary btn-sm" style="width:100%;">Get Started</a>
+      <a href="login.html" class="btn-editorial btn-editorial-secondary btn-sm" style="width:100%;">Log In</a>
+      <a href="signup.html" class="btn-editorial btn-editorial-primary btn-sm" style="width:100%;">Get Started</a>
     </div>
   </div>
 
-  <!-- Compare Engine Hero -->
-  <header class="compare-hero-header">
-    <div class="container" style="max-width:920px; margin:0 auto; text-align:center;">
-      <div style="display:flex; flex-direction:column; align-items:center; gap:16px; margin-bottom:20px;">
+  <!-- Modern Studio Header (Matches analyze.html design system) -->
+  <header class="studio-header">
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
         <div>
-          <span class="badge-pill-editorial"
-            style="background:rgba(255,255,255,0.12); color:var(--surface-white); border-color:rgba(255,255,255,0.2); text-transform:none;">
-            Interactive Side-by-Side Diff Engine
-          </span>
+          <span class="badge-pill-editorial" style="text-transform:none;">Side-by-Side Verification Engine</span>
           <h1
-            style="font-family:var(--font-display); font-weight:800; font-size:2.8rem; color:var(--surface-white); margin:12px 0 8px 0;">
+            style="font-family:var(--font-display); font-weight:800; font-size:2.8rem; color:var(--green-deep); margin-top:10px;">
             Document Comparison Studio
           </h1>
+          <p style="color:var(--text-body); font-size:1.05rem; margin-top:6px; max-width:680px;">
+            Cross-examine two versions of a notice, contract, or circular to pinpoint fee shifts, altered clauses, and
+            unverified links.
+          </p>
         </div>
-        <div style="display:inline-flex; background:rgba(0,0,0,0.25); padding:4px; border-radius:10px; gap:6px;">
-          <a href="analyze.html" class="btn-editorial btn-editorial-secondary btn-sm" style="color:var(--text-main); background:var(--surface-white); border-color:var(--surface-white); font-weight:600;">Single Verification</a>
-          <a href="compare.html" class="btn-editorial btn-editorial-primary btn-sm" aria-current="page">Document Compare Mode &rarr;</a>
+        <div style="display:inline-flex; background:rgba(0,0,0,0.08); padding:4px; border-radius:10px; gap:6px;">
+          <a href="analyze.html" class="btn-editorial btn-editorial-secondary btn-sm">Single Verification</a>
+          <a href="compare.html" class="btn-editorial btn-editorial-primary btn-sm" aria-current="page">Document Compare
+            Mode &rarr;</a>
         </div>
       </div>
-      <p style="color:var(--green-soft); font-size:1.15rem; line-height:1.6; text-align:center;">
-        Upload two versions of an official notice, agreement, or circular to pinpoint every subtle alteration, deadline
-        shift, and fee override.
-      </p>
     </div>
   </header>
 
   <!-- Interactive Comparison Main Workspace -->
-  <main class="compare-section-editorial" style="padding:60px 0 90px 0;">
+  <main class="compare-section-editorial" style="padding:50px 0 90px 0;">
     <div class="container">
+
+      <!-- Custom File Comparison Upload Panel -->
+      <div class="studio-panel" style="margin-bottom:32px;">
+        <div class="studio-panel-title">
+          <span>Custom Dual-File Comparison Upload</span>
+          <span class="badge-pill-editorial" style="font-size:0.7rem;">Side-by-Side PDF &amp; Document Audit</span>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+          <div class="dropzone-editorial" onclick="document.getElementById('compare-file-input-a').click()"
+            style="padding:28px; text-align:center; cursor:pointer;">
+            <div
+              style="font-size:0.8rem; font-weight:800; color:var(--green-dark); text-transform:uppercase; margin-bottom:8px;">
+              📄 Document A (Official Original)</div>
+            <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:14px;" id="compare-file-a-label">Click
+              or drop File A (PDF / PNG / JPG)</p>
+            <button type="button" class="btn-editorial btn-editorial-secondary btn-sm">Select Document A</button>
+            <input type="file" id="compare-file-input-a" style="display:none;" accept=".pdf,.png,.jpg,.txt">
+          </div>
+          <div class="dropzone-editorial" onclick="document.getElementById('compare-file-input-b').click()"
+            style="padding:28px; text-align:center; cursor:pointer;">
+            <div
+              style="font-size:0.8rem; font-weight:800; color:var(--coral-deep); text-transform:uppercase; margin-bottom:8px;">
+              ⚠️ Document B (Circulated Modified)</div>
+            <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:14px;" id="compare-file-b-label">Click
+              or drop File B (PDF / PNG / JPG)</p>
+            <button type="button" class="btn-editorial btn-editorial-secondary btn-sm">Select Document B</button>
+            <input type="file" id="compare-file-input-b" style="display:none;" accept=".pdf,.png,.jpg,.txt">
+          </div>
+        </div>
+      </div>
 
       <!-- Preset Selector Buttons -->
       <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:36px;">
         <span
-          style="color:var(--green-soft); font-size:0.9rem; font-weight:700; display:flex; align-items:center; margin-right:8px;">
-          Load Demo Preset:
+          style="color:var(--text-muted); font-size:0.9rem; font-weight:700; display:flex; align-items:center; margin-right:8px;">
+          Select Comparison Preset:
         </span>
-        <button class="compare-tab-pill active" onclick="loadCompareSample('scholarship')">Scholarship Circular
-          Diff</button>
-        <button class="compare-tab-pill" onclick="loadCompareSample('fee')">Tuition Fee Circular Diff</button>
-        <button class="compare-tab-pill" onclick="loadCompareSample('offer')">Offer Letter Contract Diff</button>
+        <button class="compare-tab-pill active" id="preset-btn-college-fee"
+          onclick="selectCompareProfile('college-fee')">Scholarship Circular Diff</button>
+        <button class="compare-tab-pill" id="preset-btn-recruitment-offer"
+          onclick="selectCompareProfile('recruitment-offer')">Offer Letter Contract Diff</button>
+        <button class="compare-tab-pill" id="preset-btn-rental-lease"
+          onclick="selectCompareProfile('rental-lease')">Rental Lease Agreement</button>
+        <button class="compare-tab-pill" id="preset-btn-gazette" onclick="selectCompareProfile('gazette')">Government
+          Gazette Audit</button>
       </div>
 
       <!-- Compare Tab Switcher & Export Controls -->
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:24px;">
+      <div
+        style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:24px;">
         <div class="compare-tabs-container" style="margin-bottom:0;">
           <button class="compare-tab-pill active" data-compare-mode="all">All Differences</button>
           <button class="compare-tab-pill" data-compare-mode="docA">Document A Only</button>
@@ -141,11 +166,17 @@
         </div>
         <div class="export-actions-group">
           <button class="btn-export btn-export-pdf" id="export-pdf-compare-btn" title="Download PDF Comparison Report">
-            <svg class="icon-svg icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9.5 8.5c0 .83-.67 1.5-1.5 1.5H7v2H5.5V9H8c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V9H13c.83 0 1.5.67 1.5 1.5v3zm4-3H17v1h1.5V13H17v2h-1.5V9h3v1.5z"/></svg>
+            <svg class="icon-svg icon-sm" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9.5 8.5c0 .83-.67 1.5-1.5 1.5H7v2H5.5V9H8c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V9H13c.83 0 1.5.67 1.5 1.5v3zm4-3H17v1h1.5V13H17v2h-1.5V9h3v1.5z" />
+            </svg>
             Download PDF
           </button>
           <button class="btn-export btn-export-png" id="export-png-compare-btn" title="Download PNG Comparison Image">
-            <svg class="icon-svg icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            <svg class="icon-svg icon-sm" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+            </svg>
             Download PNG
           </button>
         </div>
@@ -155,166 +186,178 @@
       <div id="comparison-report-container">
         <div class="compare-grid-editorial">
 
+          <!-- Document A -->
+          <div class="compare-card-box" id="doc-card-a">
+            <div class="compare-card-tag">DOCUMENT A &bull; OFFICIAL ORIGINAL</div>
+            <div
+              style="height:120px; border-radius:12px; overflow:hidden; margin-bottom:16px; border:1px solid var(--green-soft); background:var(--cream-surface);">
+              <img id="docA-img" src="../assets/images/academic_notice.jpg"
+                alt="Document A Original Verification Preview" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+            <h3 class="compare-doc-title" id="docA-title">Scholarship Notice v1.pdf</h3>
 
-        <!-- Document A -->
-        <div class="compare-card-box" id="doc-card-a">
-          <div class="compare-card-tag">DOCUMENT A &bull; OFFICIAL ORIGINAL</div>
-          <h3 class="compare-doc-title" id="docA-title">Scholarship Notice v1.pdf</h3>
+            <div class="field-item">
+              <div class="field-item-label" id="label-field1">Scholarship / Fee Amount</div>
+              <div class="field-item-val" id="docA-field1">&#8377;10,000 per semester</div>
+            </div>
 
-          <div class="field-item">
-            <div class="field-item-label">Scholarship / Fee Amount</div>
-            <div class="field-item-val" id="docA-field1">&#8377;10,000 per semester</div>
+            <div class="field-item">
+              <div class="field-item-label" id="label-field2">Submission Deadline</div>
+              <div class="field-item-val" id="docA-field2">15 August 2026</div>
+            </div>
+
+            <div class="field-item">
+              <div class="field-item-label" id="label-field3">Target Eligibility</div>
+              <div class="field-item-val" id="docA-field3">Eligible merit students</div>
+            </div>
+
+            <div class="field-item">
+              <div class="field-item-label" id="label-field4">Official Portal Domain</div>
+              <div class="field-item-val" id="docA-field4">scholarship.edu.in</div>
+            </div>
           </div>
 
-          <div class="field-item">
-            <div class="field-item-label">Submission Deadline</div>
-            <div class="field-item-val" id="docA-field2">15 August 2026</div>
+          <!-- Document B -->
+          <div class="compare-card-box modified-flagged" id="doc-card-b">
+            <div class="compare-card-tag" style="color:var(--coral-deep);">&#9888; DOCUMENT B &bull; CIRCULATED MODIFIED
+            </div>
+            <div
+              style="height:120px; border-radius:12px; overflow:hidden; margin-bottom:16px; border:1px solid var(--coral-dark); background:var(--coral-bg);">
+              <img id="docB-img" src="../assets/images/legal_diff.svg" alt="Document B Modified Diff Preview"
+                style="width:100%; height:100%; object-fit:cover;">
+            </div>
+            <h3 class="compare-doc-title" id="docB-title">Scholarship Notice_Modified.pdf</h3>
+
+            <div class="field-item">
+              <div class="field-item-label" id="label-field1-b">Scholarship / Fee Amount</div>
+              <div class="field-item-val diff-alert" id="docB-field1">&#8377;50,000 per semester</div>
+            </div>
+
+            <div class="field-item">
+              <div class="field-item-label" id="label-field2-b">Submission Deadline</div>
+              <div class="field-item-val diff-alert" id="docB-field2">30 August 2026</div>
+            </div>
+
+            <div class="field-item">
+              <div class="field-item-label" id="label-field3-b">Target Eligibility</div>
+              <div class="field-item-val diff-alert" id="docB-field3">All students (No criteria)</div>
+            </div>
+
+            <div class="field-item">
+              <div class="field-item-label" id="label-field4-b">Official Portal Domain</div>
+              <div class="field-item-val diff-alert" id="docB-field4">unverified-claim-portal.com</div>
+            </div>
           </div>
 
-          <div class="field-item">
-            <div class="field-item-label">Target Eligibility</div>
-            <div class="field-item-val" id="docA-field3">Eligible merit students</div>
-          </div>
+        </div><!-- End .compare-grid-editorial -->
 
-          <div class="field-item">
-            <div class="field-item-label">Official Portal Domain</div>
-            <div class="field-item-val" id="docA-field4">scholarship.edu.in</div>
-          </div>
+        <!-- Inconsistency Banner Alert -->
+        <div class="compare-banner-alert" id="compare-alert-banner" style="margin-top:24px;">
+          <svg class="icon-svg icon-md" viewBox="0 0 24 24">
+            <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+          </svg>
+          <span>4 critical discrepancies detected between Document A and Document B.</span>
         </div>
-
-        <!-- Document B -->
-        <div class="compare-card-box modified-flagged" id="doc-card-b">
-          <div class="compare-card-tag" style="color:var(--coral-deep);">&#9888; DOCUMENT B &bull; CIRCULATED MODIFIED
-          </div>
-          <h3 class="compare-doc-title" id="docB-title">Scholarship Notice_Modified.pdf</h3>
-
-          <div class="field-item">
-            <div class="field-item-label">Scholarship / Fee Amount</div>
-            <div class="field-item-val diff-alert" id="docB-field1">&#8377;50,000 per semester</div>
-          </div>
-
-          <div class="field-item">
-            <div class="field-item-label">Submission Deadline</div>
-            <div class="field-item-val diff-alert" id="docB-field2">30 August 2026</div>
-          </div>
-
-          <div class="field-item">
-            <div class="field-item-label">Target Eligibility</div>
-            <div class="field-item-val diff-alert" id="docB-field3">All students (No criteria)</div>
-          </div>
-
-          <div class="field-item">
-            <div class="field-item-label">Official Portal Domain</div>
-            <div class="field-item-val diff-alert" id="docB-field4">unverified-claim-portal.com</div>
-          </div>
-        </div>
-
-      <!-- Inconsistency Banner Alert -->
-      <div class="compare-banner-alert" id="compare-alert-banner">
-        <svg class="icon-svg icon-md" viewBox="0 0 24 24">
-          <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
-        </svg>
-        <span>4 critical discrepancies detected between Document A and Document B.</span>
-      </div>
       </div><!-- End #comparison-report-container -->
-
-
-      <div style="text-align:center; margin-top:36px;">
-        <a href="analyze.html" class="btn-editorial btn-editorial-coral">
-          Upload Custom Files to Compare &rarr;
-        </a>
-      </div>
 
     </div>
   </main>
 
-  <!-- Reference Offer Card Feature Grid section -->
-  <section class="container" style="padding:70px 0 100px 0;">
+  <!-- Verification Comparison Profiles Section (Strict 3-Column Grid) -->
+  <section class="container" style="padding:70px 0 100px 0;" id="compare-profiles-section">
     <div class="section-header-editorial">
-      <span class="badge-pill-editorial">COMPARISON TEMPLATES</span>
-      <h2 class="section-title">Common Verification Use Cases</h2>
-      <p class="section-subtitle">Select a comparison profile below to inspect pre-configured rules.</p>
+      <span class="badge-pill-editorial">COMPARISON PROFILES</span>
+      <h2 class="section-title">Verification Profiles &amp; Templates</h2>
+      <p class="section-subtitle">Select a comparison profile below to inspect pre-configured forensic rules and
+        side-by-side diffs.</p>
     </div>
 
+    <!-- Strict 3-Column Desktop Grid with Inset Image Containers -->
     <div class="hotel-card-grid">
 
-      <!-- Card 1 -->
-      <div class="hotel-style-card">
+      <!-- Card 1: College Fee Circular Diff -->
+      <div class="hotel-style-card" id="fee-circular">
         <div class="hotel-card-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
-            alt="College Circular Diff">
+          <img src="../assets/images/academic_notice.jpg" alt="College fee circular document preview">
         </div>
         <div class="hotel-card-content">
           <div>
+            <span class="badge-pill-editorial" style="font-size:0.68rem; margin-bottom:8px;">Academic Circulars</span>
             <h3 class="hotel-card-title">College Fee Circular Diff</h3>
-            <div class="hotel-card-stars">★ ★ ★ ★ ★</div>
-            <div class="hotel-card-sub">Academic Notices</div>
+            <div class="hotel-card-sub">University &amp; Board Circulars</div>
           </div>
-          <div class="hotel-card-price-row">
-            <span class="hotel-card-price">3 Diffs</span>
-            <span class="hotel-card-price-unit"> flagged automatically</span>
+          <div class="field-item" style="margin-top:12px; padding:10px; background:var(--cream-bg); border-radius:8px;">
+            <div style="font-size:0.75rem; font-weight:800; color:var(--text-light);">FLAGGED CHANGES</div>
+            <div style="font-size:0.9rem; font-weight:700; color:var(--coral-deep); margin-top:2px;">3 Diffs (Fee &amp;
+              Deadline Shifts)</div>
           </div>
-          <a href="analyze.html" class="hotel-card-btn">View more</a>
+          <button type="button" onclick="selectCompareProfile('college-fee')" class="hotel-card-btn">Inspect Diff
+            &rarr;</button>
         </div>
       </div>
 
-      <!-- Card 2 -->
-      <div class="hotel-style-card active-card">
+      <!-- Card 2: Recruitment Offer Diff -->
+      <div class="hotel-style-card" id="recruitment-offer">
         <div class="hotel-card-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
-            alt="Recruitment Offer Diff">
+          <img src="../assets/images/job_offer_risk.jpg" alt="Recruitment offer letter contract preview">
         </div>
         <div class="hotel-card-content">
           <div>
+            <span class="badge-pill-editorial coral-theme" style="font-size:0.68rem; margin-bottom:8px;">Employment
+              Contracts</span>
             <h3 class="hotel-card-title">Recruitment Offer Diff</h3>
-            <div class="hotel-card-stars">★ ★ ★ ★ ★</div>
-            <div class="hotel-card-sub">Employment Contracts</div>
+            <div class="hotel-card-sub">Career &amp; Recruitment</div>
           </div>
-          <div class="hotel-card-price-row">
-            <span class="hotel-card-price">Salary &amp; Bond</span>
-            <span class="hotel-card-price-unit"> clause check</span>
+          <div class="field-item" style="margin-top:12px; padding:10px; background:var(--cream-bg); border-radius:8px;">
+            <div style="font-size:0.75rem; font-weight:800; color:var(--text-light);">FLAGGED CHANGES</div>
+            <div style="font-size:0.9rem; font-weight:700; color:var(--coral-deep); margin-top:2px;">CTC Reduction &amp;
+              Deposit Clause</div>
           </div>
-          <a href="analyze.html" class="hotel-card-btn">View more</a>
+          <button type="button" onclick="selectCompareProfile('recruitment-offer')" class="hotel-card-btn">Inspect Diff
+            &rarr;</button>
         </div>
       </div>
 
-      <!-- Card 3 -->
-      <div class="hotel-style-card">
+      <!-- Card 3: Rental Lease Agreement -->
+      <div class="hotel-style-card" id="rental-lease">
         <div class="hotel-card-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80"
-            alt="Rental Lease Agreement Diff">
+          <img src="../assets/images/legal_diff.svg" alt="Rental lease agreement contract preview">
         </div>
         <div class="hotel-card-content">
           <div>
+            <span class="badge-pill-editorial" style="font-size:0.68rem; margin-bottom:8px;">Property Leases</span>
             <h3 class="hotel-card-title">Rental Lease Agreement</h3>
-            <div class="hotel-card-stars">★ ★ ★ ★</div>
-            <div class="hotel-card-sub">Property Leases</div>
+            <div class="hotel-card-sub">Real Estate &amp; Legal</div>
           </div>
-          <div class="hotel-card-price-row">
-            <span class="hotel-card-price">Deposit Terms</span>
-            <span class="hotel-card-price-unit"> highlighted</span>
+          <div class="field-item" style="margin-top:12px; padding:10px; background:var(--cream-bg); border-radius:8px;">
+            <div style="font-size:0.75rem; font-weight:800; color:var(--text-light);">FLAGGED CHANGES</div>
+            <div style="font-size:0.9rem; font-weight:700; color:var(--coral-deep); margin-top:2px;">Security Deposit
+              &amp; Lock-in Terms</div>
           </div>
-          <a href="analyze.html" class="hotel-card-btn">View more</a>
+          <button type="button" onclick="selectCompareProfile('rental-lease')" class="hotel-card-btn">Inspect Diff
+            &rarr;</button>
         </div>
       </div>
 
-      <!-- Card 4 -->
-      <div class="hotel-style-card">
+      <!-- Card 4: Government Gazette Audit -->
+      <div class="hotel-style-card" id="gazette">
         <div class="hotel-card-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80"
-            alt="Gazette Notification Diff">
+          <img src="../assets/images/government_gazette.jpg" alt="Government gazette notification preview">
         </div>
         <div class="hotel-card-content">
           <div>
+            <span class="badge-pill-editorial" style="font-size:0.68rem; margin-bottom:8px;">Public
+              Administration</span>
             <h3 class="hotel-card-title">Government Gazette Notification</h3>
-            <div class="hotel-card-stars">★ ★ ★ ★ ★</div>
-            <div class="hotel-card-sub">Public Administration</div>
+            <div class="hotel-card-sub">State &amp; National Gazettes</div>
           </div>
-          <div class="hotel-card-price-row">
-            <span class="hotel-card-price">Official Seal</span>
-            <span class="hotel-card-price-unit"> verification</span>
+          <div class="field-item" style="margin-top:12px; padding:10px; background:var(--cream-bg); border-radius:8px;">
+            <div style="font-size:0.75rem; font-weight:800; color:var(--text-light);">FLAGGED CHANGES</div>
+            <div style="font-size:0.9rem; font-weight:700; color:var(--coral-deep); margin-top:2px;">Official Stamp
+              &amp; Portal Audit</div>
           </div>
-          <a href="analyze.html" class="hotel-card-btn">View more</a>
+          <button type="button" onclick="selectCompareProfile('gazette')" class="hotel-card-btn">Inspect Diff
+            &rarr;</button>
         </div>
       </div>
 
@@ -353,20 +396,20 @@
         <div>
           <h4 class="footer-col-title">Capabilities</h4>
           <ul class="footer-links-list">
-            <li><a href="features.html">&rarr; AI Summarization</a></li>
-            <li><a href="features.html">&rarr; Risk Analysis</a></li>
-            <li><a href="features.html">&rarr; Source Verification</a></li>
-            <li><a href="features.html">&rarr; Claim Scanner</a></li>
-            <li><a href="features.html">&rarr; Privacy Shield</a></li>
+            <li><a href="features.html#summary">&rarr; AI Summarization</a></li>
+            <li><a href="features.html#risk">&rarr; Risk Analysis</a></li>
+            <li><a href="features.html#source">&rarr; Source Verification</a></li>
+            <li><a href="features.html#claims">&rarr; Claim Scanner</a></li>
+            <li><a href="features.html#privacy">&rarr; Privacy Shield</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="footer-col-title">Platform</h4>
           <ul class="footer-links-list">
-            <li><a href="about.html">&rarr; Architecture Overview</a></li>
-            <li><a href="about.html">&rarr; Security &amp; Privacy</a></li>
-            <li><a href="about.html">&rarr; Verification Standards</a></li>
+            <li><a href="about.html#overview">&rarr; Platform Overview</a></li>
+            <li><a href="about.html#architecture">&rarr; System Architecture</a></li>
+            <li><a href="about.html#safety">&rarr; AI Safety &amp; Ethics</a></li>
           </ul>
         </div>
       </div>
@@ -380,10 +423,107 @@
 
   <script src="../js/script.js"></script>
   <script>
-    // Preset demo sample loader logic for compare engine
-    function loadCompareSample(type) {
+    // Profile Dictionary for Side-by-Side Comparison Workspace
+    const compareProfilesData = {
+      'college-fee': {
+        docATitle: 'Scholarship Notice v1.pdf',
+        docBTitle: 'Scholarship Notice_Modified.pdf',
+        docAImg: '../assets/images/academic_notice.jpg',
+        docBImg: '../assets/images/legal_diff.svg',
+        f1Label: 'Scholarship / Fee Amount',
+        f1A: '₹10,000 per semester',
+        f1B: '₹50,000 per semester',
+        f2Label: 'Submission Deadline',
+        f2A: '15 August 2026',
+        f2B: '30 August 2026',
+        f3Label: 'Target Eligibility',
+        f3A: 'Eligible merit students',
+        f3B: 'All students (No criteria)',
+        f4Label: 'Official Portal Domain',
+        f4A: 'scholarship.edu.in',
+        f4B: 'unverified-claim-portal.com',
+        banner: '<svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg> <span>4 critical discrepancies detected between Document A and Document B.</span>'
+      },
+      'recruitment-offer': {
+        docATitle: 'Official_Offer_Letter.pdf',
+        docBTitle: 'Recruiter_Sent_Offer_v2.pdf',
+        docAImg: '../assets/images/job_offer_risk.jpg',
+        docBImg: '../assets/images/legal_diff.svg',
+        f1Label: 'Total CTC Package',
+        f1A: '₹1,200,000 CTC',
+        f1B: '₹800,000 CTC (Reduced)',
+        f2Label: 'Security Deposit Clause',
+        f2A: 'No Deposit Required',
+        f2B: '₹15,000 Mandatory Laptop Fee',
+        f3Label: 'Notice Period / Bond',
+        f3A: 'Standard 30 Days Notice',
+        f3B: 'Mandatory 2 Years Lock-in Bond',
+        f4Label: 'Sender Email Authority',
+        f4A: 'careers@techcorp.com',
+        f4B: 'hr-techcorp@gmail.com',
+        banner: '<svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg> <span>CTC reduction & suspicious webmail sender detected!</span>'
+      },
+      'rental-lease': {
+        docATitle: 'Standard_Lease_Agreement.pdf',
+        docBTitle: 'Altered_Lease_Agreement.pdf',
+        docAImg: '../assets/images/legal_diff.svg',
+        docBImg: '../assets/images/government_gazette.jpg',
+        f1Label: 'Monthly Rent',
+        f1A: '₹25,000 per month',
+        f1B: '₹35,000 per month',
+        f2Label: 'Security Deposit',
+        f2A: '₹50,000 (2 Months)',
+        f2B: '₹150,000 (6 Months)',
+        f3Label: 'Lock-in Duration',
+        f3A: '6 Months Lock-in',
+        f3B: '24 Months Mandatory Lock-in',
+        f4Label: 'Maintenance Fee Clause',
+        f4A: 'Included in Rent',
+        f4B: 'Additional ₹5,000 Monthly Fee',
+        banner: '<svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg> <span>Unannounced fee escalation & deposit shifts detected!</span>'
+      },
+      'gazette': {
+        docATitle: 'Govt_Gazette_Official_2026.pdf',
+        docBTitle: 'Govt_Gazette_Forged_Draft.pdf',
+        docAImg: '../assets/images/government_gazette.jpg',
+        docBImg: '../assets/images/legal_diff.svg',
+        f1Label: 'Government Seal Authority',
+        f1A: 'Verified State Seal ✓',
+        f1B: 'Altered Seal Graphic ⚠',
+        f2Label: 'Application Fee Policy',
+        f2A: 'Free Official Registration',
+        f2B: '₹1,500 Processing Fee',
+        f3Label: 'Gazette Reference Number',
+        f3A: 'GAZ-2026/8940-STATE',
+        f3B: 'GAZ-2026/8940-MODIFIED',
+        f4Label: 'Verification Domain',
+        f4A: 'egazette.gov.in',
+        f4B: 'state-gazette-payment.org',
+        banner: '<svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg> <span>Forged government seal & fake payment portal flagged!</span>'
+      }
+    };
+
+    function selectCompareProfile(profileKey, updateUrl = true) {
+      const data = compareProfilesData[profileKey] || compareProfilesData['college-fee'];
+
+      // Update Active Tab Pill UI
+      const pills = document.querySelectorAll('.compare-tab-pill');
+      pills.forEach(p => p.classList.remove('active'));
+
+      const activePill = document.getElementById(`preset-btn-${profileKey}`);
+      if (activePill) activePill.classList.add('active');
+
+      // Update Document A & Document B workspace
+      const docAImg = document.getElementById('docA-img');
+      const docBImg = document.getElementById('docB-img');
       const docATitle = document.getElementById('docA-title');
       const docBTitle = document.getElementById('docB-title');
+
+      if (docAImg) docAImg.src = data.docAImg;
+      if (docBImg) docBImg.src = data.docBImg;
+      if (docATitle) docATitle.innerText = data.docATitle;
+      if (docBTitle) docBTitle.innerText = data.docBTitle;
+
       const f1A = document.getElementById('docA-field1');
       const f1B = document.getElementById('docB-field1');
       const f2A = document.getElementById('docA-field2');
@@ -394,44 +534,88 @@
       const f4B = document.getElementById('docB-field4');
       const banner = document.getElementById('compare-alert-banner');
 
-      if (type === 'scholarship') {
-        docATitle.innerText = 'Scholarship Notice v1.pdf';
-        docBTitle.innerText = 'Scholarship Notice_Modified.pdf';
-        f1A.innerText = '₹10,000 per semester';
-        f1B.innerText = '₹50,000 per semester';
-        f2A.innerText = '15 August 2026';
-        f2B.innerText = '30 August 2026';
-        f3A.innerText = 'Eligible merit students';
-        f3B.innerText = 'All students (No criteria)';
-        f4A.innerText = 'scholarship.edu.in';
-        f4B.innerText = 'unverified-claim-portal.com';
-        banner.innerHTML = '<svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg> <span>4 critical discrepancies detected between Document A and Document B.</span>';
-      } else if (type === 'fee') {
-        docATitle.innerText = 'Tuition_Fee_Circular_2026.pdf';
-        docBTitle.innerText = 'Tuition_Fee_Whatsapp_Draft.pdf';
-        f1A.innerText = '₹25,000 Annual Fee';
-        f1B.innerText = '₹45,000 Immediate Deposit';
-        f2A.innerText = '31 July 2026';
-        f2B.innerText = 'Pay within 24 hours';
-        f3A.innerText = 'College Cashier Desk';
-        f3B.innerText = 'UPI Direct Transfer Link';
-        f4A.innerText = 'college-portal.edu.in';
-        f4B.innerText = 'quick-payment-gateway.biz';
-        banner.innerHTML = '<svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg> <span>Predatory payment portal & fee escalation detected!</span>';
-      } else if (type === 'offer') {
-        docATitle.innerText = 'Official_Offer_Letter.pdf';
-        docBTitle.innerText = 'Recruiter_Sent_Offer_v2.pdf';
-        f1A.innerText = '₹6,000,000 CTC';
-        f1B.innerText = '₹4,500,000 CTC (Reduced)';
-        f2A.innerText = 'No Registration Fee';
-        f2B.innerText = '₹5,000 Laptop Security Deposit';
-        f3A.innerText = 'Standard 30 Days Notice';
-        f3B.innerText = 'Mandatory 3 Years Bond';
-        f4A.innerText = 'careers@techcorp.com';
-        f4B.innerText = 'hr-techcorp@gmail.com';
-        banner.innerHTML = '<svg class="icon-svg icon-md" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg> <span>Suspicious Gmail domain & deposit trap detected!</span>';
+      const label1 = document.getElementById('label-field1');
+      const label2 = document.getElementById('label-field2');
+      const label3 = document.getElementById('label-field3');
+      const label4 = document.getElementById('label-field4');
+      const label1b = document.getElementById('label-field1-b');
+      const label2b = document.getElementById('label-field2-b');
+      const label3b = document.getElementById('label-field3-b');
+      const label4b = document.getElementById('label-field4-b');
+
+      if (label1) label1.innerText = data.f1Label;
+      if (label1b) label1b.innerText = data.f1Label;
+      if (label2) label2.innerText = data.f2Label;
+      if (label2b) label2b.innerText = data.f2Label;
+      if (label3) label3.innerText = data.f3Label;
+      if (label3b) label3b.innerText = data.f3Label;
+      if (label4) label4.innerText = data.f4Label;
+      if (label4b) label4b.innerText = data.f4Label;
+
+      if (f1A) f1A.innerText = data.f1A;
+      if (f1B) f1B.innerText = data.f1B;
+      if (f2A) f2A.innerText = data.f2A;
+      if (f2B) f2B.innerText = data.f2B;
+      if (f3A) f3A.innerText = data.f3A;
+      if (f3B) f3B.innerText = data.f3B;
+      if (f4A) f4A.innerText = data.f4A;
+      if (f4B) f4B.innerText = data.f4B;
+      if (banner) banner.innerHTML = data.banner;
+
+      // Update URL search parameter if requested
+      if (updateUrl && window.history.pushState) {
+        const newUrl = `${window.location.pathname}?profile=${profileKey}`;
+        window.history.pushState({ profile: profileKey }, '', newUrl);
+      }
+
+      // Smooth scroll to comparison report container
+      const container = document.getElementById('comparison-report-container');
+      if (container) {
+        container.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }
+
+    // Dynamic Custom Document File Selection Handler
+    const fileInputA = document.getElementById('compare-file-input-a');
+    const fileInputB = document.getElementById('compare-file-input-b');
+    const fileLabelA = document.getElementById('compare-file-a-label');
+    const fileLabelB = document.getElementById('compare-file-b-label');
+
+    if (fileInputA && fileLabelA) {
+      fileInputA.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+          const file = e.target.files[0];
+          fileLabelA.innerText = `Loaded A: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+          const docATitle = document.getElementById('docA-title');
+          if (docATitle) docATitle.innerText = file.name;
+        }
+      });
+    }
+
+    if (fileInputB && fileLabelB) {
+      fileInputB.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+          const file = e.target.files[0];
+          fileLabelB.innerText = `Loaded B: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+          const docBTitle = document.getElementById('docB-title');
+          if (docBTitle) docBTitle.innerText = file.name;
+        }
+      });
+    }
+
+    // Handle Browser Back & Forward buttons
+    window.addEventListener('popstate', (e) => {
+      const params = new URLSearchParams(window.location.search);
+      const profile = params.get('profile') || 'college-fee';
+      selectCompareProfile(profile, false);
+    });
+
+    // On Initial Load
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const profile = params.get('profile') || 'college-fee';
+      selectCompareProfile(profile, false);
+    });
   </script>
 </body>
 

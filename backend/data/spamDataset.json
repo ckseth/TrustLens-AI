@@ -1,0 +1,117 @@
+{
+  "name": "TrustLens SMS & Email Spam / Phishing Dataset",
+  "version": "1.0.0",
+  "description": "Labeled corpus of SMS, Email, Notice, and Document text samples for Naive Bayes ML Spam Classification",
+  "samples": [
+    {
+      "text": "URGENT: Your account has been suspended due to unauthorized login attempt. Click link immediately to verify password within 24 hours.",
+      "label": "spam",
+      "category": "phishing_email"
+    },
+    {
+      "text": "Congratulations! You have won a cash reward of Rs 50,000 in lucky lottery draw. Claim grant now by paying upfront processing fee.",
+      "label": "spam",
+      "category": "lottery_scam"
+    },
+    {
+      "text": "Earn Rs 5,000 daily from home with part time online typing job. Join our Telegram channel and WhatsApp group to get daily payout.",
+      "label": "spam",
+      "category": "job_scam"
+    },
+    {
+      "text": "Dear customer, your electricity bill of Rs 1,450 is overdue. Pay immediately or power supply disconnected tonight. Call helpline number.",
+      "label": "spam",
+      "category": "utility_phishing"
+    },
+    {
+      "text": "Do not share OTP 849201 with anyone including bank manager. Your UPI transfer of Rs 10,000 is pending verification.",
+      "label": "spam",
+      "category": "otp_scam"
+    },
+    {
+      "text": "Final Notice: Income tax refund claim approved for Rs 12,400. Click link to update bank account details and claim refund.",
+      "label": "spam",
+      "category": "tax_scam"
+    },
+    {
+      "text": "Guaranteed crypto investment returns! Double your Bitcoin in 48 hours. Transfer money to UPI ID crypto.master@upi now.",
+      "label": "spam",
+      "category": "crypto_scam"
+    },
+    {
+      "text": "Immediate Action Required: Your credit card reward points worth Rs 8,500 expiring today. Redeem cash reward by clicking link.",
+      "label": "spam",
+      "category": "reward_scam"
+    },
+    {
+      "text": "Unpaid registration fee required to issue your government tender approval document. Send payment via UPI immediately.",
+      "label": "spam",
+      "category": "fee_scam"
+    },
+    {
+      "text": "Alert: Suspicious login detected on your bank account. Share OTP sent to your phone to block unauthorized transaction.",
+      "label": "spam",
+      "category": "banking_phishing"
+    },
+    {
+      "text": "Exclusive loan offer approved! Get Rs 5 Lakhs instant loan without collateral. Low interest rate. Pay small processing fee to disburse.",
+      "label": "spam",
+      "category": "loan_scam"
+    },
+    {
+      "text": "Your package delivery failed due to incorrect address. Pay Rs 25 redelivery fee at link to receive your order.",
+      "label": "spam",
+      "category": "delivery_scam"
+    },
+    {
+      "text": "Dear user, your Monthly Bank Account Statement for May 2024 is ready. Download attached PDF to view transaction history.",
+      "label": "ham",
+      "category": "bank_statement"
+    },
+    {
+      "text": "Tax Invoice for your recent purchase. Order ID #84920. Total amount paid: Rs 1,299 via Credit Card. Thank you for shopping with us.",
+      "label": "ham",
+      "category": "invoice"
+    },
+    {
+      "text": "Meeting Reminder: Quarterly performance review scheduled for tomorrow at 10:00 AM in Conference Room B. Please review agenda.",
+      "label": "ham",
+      "category": "work_email"
+    },
+    {
+      "text": "Your electricity bill for June is Rs 1,250. Due date is 25th June. Pay via official utility portal or mobile app.",
+      "label": "ham",
+      "category": "official_bill"
+    },
+    {
+      "text": "University Circular: Summer semester examination schedule published. Students can view timetable on student portal.",
+      "label": "ham",
+      "category": "notice"
+    },
+    {
+      "text": "Appointment Confirmation: Your appointment with Dr. Sharma is confirmed for Friday at 4:30 PM. Please arrive 10 minutes early.",
+      "label": "ham",
+      "category": "appointment"
+    },
+    {
+      "text": "Your subscription receipt #9401. Amount Rs 499 billed to your card. Next billing date July 15. Manage account online.",
+      "label": "ham",
+      "category": "subscription"
+    },
+    {
+      "text": "Flight booking confirmed. PNR: W892KL. Flight AI-402 Delhi to Mumbai on 18th July. Check-in opens 24 hours prior.",
+      "label": "ham",
+      "category": "travel_booking"
+    },
+    {
+      "text": "Residential Rental Agreement: Landlord agrees to lease property located at Sector 62 Noida to Tenant for 11 months duration.",
+      "label": "ham",
+      "category": "legal_document"
+    },
+    {
+      "text": "Project Update: Sprint 4 backlog items completed. Code review scheduled for 3 PM today. Please pull latest changes from main branch.",
+      "label": "ham",
+      "category": "work_email"
+    }
+  ]
+}

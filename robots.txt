@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /pages/features.html
+Allow: /pages/how-it-works.html
+Allow: /pages/about.html
+Disallow: /pages/login.html
+Disallow: /pages/signup.html
+Disallow: /pages/analyze.html
+Disallow: /pages/compare.html
+Disallow: /api/
+
+Sitemap: http://localhost:5000/sitemap.xml

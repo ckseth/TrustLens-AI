@@ -11,10 +11,20 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../assets/logo/logo.png">
 
+  <!-- Open Graph & Canonical SEO Metadata -->
+  <link rel="canonical" href="http://localhost:5000/pages/about.html">
+  <meta property="og:title" content="About TrustLens AI – Intelligent Verification Platform">
+  <meta property="og:description"
+    content="Learn about TrustLens AI, an intelligent document verification and analysis platform built for explainable trust scoring.">
+  <meta property="og:image" content="../assets/logo/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:5000/pages/about.html">
+  <meta name="twitter:card" content="summary_large_image">
+
   <!-- Master Stylesheet -->
   <link rel="stylesheet" href="../css/style.css">
   <script>
-    (function() {
+    (function () {
       const saved = localStorage.getItem('trustlens_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', saved);
     })();
@@ -98,38 +108,56 @@
     <article
       style="background:var(--surface-white); border-radius:var(--radius-lg); padding:56px; border:1px solid var(--border-subtle); box-shadow:var(--shadow-sm); line-height:1.8; color:var(--text-main);">
 
-      <h2
-        style="font-family:var(--font-display); font-weight:800; font-size:2.2rem; color:var(--green-deep); margin-bottom:16px;">
-        The Core Problem
-      </h2>
-      <p style="margin-bottom:28px; color:var(--text-body); font-size:1.05rem;">
-        Every day, millions of students, job seekers, and tenants receive digital circulars, offer letters, and rental
-        agreements via messaging apps and social channels. Many of these documents contain altered numbers, predatory
-        registration fee demands, or unverified links designed to deceive.
-      </p>
-
-      <h2
-        style="font-family:var(--font-display); font-weight:800; font-size:2.2rem; color:var(--green-deep); margin-bottom:16px;">
-        The TrustLens Solution
-      </h2>
-      <p style="margin-bottom:28px; color:var(--text-body); font-size:1.05rem;">
-        TrustLens AI acts as an intelligent visual filter — extracting structured data, calculating a transparent Trust
-        Rating score, spotlighting side-by-side document inconsistencies, and explaining exactly <em>why</em> a document
-        requires further official verification.
-      </p>
-
-      <div
-        style="background:var(--green-surface); border-left:5px solid var(--green-dark); padding:28px; border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin:36px 0; border:1px solid var(--green-soft); border-left-width:5px;">
-        <h3
-          style="font-family:var(--font-display); font-weight:800; font-size:1.4rem; color:var(--green-deep); margin-bottom:8px;">
-          Modular Architecture Prepared for Integration
-        </h3>
-        <p style="font-size:1rem; color:var(--green-dark); margin:0; line-height:1.65;">
-          This platform has been engineered using semantic HTML5, CSS3 design tokens, and modular Vanilla JavaScript. It
-          is structured to easily connect with Express/Node.js, Multer file upload pipelines, Python OCR, and NLP
-          models.
+      <!-- Platform Overview Section -->
+      <section id="overview" style="scroll-margin-top: 100px;">
+        <span class="badge-pill-editorial" style="font-size:0.75rem; margin-bottom:12px;">PLATFORM OVERVIEW</span>
+        <h2
+          style="font-family:var(--font-display); font-weight:800; font-size:2.2rem; color:var(--green-deep); margin-bottom:16px;">
+          The Core Problem &amp; Platform Overview
+        </h2>
+        <p style="margin-bottom:28px; color:var(--text-body); font-size:1.05rem;">
+          Every day, millions of students, job seekers, and tenants receive digital circulars, offer letters, and rental
+          agreements via messaging apps and social channels. Many of these documents contain altered numbers, predatory
+          registration fee demands, or unverified links designed to deceive.
         </p>
-      </div>
+
+        <h2
+          style="font-family:var(--font-display); font-weight:800; font-size:2.2rem; color:var(--green-deep); margin-bottom:16px;">
+          The TrustLens Solution
+        </h2>
+        <p style="margin-bottom:28px; color:var(--text-body); font-size:1.05rem;">
+          TrustLens AI acts as an intelligent visual filter — extracting structured data, calculating a transparent Trust
+          Rating score, spotlighting side-by-side document inconsistencies, and explaining exactly <em>why</em> a document
+          requires further official verification.
+        </p>
+      </section>
+
+      <!-- System Architecture Section -->
+      <section id="architecture" style="scroll-margin-top: 100px; margin-top: 40px;">
+        <div
+          style="background:var(--green-surface); border-left:5px solid var(--green-dark); padding:28px; border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin:36px 0; border:1px solid var(--green-soft); border-left-width:5px;">
+          <span class="badge-pill-editorial" style="font-size:0.75rem; margin-bottom:8px;">SYSTEM ARCHITECTURE</span>
+          <h3
+            style="font-family:var(--font-display); font-weight:800; font-size:1.4rem; color:var(--green-deep); margin-bottom:8px;">
+            Modular Architecture &amp; Hybrid Pipeline
+          </h3>
+          <p style="font-size:1rem; color:var(--green-dark); margin:0; line-height:1.65;">
+            TrustLens AI is engineered with a hybrid processing model combining local RegEx pattern matching, NLP text extraction (PDF, DOCX, TXT, OCR), ML spam classification, and Google Gemini 1.5 Pro integration. Data is encrypted in transit and at rest.
+          </p>
+        </div>
+      </section>
+
+      <!-- AI Safety & Ethics Section -->
+      <section id="safety" style="scroll-margin-top: 100px; margin-top: 40px;">
+        <span class="badge-pill-editorial coral-theme" style="font-size:0.75rem; margin-bottom:12px;">AI SAFETY &amp; ETHICS</span>
+        <h2
+          style="font-family:var(--font-display); font-weight:800; font-size:2.2rem; color:var(--green-deep); margin-bottom:16px;">
+          AI Safety, Privacy Shield &amp; Ethical AI
+        </h2>
+        <p style="margin-bottom:28px; color:var(--text-body); font-size:1.05rem;">
+          Our Privacy Shield automatically strips and masks PII (Emails, Phones, IDs, Addresses) before cloud AI processing. TrustLens AI adheres to strict explainability guidelines — every risk score is accompanied by human-readable explanations and source cross-references without opaque black-box decisions.
+        </p>
+      </section>
 
       <div style="margin-top:40px; display:flex; gap:18px;">
         <a href="analyze.html" class="btn-editorial btn-editorial-primary">Open Verification Studio &rarr;</a>
@@ -171,20 +199,20 @@
         <div>
           <h4 class="footer-col-title">Capabilities</h4>
           <ul class="footer-links-list">
-            <li><a href="features.html">&rarr; AI Summarization</a></li>
-            <li><a href="features.html">&rarr; Risk Analysis</a></li>
-            <li><a href="features.html">&rarr; Source Verification</a></li>
-            <li><a href="features.html">&rarr; Claim Scanner</a></li>
-            <li><a href="features.html">&rarr; Privacy Shield</a></li>
+            <li><a href="features.html#summary">&rarr; AI Summarization</a></li>
+            <li><a href="features.html#risk">&rarr; Risk Analysis</a></li>
+            <li><a href="features.html#source">&rarr; Source Verification</a></li>
+            <li><a href="features.html#claims">&rarr; Claim Scanner</a></li>
+            <li><a href="features.html#privacy">&rarr; Privacy Shield</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="footer-col-title">Platform</h4>
           <ul class="footer-links-list">
-            <li><a href="about.html">&rarr; Platform Overview</a></li>
-            <li><a href="about.html">&rarr; System Architecture</a></li>
-            <li><a href="about.html">&rarr; AI Safety &amp; Ethics</a></li>
+            <li><a href="#overview">&rarr; Platform Overview</a></li>
+            <li><a href="#architecture">&rarr; System Architecture</a></li>
+            <li><a href="#safety">&rarr; AI Safety &amp; Ethics</a></li>
           </ul>
         </div>
       </div>

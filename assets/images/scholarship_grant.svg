@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg_grant" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#092B14"/>
+      <stop offset="100%" stop-color="#11421C"/>
+    </linearGradient>
+    <filter id="shadow_grant" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <rect width="800" height="450" fill="url(#bg_grant)"/>
+  
+  <!-- Header Bar -->
+  <rect x="40" y="24" width="720" height="48" rx="8" fill="#1B4D25" stroke="rgba(92,184,96,0.3)"/>
+  <text x="60" y="54" fill="#9FD4A2" font-family="sans-serif" font-weight="bold" font-size="16">💰 SCHOLARSHIP &amp; GRANT AUDIT STUDIO</text>
+  <rect x="570" y="36" width="170" height="24" rx="12" fill="#E6F4E8" stroke="#5CB860"/>
+  <text x="655" y="52" fill="#11421C" font-family="sans-serif" font-weight="bold" font-size="12" text-anchor="middle">✓ DISBURSEMENT VALID</text>
+  
+  <!-- Document Container -->
+  <g filter="url(#shadow_grant)" transform="translate(180, 90)">
+    <rect width="440" height="320" rx="14" fill="#FFFDF9" stroke="#9FD4A2" stroke-width="2"/>
+    <!-- Top Seal Ribbon -->
+    <path d="M0 14 Q0 0 14 0 L426 0 Q440 0 440 14 L440 50 L0 50 Z" fill="#F0F9F1"/>
+    <text x="24" y="32" fill="#061E0E" font-family="sans-serif" font-weight="bold" font-size="16">FINANCIAL AID GRANT APPROVAL</text>
+    <text x="350" y="32" fill="#2A7334" font-family="sans-serif" font-weight="bold" font-size="12">REF #88419</text>
+    
+    <!-- Body Content -->
+    <rect x="24" y="70" width="392" height="60" rx="8" fill="#E6F4E8" stroke="#5CB860"/>
+    <text x="40" y="94" fill="#11421C" font-family="sans-serif" font-weight="bold" font-size="14">Disbursement Amount Verified</text>
+    <text x="40" y="116" fill="#2A7334" font-family="sans-serif" font-weight="bold" font-size="18">₹50,000 / Academic Year</text>
+    
+    <!-- Verification Points -->
+    <rect x="24" y="145" width="392" height="38" rx="6" fill="#FFFDF9" stroke="rgba(17,66,28,0.15)"/>
+    <text x="40" y="169" fill="#11421C" font-family="sans-serif" font-weight="bold" font-size="13">✓ Direct Student Account Credit (No Third-Party Fee)</text>
+    
+    <rect x="24" y="195" width="392" height="38" rx="6" fill="#FFFDF9" stroke="rgba(17,66,28,0.15)"/>
+    <text x="40" y="219" fill="#11421C" font-family="sans-serif" font-weight="bold" font-size="13">✓ Portal Source: National Scholarship Portal (Verified)</text>
+    
+    <!-- Big Seal -->
+    <circle cx="360" cy="270" r="30" fill="#3D9943"/>
+    <circle cx="360" cy="270" r="26" fill="none" stroke="#FFF" stroke-width="2" stroke-dasharray="4 2"/>
+    <text x="360" y="275" fill="#FFF" font-family="sans-serif" font-weight="bold" font-size="18" text-anchor="middle">✓</text>
+    
+    <text x="24" y="275" fill="#577360" font-family="sans-serif" font-size="12">TrustLens Audit Confidence: 99.8%</text>
+  </g>
+</svg>

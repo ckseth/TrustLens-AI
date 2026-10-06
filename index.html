@@ -11,12 +11,27 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/logo/logo.png">
 
+  <!-- Open Graph & Canonical SEO Metadata -->
+  <link rel="canonical" href="http://localhost:5000/index.html">
+  <meta property="og:title" content="TrustLens AI – Intelligent Document Verification & Analysis Platform">
+  <meta property="og:description"
+    content="Turn complex documents, screenshots and digital information into clear, explainable insights with TrustLens AI document intelligence.">
+  <meta property="og:image" content="assets/logo/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:5000/index.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TrustLens AI – Intelligent Document Verification Platform">
+  <meta name="twitter:description"
+    content="Turn complex documents into clear, explainable verification insights with AI.">
+
   <!-- Master Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
   <script>
-    (function() {
+    (function () {
       const saved = localStorage.getItem('trustlens_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
   <!-- Export Libraries (PDF & PNG) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -144,7 +159,9 @@
                         Circular</div>
                     </div>
                   </div>
-                  <span class="badge-pill-editorial coral-theme" style="font-size:var(--font-size-xs); padding:4px 10px; text-transform:none;">Analysis Complete</span>
+                  <span class="badge-pill-editorial coral-theme"
+                    style="font-size:var(--font-size-xs); padding:4px 10px; text-transform:none;">Analysis
+                    Complete</span>
                 </div>
 
                 <div class="score-radial-container">
@@ -347,11 +364,9 @@
           <!-- Dropzone -->
           <div class="dropzone-editorial" onclick="document.getElementById('file-upload-input').click()">
             <div
-              style="width:64px; height:64px; border-radius:50%; background:var(--surface-white); color:var(--green-dark); display:flex; align-items:center; justify-content:center; margin:0 auto 16px auto; box-shadow:var(--shadow-sm);">
-              <svg class="icon-svg icon-lg" viewBox="0 0 24 24">
-                <path
-                  d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z" />
-              </svg>
+              style="height:110px; max-width:240px; margin:0 auto 16px auto; border-radius:10px; overflow:hidden; border:1.5px stroke var(--green-soft); box-shadow:var(--shadow-sm);">
+              <img src="assets/images/academic_notice.jpg" alt="Active Verification Studio Document Preview"
+                style="width:100%; height:100%; object-fit:cover;">
             </div>
             <h3 class="dropzone-title"
               style="font-family:var(--font-display); font-weight:800; font-size:1.6rem; color:var(--green-deep); margin-bottom:6px;">
@@ -404,11 +419,17 @@
           <div style="display:flex; justify-content:flex-end; margin-bottom:12px;">
             <div class="export-actions-group">
               <button class="btn-export btn-export-pdf" id="export-pdf-home-btn" title="Download PDF Report">
-                <svg class="icon-svg icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9.5 8.5c0 .83-.67 1.5-1.5 1.5H7v2H5.5V9H8c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V9H13c.83 0 1.5.67 1.5 1.5v3zm4-3H17v1h1.5V13H17v2h-1.5V9h3v1.5z"/></svg>
+                <svg class="icon-svg icon-sm" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9.5 8.5c0 .83-.67 1.5-1.5 1.5H7v2H5.5V9H8c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V9H13c.83 0 1.5.67 1.5 1.5v3zm4-3H17v1h1.5V13H17v2h-1.5V9h3v1.5z" />
+                </svg>
                 Download PDF
               </button>
               <button class="btn-export btn-export-png" id="export-png-home-btn" title="Download PNG Image">
-                <svg class="icon-svg icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                <svg class="icon-svg icon-sm" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                </svg>
                 Download PNG
               </button>
             </div>
@@ -638,6 +659,11 @@
         <!-- Document A -->
         <div class="compare-card-box" id="doc-card-a">
           <div class="compare-card-tag">DOCUMENT A &bull; OFFICIAL ORIGINAL</div>
+          <div
+            style="height:100px; border-radius:8px; overflow:hidden; margin-bottom:14px; border:1px solid var(--green-soft);">
+            <img src="assets/images/academic_notice.jpg" alt="Document A Original Verification Preview"
+              style="width:100%; height:100%; object-fit:cover;">
+          </div>
           <h3 class="compare-doc-title">Scholarship Notice v1.pdf</h3>
 
           <div class="field-item">
@@ -659,6 +685,11 @@
         <!-- Document B -->
         <div class="compare-card-box modified-flagged" id="doc-card-b">
           <div class="compare-card-tag" style="color:var(--coral-deep);">&#9888; DOCUMENT B &bull; CIRCULATED MODIFIED
+          </div>
+          <div
+            style="height:100px; border-radius:8px; overflow:hidden; margin-bottom:14px; border:1px solid var(--coral-dark);">
+            <img src="assets/images/legal_diff.svg" alt="Document B Modified Diff Preview"
+              style="width:100%; height:100%; object-fit:cover;">
           </div>
           <h3 class="compare-doc-title">Scholarship Notice_Modified.pdf</h3>
 
@@ -768,9 +799,10 @@
           <div class="step-badge-num">01</div>
           <h3 class="step-card-title">UPLOAD</h3>
           <p class="step-card-desc">Upload PDF, scanned image, screenshot or paste text directly into the studio.</p>
-          <div class="step-img-frame">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
-              alt="Person selecting document file to upload on screen">
+          <div class="step-mockup-box">
+            <div style="font-size:2rem; margin-bottom:8px;">📄 ➔ 📁</div>
+            <div style="font-size:0.82rem; font-weight:800; color:var(--green-deep);">Document Dropzone</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">PDF, PNG, JPG • Max 25MB</div>
           </div>
         </div>
 
@@ -778,9 +810,11 @@
           <div class="step-badge-num">02</div>
           <h3 class="step-card-title">EXTRACT</h3>
           <p class="step-card-desc">Text is extracted with clean document layout parsing and OCR processing.</p>
-          <div class="step-img-frame">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
-              alt="OCR text data extraction analytics screen">
+          <div class="step-mockup-box">
+            <div style="font-size:2rem; margin-bottom:8px;">🔍 ➔ 📝</div>
+            <div style="font-size:0.82rem; font-weight:800; color:var(--green-deep);">OCR Layout Engine</div>
+            <div style="font-size:0.75rem; color:var(--green-mid); font-weight:700; margin-top:2px;">578 Key Terms
+              Analyzed</div>
           </div>
         </div>
 
@@ -789,9 +823,11 @@
           <h3 class="step-card-title">ANALYZE</h3>
           <p class="step-card-desc">AI, NLP, and machine learning models analyze language tone, links, and entity
             consistency.</p>
-          <div class="step-img-frame">
-            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80"
-              alt="AI NLP neural analytics model evaluating text data">
+          <div class="step-mockup-box">
+            <div style="font-size:2rem; margin-bottom:8px;">⚡ ➔ ⚖️</div>
+            <div style="font-size:0.82rem; font-weight:800; color:var(--green-deep);">ML Risk Classifier</div>
+            <div style="font-size:0.75rem; color:var(--coral-deep); font-weight:700; margin-top:2px;">Risk Rating:
+              Medium</div>
           </div>
         </div>
 
@@ -800,9 +836,11 @@
           <h3 class="step-card-title">UNDERSTAND</h3>
           <p class="step-card-desc">Receive clear summaries, risk indicators, side-by-side diffs, and explainable
             insights.</p>
-          <div class="step-img-frame">
-            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80"
-              alt="Person reviewing clear verification report document on desk">
+          <div class="step-mockup-box">
+            <div style="font-size:2rem; margin-bottom:8px;">📊 ➔ ✓</div>
+            <div style="font-size:0.82rem; font-weight:800; color:var(--green-deep);">Audit Breakdown</div>
+            <div style="font-size:0.75rem; color:var(--green-vibrant); font-weight:700; margin-top:2px;">Full Report
+              Ready</div>
           </div>
         </div>
       </div>
@@ -820,10 +858,10 @@
       </div>
 
       <div class="usecases-grid-editorial">
+        <!-- Card 1: Academic Circulars -->
         <div class="usecase-card-editorial">
           <div class="usecase-img-box">
-            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80"
-              alt="University students on campus reviewing college admission circular paperwork">
+            <img src="assets/images/academic_notice.jpg" alt="University Academic Circular Document Verification">
           </div>
           <div class="usecase-body">
             <div class="usecase-category-tag">ACADEMIC &amp; CAMPUS</div>
@@ -833,10 +871,11 @@
           </div>
         </div>
 
+        <!-- Card 2: Government Notices -->
         <div class="usecase-card-editorial">
           <div class="usecase-img-box">
-            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
-              alt="Official government public gazette notice with wax seal stamp">
+            <img src="assets/images/government_gazette.jpg"
+              alt="Government Gazette Official Notification Document Verification">
           </div>
           <div class="usecase-body">
             <div class="usecase-category-tag">CIVIC &amp; PUBLIC</div>
@@ -846,10 +885,10 @@
           </div>
         </div>
 
+        <!-- Card 3: Job Offer Inspector -->
         <div class="usecase-card-editorial">
           <div class="usecase-img-box">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
-              alt="Job applicant holding printed employment offer letter contract">
+            <img src="assets/images/job_offer_risk.jpg" alt="Job Offer Letter Suspicious Clause Analysis">
           </div>
           <div class="usecase-body">
             <div class="usecase-category-tag">CAREER</div>
@@ -859,10 +898,10 @@
           </div>
         </div>
 
+        <!-- Card 4: Lease & Legal Diff -->
         <div class="usecase-card-editorial">
           <div class="usecase-img-box">
-            <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80"
-              alt="Person signing residential rental lease agreement document with pen">
+            <img src="assets/images/legal_diff.svg" alt="Legal Lease Contract Comparison Side-by-Side Diff Analysis">
           </div>
           <div class="usecase-body">
             <div class="usecase-category-tag">LEGAL &amp; RENTAL</div>
@@ -872,10 +911,10 @@
           </div>
         </div>
 
+        <!-- Card 5: Grant & Scholarship Check -->
         <div class="usecase-card-editorial">
           <div class="usecase-img-box">
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
-              alt="Student receiving university financial aid scholarship document">
+            <img src="assets/images/scholarship_grant.svg" alt="Scholarship Grant Financial Aid Document Audit">
           </div>
           <div class="usecase-body">
             <div class="usecase-category-tag">FINANCIAL AID</div>
@@ -885,10 +924,11 @@
           </div>
         </div>
 
+        <!-- Card 6: Corporate Directive Audit -->
         <div class="usecase-card-editorial">
           <div class="usecase-img-box">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80"
-              alt="Corporate office bulletin board circular notice document">
+            <img src="assets/images/corporate_directive.svg"
+              alt="Corporate Policy Directive Document Authenticity Audit">
           </div>
           <div class="usecase-body">
             <div class="usecase-category-tag">INSTITUTIONAL</div>
@@ -914,8 +954,7 @@
       <!-- Card 1 -->
       <div class="hotel-style-card">
         <div class="hotel-card-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=600&q=80"
-            alt="Bella Vista Resort Style - Academic Notice">
+          <img src="assets/images/academic_notice.jpg" alt="Academic Notice Suite Document Verification">
         </div>
         <div class="hotel-card-content">
           <div>
@@ -924,18 +963,17 @@
             <div class="hotel-card-sub">Universities &amp; Colleges</div>
           </div>
           <div class="hotel-card-price-row">
-            <span class="hotel-card-price">$ 56</span>
-            <span class="hotel-card-price-unit"> / verification credit</span>
+            <span class="hotel-card-price">Verified</span>
+            <span class="hotel-card-price-unit"> / official circular</span>
           </div>
-          <a href="pages/analyze.html" class="hotel-card-btn">View more</a>
+          <a href="pages/analyze.html" class="hotel-card-btn">Inspect Suite</a>
         </div>
       </div>
 
       <!-- Card 2 -->
       <div class="hotel-style-card">
         <div class="hotel-card-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
-            alt="Island Palace Style - Scholarship Verifier">
+          <img src="assets/images/scholarship_grant.svg" alt="Scholarship Verifier Suite Audit">
         </div>
         <div class="hotel-card-content">
           <div>
@@ -944,18 +982,17 @@
             <div class="hotel-card-sub">Financial Aid &amp; Grants</div>
           </div>
           <div class="hotel-card-price-row">
-            <span class="hotel-card-price">$ 180</span>
-            <span class="hotel-card-price-unit"> / audit scan</span>
+            <span class="hotel-card-price">Scanned</span>
+            <span class="hotel-card-price-unit"> / grant claim</span>
           </div>
-          <a href="pages/analyze.html" class="hotel-card-btn">View more</a>
+          <a href="pages/analyze.html" class="hotel-card-btn">Inspect Suite</a>
         </div>
       </div>
 
       <!-- Card 3 -->
       <div class="hotel-style-card">
         <div class="hotel-card-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80"
-            alt="Serenity Cove Style - Gazette Portal">
+          <img src="assets/images/government_gazette.jpg" alt="Gazette &amp; Legal Portal Official Verification">
         </div>
         <div class="hotel-card-content">
           <div>
@@ -964,18 +1001,17 @@
             <div class="hotel-card-sub">Public Administration</div>
           </div>
           <div class="hotel-card-price-row">
-            <span class="hotel-card-price">$ 240</span>
-            <span class="hotel-card-price-unit"> / official check</span>
+            <span class="hotel-card-price">Verified</span>
+            <span class="hotel-card-price-unit"> / official gazette</span>
           </div>
-          <a href="pages/analyze.html" class="hotel-card-btn">View more</a>
+          <a href="pages/analyze.html" class="hotel-card-btn">Inspect Suite</a>
         </div>
       </div>
 
       <!-- Card 4 (ACTIVE HIGHLIGHT MATCHING SCREENSHOT) -->
       <div class="hotel-style-card active-card">
         <div class="hotel-card-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80"
-            alt="White Sea Hotel Style - Enterprise Contract Suite">
+          <img src="assets/images/legal_diff.svg" alt="Enterprise Contract Engine Diff Analysis">
         </div>
         <div class="hotel-card-content">
           <div>
@@ -984,18 +1020,17 @@
             <div class="hotel-card-sub">Corporate &amp; Legal</div>
           </div>
           <div class="hotel-card-price-row">
-            <span class="hotel-card-price">$ 380</span>
-            <span class="hotel-card-price-unit"> / deep comparison</span>
+            <span class="hotel-card-price">Diff Engine</span>
+            <span class="hotel-card-price-unit"> / side-by-side</span>
           </div>
-          <a href="pages/analyze.html" class="hotel-card-btn">View more</a>
+          <a href="pages/analyze.html" class="hotel-card-btn">Inspect Suite</a>
         </div>
       </div>
 
       <!-- Card 5 -->
       <div class="hotel-style-card">
         <div class="hotel-card-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
-            alt="LuxEco Style - Offer Letter Inspector">
+          <img src="assets/images/job_offer_risk.jpg" alt="Job Offer Shield Predatory Risk Audit">
         </div>
         <div class="hotel-card-content">
           <div>
@@ -1004,10 +1039,10 @@
             <div class="hotel-card-sub">Recruitment &amp; HR</div>
           </div>
           <div class="hotel-card-price-row">
-            <span class="hotel-card-price">$ 324</span>
-            <span class="hotel-card-price-unit"> / PII audit</span>
+            <span class="hotel-card-price">Shielded</span>
+            <span class="hotel-card-price-unit"> / recruitment check</span>
           </div>
-          <a href="pages/analyze.html" class="hotel-card-btn">View more</a>
+          <a href="pages/analyze.html" class="hotel-card-btn">Inspect Suite</a>
         </div>
       </div>
     </div>
@@ -1124,20 +1159,20 @@
         <div>
           <h4 class="footer-col-title">Capabilities</h4>
           <ul class="footer-links-list">
-            <li><a href="pages/features.html">&rarr; AI Summarization</a></li>
-            <li><a href="pages/features.html">&rarr; Risk Analysis</a></li>
-            <li><a href="pages/features.html">&rarr; Source Verification</a></li>
-            <li><a href="pages/features.html">&rarr; Claim Scanner</a></li>
-            <li><a href="pages/features.html">&rarr; Privacy Shield</a></li>
+            <li><a href="pages/features.html#summary">&rarr; AI Summarization</a></li>
+            <li><a href="pages/features.html#risk">&rarr; Risk Analysis</a></li>
+            <li><a href="pages/features.html#source">&rarr; Source Verification</a></li>
+            <li><a href="pages/features.html#claims">&rarr; Claim Scanner</a></li>
+            <li><a href="pages/features.html#privacy">&rarr; Privacy Shield</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="footer-col-title">Platform</h4>
           <ul class="footer-links-list">
-            <li><a href="pages/about.html">&rarr; Platform Overview</a></li>
-            <li><a href="pages/about.html">&rarr; System Architecture</a></li>
-            <li><a href="pages/about.html">&rarr; AI Safety &amp; Ethics</a></li>
+            <li><a href="pages/about.html#overview">&rarr; Platform Overview</a></li>
+            <li><a href="pages/about.html#architecture">&rarr; System Architecture</a></li>
+            <li><a href="pages/about.html#safety">&rarr; AI Safety &amp; Ethics</a></li>
           </ul>
         </div>
       </div>

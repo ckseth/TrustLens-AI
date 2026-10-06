@@ -11,10 +11,20 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../assets/logo/logo.png">
 
+  <!-- Open Graph & Canonical SEO Metadata -->
+  <link rel="canonical" href="http://localhost:5000/pages/how-it-works.html">
+  <meta property="og:title" content="How It Works – TrustLens AI Document Verification Pipeline">
+  <meta property="og:description"
+    content="Discover how TrustLens AI parses, extracts, analyzes, and explains complex documents with complete transparency.">
+  <meta property="og:image" content="../assets/logo/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:5000/pages/how-it-works.html">
+  <meta name="twitter:card" content="summary_large_image">
+
   <!-- Master Stylesheet -->
   <link rel="stylesheet" href="../css/style.css">
   <script>
-    (function() {
+    (function () {
       const saved = localStorage.getItem('trustlens_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', saved);
     })();
@@ -129,9 +139,10 @@
         <h3 class="step-card-title">UPLOAD &amp; INGEST</h3>
         <p class="step-card-desc">Accept PDFs, scanned images, screenshots, or pasted raw text through encrypted
           channels.</p>
-        <div class="step-img-frame">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
-            alt="Document Upload Step">
+        <div class="step-mockup-box">
+          <div style="font-size:2rem; margin-bottom:8px;">📄 ➔ 📁</div>
+          <div style="font-size:0.82rem; font-weight:800; color:var(--green-deep);">Document Ingestion</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">PDF, PNG, JPG • Max 25MB</div>
         </div>
       </div>
 
@@ -140,9 +151,11 @@
         <h3 class="step-card-title">LAYOUT &amp; OCR</h3>
         <p class="step-card-desc">Optical character recognition identifies typography, seals, contact links, and
           structural fields.</p>
-        <div class="step-img-frame">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
-            alt="OCR Extraction Step">
+        <div class="step-mockup-box">
+          <div style="font-size:2rem; margin-bottom:8px;">🔍 ➔ 📝</div>
+          <div style="font-size:0.82rem; font-weight:800; color:var(--green-deep);">OCR Layout Engine</div>
+          <div style="font-size:0.75rem; color:var(--green-mid); font-weight:700; margin-top:2px;">578 Key Terms
+            Analyzed</div>
         </div>
       </div>
 
@@ -151,9 +164,11 @@
         <h3 class="step-card-title">AI RISK ANALYSIS</h3>
         <p class="step-card-desc">Custom NLP models inspect urgency patterns, fee anomalies, and domain authenticity.
         </p>
-        <div class="step-img-frame">
-          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80"
-            alt="AI Analysis Step">
+        <div class="step-mockup-box">
+          <div style="font-size:2rem; margin-bottom:8px;">⚡ ➔ ⚖️</div>
+          <div style="font-size:0.82rem; font-weight:800; color:var(--green-deep);">ML Risk Classifier</div>
+          <div style="font-size:0.75rem; color:var(--coral-deep); font-weight:700; margin-top:2px;">Risk Rating: Medium
+          </div>
         </div>
       </div>
 
@@ -161,9 +176,11 @@
         <div class="step-badge-num">04</div>
         <h3 class="step-card-title">EXPLAINABLE REPORT</h3>
         <p class="step-card-desc">Get an itemized trust rating, diff breakdown, and actionable risk guidance.</p>
-        <div class="step-img-frame">
-          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80"
-            alt="Report Generation Step">
+        <div class="step-mockup-box">
+          <div style="font-size:2rem; margin-bottom:8px;">📊 ➔ ✓</div>
+          <div style="font-size:0.82rem; font-weight:800; color:var(--green-deep);">Audit Breakdown</div>
+          <div style="font-size:0.75rem; color:var(--green-vibrant); font-weight:700; margin-top:2px;">Full Report Ready
+          </div>
         </div>
       </div>
     </div>
@@ -181,8 +198,7 @@
         <!-- Card 1 -->
         <div class="hotel-style-card">
           <div class="hotel-card-img-wrapper">
-            <img src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=600&q=80"
-              alt="Academic Notice Inspection">
+            <img src="../assets/images/academic_notice.jpg" alt="Academic Notice Scanner Document Verification">
           </div>
           <div class="hotel-card-content">
             <div>
@@ -194,15 +210,14 @@
               <span class="hotel-card-price">99.4%</span>
               <span class="hotel-card-price-unit"> accuracy rate</span>
             </div>
-            <a href="analyze.html" class="hotel-card-btn">View more</a>
+            <a href="analyze.html" class="hotel-card-btn">Inspect Module</a>
           </div>
         </div>
 
         <!-- Card 2 -->
         <div class="hotel-style-card active-card">
           <div class="hotel-card-img-wrapper">
-            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80"
-              alt="Scholarship & Fee Verifier">
+            <img src="../assets/images/scholarship_grant.svg" alt="Scholarship &amp; Fee Engine Audit">
           </div>
           <div class="hotel-card-content">
             <div>
@@ -214,15 +229,14 @@
               <span class="hotel-card-price">Instant</span>
               <span class="hotel-card-price-unit"> diff comparison</span>
             </div>
-            <a href="analyze.html" class="hotel-card-btn">View more</a>
+            <a href="analyze.html" class="hotel-card-btn">Inspect Module</a>
           </div>
         </div>
 
         <!-- Card 3 -->
         <div class="hotel-style-card">
           <div class="hotel-card-img-wrapper">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
-              alt="Offer Letter Inspector">
+            <img src="../assets/images/job_offer_risk.jpg" alt="Job Offer Inspector Risk Audit">
           </div>
           <div class="hotel-card-content">
             <div>
@@ -234,15 +248,14 @@
               <span class="hotel-card-price">PII Shield</span>
               <span class="hotel-card-price-unit"> automated masking</span>
             </div>
-            <a href="analyze.html" class="hotel-card-btn">View more</a>
+            <a href="analyze.html" class="hotel-card-btn">Inspect Module</a>
           </div>
         </div>
 
         <!-- Card 4 -->
         <div class="hotel-style-card">
           <div class="hotel-card-img-wrapper">
-            <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80"
-              alt="Legal Agreement Inspector">
+            <img src="../assets/images/legal_diff.svg" alt="Contract &amp; Lease Analyzer Diff">
           </div>
           <div class="hotel-card-content">
             <div>
@@ -254,7 +267,7 @@
               <span class="hotel-card-price">Explainable</span>
               <span class="hotel-card-price-unit"> audit scores</span>
             </div>
-            <a href="analyze.html" class="hotel-card-btn">View more</a>
+            <a href="analyze.html" class="hotel-card-btn">Inspect Module</a>
           </div>
         </div>
 
@@ -284,8 +297,8 @@
           </div>
           <div
             style="border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--border-subtle); box-shadow:var(--shadow-md);">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
-              alt="Document OCR Scanning">
+            <img src="../assets/images/academic_notice.jpg" alt="Stage 1-2 Document Ingestion and OCR Layout Parsing"
+              style="width:100%; height:220px; object-fit:cover;">
           </div>
         </div>
       </div>
@@ -295,8 +308,8 @@
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;">
           <div
             style="border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--border-subtle); box-shadow:var(--shadow-md);">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
-              alt="Explainable AI Report">
+            <img src="../assets/images/job_offer_risk.jpg" alt="Stage 3-4 Risk Engine and Audit Breakdown"
+              style="width:100%; height:220px; object-fit:cover;">
           </div>
           <div>
             <span class="badge-pill-editorial coral-theme" style="margin-bottom:12px;">STAGE 03 &amp; 04</span>
@@ -353,20 +366,20 @@
         <div>
           <h4 class="footer-col-title">Capabilities</h4>
           <ul class="footer-links-list">
-            <li><a href="features.html">&rarr; AI Summarization</a></li>
-            <li><a href="features.html">&rarr; Risk Analysis</a></li>
-            <li><a href="features.html">&rarr; Source Verification</a></li>
-            <li><a href="features.html">&rarr; Claim Scanner</a></li>
-            <li><a href="features.html">&rarr; Privacy Shield</a></li>
+            <li><a href="features.html#summary">&rarr; AI Summarization</a></li>
+            <li><a href="features.html#risk">&rarr; Risk Analysis</a></li>
+            <li><a href="features.html#source">&rarr; Source Verification</a></li>
+            <li><a href="features.html#claims">&rarr; Claim Scanner</a></li>
+            <li><a href="features.html#privacy">&rarr; Privacy Shield</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="footer-col-title">Platform</h4>
           <ul class="footer-links-list">
-            <li><a href="about.html">&rarr; Architecture Overview</a></li>
-            <li><a href="about.html">&rarr; Security &amp; Privacy</a></li>
-            <li><a href="about.html">&rarr; Verification Standards</a></li>
+            <li><a href="about.html#overview">&rarr; Platform Overview</a></li>
+            <li><a href="about.html#architecture">&rarr; System Architecture</a></li>
+            <li><a href="about.html#safety">&rarr; AI Safety &amp; Ethics</a></li>
           </ul>
         </div>
       </div>

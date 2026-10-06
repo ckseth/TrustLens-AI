@@ -7,14 +7,15 @@
   <title>Document Verification &amp; Compare Studio – TrustLens AI</title>
   <meta name="description"
     content="Upload documents, compare versions, extract key entities, and inspect risk scores with TrustLens AI Analysis Studio.">
+  <meta name="robots" content="noindex, nofollow">
 
- 
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="../assets/logo/logo.png">
 
-
+  <!-- Master Stylesheet -->
   <link rel="stylesheet" href="../css/style.css">
   <script>
-    (function() {
+    (function () {
       const saved = localStorage.getItem('trustlens_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', saved);
     })();
@@ -54,7 +55,7 @@
       justify-content: space-between;
     }
   </style>
- 
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
@@ -88,7 +89,7 @@
     </div>
   </nav>
 
-  <!-- Mobile Nav Drawer -->
+  <!-- Mob Nav Drawer -->
   <div class="mobile-nav-overlay"></div>
   <div class="mobile-nav-drawer">
     <div>
@@ -115,7 +116,7 @@
     </div>
   </div>
 
-  <!-- Studio Header -->
+  <!-- Std Header -->
   <header class="studio-header">
     <div class="container">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
@@ -127,24 +128,25 @@
           </h1>
         </div>
         <div style="display:inline-flex; background:rgba(0,0,0,0.08); padding:4px; border-radius:10px; gap:6px;">
-          <a href="analyze.html" class="btn-editorial btn-editorial-primary btn-sm" aria-current="page">Single Verification</a>
-          <a href="compare.html" class="btn-editorial btn-editorial-secondary btn-sm" style="color:var(--text-main); background:var(--surface-white);">Document Compare Mode &rarr;</a>
+          <a href="analyze.html" class="btn-editorial btn-editorial-primary btn-sm" aria-current="page">Single
+            Verification</a>
+          <a href="compare.html" class="btn-editorial btn-editorial-secondary btn-sm"
+            style="color:var(--text-main); background:var(--surface-white);">Document Compare Mode &rarr;</a>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Studio Content -->
+
   <main class="container studio-layout">
 
-    <!-- Document Input Panel -->
     <div class="studio-panel">
       <div class="studio-panel-title">
         <span>Document Workspace</span>
         <span class="badge-pill-editorial" style="font-size:0.7rem;">PDF / Image / Text</span>
       </div>
 
-      <!-- Upload Tabs -->
+
       <div class="upload-tab-switcher" style="margin-bottom:24px;">
         <button class="tab-btn-pill active" data-tab="file">
           <svg class="icon-svg icon-sm" viewBox="0 0 24 24">
@@ -162,15 +164,12 @@
         </button>
       </div>
 
-      <!-- Dropzone -->
       <div class="dropzone-editorial" onclick="document.getElementById('studio-file-input').click()"
         style="padding:40px 24px;">
         <div
-          style="width:60px; height:60px; border-radius:50%; background:var(--surface-white); color:var(--green-dark); display:flex; align-items:center; justify-content:center; margin:0 auto 14px auto; box-shadow:var(--shadow-sm);">
-          <svg class="icon-svg icon-lg" viewBox="0 0 24 24">
-            <path
-              d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
-          </svg>
+          style="height:120px; max-width:280px; border-radius:10px; overflow:hidden; margin:0 auto 16px auto; border:1px solid var(--green-soft); box-shadow:var(--shadow-sm);">
+          <img src="../assets/images/academic_notice.jpg" alt="Scanned Document Preview"
+            style="width:100%; height:100%; object-fit:cover;">
         </div>
         <h3 class="dropzone-title"
           style="font-family:var(--font-display); font-weight:800; font-size:1.4rem; color:var(--green-deep); margin-bottom:6px;">
@@ -183,16 +182,15 @@
         <input type="file" id="studio-file-input" style="display:none;" accept=".pdf,.png,.jpg,.txt">
       </div>
 
-      <!-- Text Paste Area -->
       <div class="text-paste-area" style="display:none; margin-top:20px;">
         <textarea id="studio-text-paste-area"
           style="width:100%; height:180px; padding:16px; border-radius:var(--radius-md); border:1.5px solid var(--green-soft); background:var(--cream-bg); font-size:0.95rem; outline:none;"
           placeholder="Paste notice, official circular, or contract text here..."></textarea>
       </div>
 
-      <!-- Action Button to Trigger AI Analysis -->
       <div style="margin-top:20px;">
-        <button id="run-analysis-btn" type="button" class="btn-editorial btn-editorial-primary" style="width:100%; text-align:center; padding:14px; font-weight:800; font-size:1.05rem;">
+        <button id="run-analysis-btn" type="button" class="btn-editorial btn-editorial-primary"
+          style="width:100%; text-align:center; padding:14px; font-weight:800; font-size:1.05rem;">
           ⚡ Run Live AI Verification &amp; Fake Detection
         </button>
       </div>
@@ -241,16 +239,23 @@
     </div>
 
     <!-- AI Results Panel -->
-    <div class="studio-panel" id="analysis-findings-panel" style="background:var(--green-surface); border-color:var(--green-soft);">
+    <div class="studio-panel" id="analysis-findings-panel"
+      style="background:var(--green-surface); border-color:var(--green-soft);">
       <div class="studio-panel-title">
         <span>Analysis Findings</span>
         <div class="export-actions-group">
           <button class="btn-export btn-export-pdf" id="export-pdf-studio-btn" title="Download PDF Report">
-            <svg class="icon-svg icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9.5 8.5c0 .83-.67 1.5-1.5 1.5H7v2H5.5V9H8c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V9H13c.83 0 1.5.67 1.5 1.5v3zm4-3H17v1h1.5V13H17v2h-1.5V9h3v1.5z"/></svg>
+            <svg class="icon-svg icon-sm" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9.5 8.5c0 .83-.67 1.5-1.5 1.5H7v2H5.5V9H8c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V9H13c.83 0 1.5.67 1.5 1.5v3zm4-3H17v1h1.5V13H17v2h-1.5V9h3v1.5z" />
+            </svg>
             Download PDF
           </button>
           <button class="btn-export btn-export-png" id="export-png-studio-btn" title="Download PNG Image">
-            <svg class="icon-svg icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            <svg class="icon-svg icon-sm" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+            </svg>
             Download PNG
           </button>
         </div>
@@ -365,20 +370,20 @@
         <div>
           <h4 class="footer-col-title">Capabilities</h4>
           <ul class="footer-links-list">
-            <li><a href="features.html">&rarr; AI Summarization</a></li>
-            <li><a href="features.html">&rarr; Risk Analysis</a></li>
-            <li><a href="features.html">&rarr; Source Verification</a></li>
-            <li><a href="features.html">&rarr; Claim Scanner</a></li>
-            <li><a href="features.html">&rarr; Privacy Shield</a></li>
+            <li><a href="features.html#summary">&rarr; AI Summarization</a></li>
+            <li><a href="features.html#risk">&rarr; Risk Analysis</a></li>
+            <li><a href="features.html#source">&rarr; Source Verification</a></li>
+            <li><a href="features.html#claims">&rarr; Claim Scanner</a></li>
+            <li><a href="features.html#privacy">&rarr; Privacy Shield</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="footer-col-title">Platform</h4>
           <ul class="footer-links-list">
-            <li><a href="about.html">&rarr; Platform Overview</a></li>
-            <li><a href="about.html">&rarr; System Architecture</a></li>
-            <li><a href="about.html">&rarr; AI Safety &amp; Ethics</a></li>
+            <li><a href="about.html#overview">&rarr; Platform Overview</a></li>
+            <li><a href="about.html#architecture">&rarr; System Architecture</a></li>
+            <li><a href="about.html#safety">&rarr; AI Safety &amp; Ethics</a></li>
           </ul>
         </div>
       </div>

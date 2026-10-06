@@ -24,11 +24,40 @@ const userSchema = new mongoose.Schema({
     enum: ['user', 'admin'],
     default: 'user'
   },
+  isVerified: {
+    type: Boolean,
+    default: false
+  },
+  verificationToken: {
+    type: String,
+    default: null
+  },
+  verificationTokenExpires: {
+    type: Date,
+    default: null
+  },
+  resetPasswordToken: {
+    type: String,
+    default: null
+  },
+  resetPasswordTokenExpires: {
+    type: Date,
+    default: null
+  },
+  otp: {
+    type: String,
+    default: null
+  },
+  otpExpires: {
+    type: Date,
+    default: null
+  },
   createdAt: {
     type: Date,
     default: Date.now
   }
 });
+
 
 // Hash password before saving
 userSchema.pre('save', async function (next) {

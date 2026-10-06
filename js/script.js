@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const titleEls = document.querySelectorAll('.dropzone-title');
     const subtitleEls = document.querySelectorAll('.dropzone-subtitle');
     titleEls.forEach(el => el.innerText = `Analyzing: ${file.name}`);
-    subtitleEls.forEach(el => el.innerText = `⚡ Extracting text & running Gemini AI + ML Spam Detector...`);
+    subtitleEls.forEach(el => el.innerText = `⚡ Extracting text & running TrustLens AI Verification...`);
 
     const formData = new FormData();
     formData.append('file', file);
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (data.success) {
         titleEls.forEach(el => el.innerText = `Analyzed: ${file.name}`);
-        subtitleEls.forEach(el => el.innerText = `Size: ${(file.size / (1024 * 1024)).toFixed(2)} MB • Live AI Analysis Complete`);
+        subtitleEls.forEach(el => el.innerText = `Size: ${(file.size / (1024 * 1024)).toFixed(2)} MB • Live Verification Complete`);
         currentAnalysisResult = data;
         updateUIWithAnalysisData(data);
       } else {
@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show loading state
     if (runAnalysisBtn) {
       runAnalysisBtn.disabled = true;
-      runAnalysisBtn.innerHTML = `⚡ Analyzing with Gemini AI...`;
+      runAnalysisBtn.innerHTML = `⚡ Running AI Verification...`;
     }
 
     try {
@@ -387,7 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     }
 
-    // 4. Update Audit Checklist & ML Spam Flags
+    // 4. Update Audit Checklist & Risk Signals
     const auditContainer = document.querySelector('.audit-checklist');
     if (auditContainer && data.risk) {
       let auditHTML = `
@@ -399,13 +399,24 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
 
+      if (data.mlSpam && data.mlSpam.modelMetrics) {
+        auditHTML += `
+          <div class="audit-item pass" style="background: rgba(43, 108, 176, 0.08); border-left: 4px solid #3182ce;">
+            <span>
+              <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:#3182ce; margin-right:6px;"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+              <strong>Verification Engine:</strong> Active Classifier | <strong>Dataset:</strong> ${data.mlSpam.modelMetrics.totalSamples} Records | <strong>Patterns Analyzed:</strong> ${data.mlSpam.modelMetrics.vocabSize} Tokens
+            </span>
+          </div>
+        `;
+      }
+
       if (data.mlSpam && data.mlSpam.flaggedTokens && data.mlSpam.flaggedTokens.length > 0) {
         data.mlSpam.flaggedTokens.forEach(ft => {
           auditHTML += `
             <div class="audit-item flag">
               <span>
                 <svg class="icon-svg icon-sm" viewBox="0 0 24 24" style="color:var(--coral-deep); margin-right:6px;"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
-                ML Model Spam Trigger: "${ft.token}" (Weight +${ft.weight})
+                Risk Signal Flagged: "${ft.token}" (Weight +${ft.weight})
               </span>
             </div>
           `;
@@ -648,6 +659,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Handle URL query parameter task=... (e.g. analyze.html?task=risk)
+  const urlTaskParams = new URLSearchParams(window.location.search);
+  const taskQuery = urlTaskParams.get('task');
+  if (taskQuery) {
+    const matchingBtn = document.querySelector(`.task-btn-pill[data-task="${taskQuery}"]`);
+    if (matchingBtn) {
+      taskBtnPills.forEach(b => b.classList.remove('active'));
+      matchingBtn.classList.add('active');
+      currentTaskMode = taskQuery;
+      renderDynamicTaskOutput(currentTaskMode);
+    }
+  }
+
   // Render initial task mode
   renderDynamicTaskOutput('summary');
 
@@ -668,11 +692,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const exportBtns = targetEl.querySelectorAll('.export-actions-group, .btn-export');
     exportBtns.forEach(btn => btn.style.visibility = 'hidden');
 
+    const injectedHeader = prepareReportHeader(targetEl, 'Document Analysis Image Report');
+
     try {
       const canvas = await html2canvas(targetEl, {
         scale: 2,
         useCORS: true,
-        backgroundColor: document.documentElement.getAttribute('data-theme') === 'dark' ? '#111F15' : '#FFFFFF',
+        backgroundColor: document.documentElement.getAttribute('data-theme') === 'dark' ? '#061826' : '#FFFFFF',
         logging: false
       });
 
@@ -688,8 +714,59 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('PNG Export Error:', err);
       alert('Unable to generate PNG image report.');
     } finally {
+      if (injectedHeader) injectedHeader.remove();
       exportBtns.forEach(btn => btn.style.visibility = 'visible');
     }
+  }
+
+  // Helper to inject Scanned Document Metadata Header into Reports before Export
+  function prepareReportHeader(targetEl, reportTitle) {
+    const fileName = (typeof currentFile !== 'undefined' && currentFile && currentFile.name) ? currentFile.name : (document.getElementById('doc-text-input')?.value ? 'Pasted Text Document' : 'Official Academic Document');
+    const fileSize = (typeof currentFile !== 'undefined' && currentFile && currentFile.size) ? `${(currentFile.size / 1024 / 1024).toFixed(2)} MB` : 'Text / Document';
+    const fileType = (typeof currentFile !== 'undefined' && currentFile && currentFile.type) ? currentFile.type : 'PDF / Document';
+    const rawText = (typeof currentDocText !== 'undefined' && currentDocText) ? currentDocText : (document.getElementById('doc-text-input')?.value || 'Document content analyzed by TrustLens AI Verification Studio.');
+    const textSnippet = rawText.length > 220 ? rawText.substring(0, 220) + '...' : rawText;
+    const scanId = 'TL-AUDIT-' + Math.random().toString(36).substring(2, 8).toUpperCase() + '-2026';
+
+    const headerCard = document.createElement('div');
+    headerCard.id = 'injected-pdf-meta-header';
+    headerCard.style.cssText = `
+      background: linear-gradient(135deg, #071D35 0%, #0B3A5A 100%);
+      color: #FFFFFF;
+      padding: 22px 26px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      border: 2px solid #20D4E8;
+      box-shadow: 0 8px 30px rgba(8, 126, 164, 0.25);
+      font-family: 'Inter', system-ui, sans-serif;
+    `;
+
+    headerCard.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:14px; margin-bottom:14px;">
+        <div>
+          <span style="font-size:0.75rem; font-weight:800; color:#20D4E8; letter-spacing:0.12em; text-transform:uppercase;">OFFICIAL TRUSTLENS AI AUDIT REPORT</span>
+          <h2 style="font-size:1.4rem; font-weight:800; color:#FFFFFF; margin:4px 0 0 0; line-height:1.2;">📄 ${reportTitle}</h2>
+        </div>
+        <div style="text-align:right;">
+          <span style="background:#087EA4; color:#FFFFFF; font-size:0.78rem; font-weight:800; padding:4px 12px; border-radius:20px; display:inline-block;">✓ VERIFIED REPORT</span>
+          <div style="font-size:0.75rem; color:#94A3B8; margin-top:6px; font-family:monospace;">ID: ${scanId}</div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; background:rgba(255,255,255,0.08); padding:12px 16px; border-radius:10px; font-size:0.86rem; margin-bottom:12px;">
+        <div><strong style="color:#20D4E8;">Scanned File:</strong> <br><span style="word-break:break-all;">${fileName}</span></div>
+        <div><strong style="color:#20D4E8;">File Format / Size:</strong> <br>${fileType} (${fileSize})</div>
+        <div><strong style="color:#20D4E8;">Scan Date & Time:</strong> <br>${new Date().toLocaleString()}</div>
+      </div>
+
+      <div style="background:rgba(0,0,0,0.3); padding:12px 14px; border-radius:8px; border-left:4px solid #20D4E8; font-size:0.84rem; color:#CBD5E1; line-height:1.5;">
+        <strong style="color:#FFFFFF;">Scanned Content Excerpt:</strong><br>
+        <em>"${textSnippet}"</em>
+      </div>
+    `;
+
+    targetEl.insertBefore(headerCard, targetEl.firstChild);
+    return headerCard;
   }
 
   async function exportContainerToPDF(elementId, reportTitle = 'Verification Report', fileName = 'TrustLens_Report') {
@@ -704,15 +781,16 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Hide export buttons temporarily
     const exportBtns = targetEl.querySelectorAll('.export-actions-group, .btn-export');
     exportBtns.forEach(btn => btn.style.visibility = 'hidden');
+
+    const injectedHeader = prepareReportHeader(targetEl, reportTitle);
 
     try {
       const canvas = await html2canvas(targetEl, {
         scale: 2,
         useCORS: true,
-        backgroundColor: '#FFFFFF', // High contrast white background for clean PDF
+        backgroundColor: '#FFFFFF',
         logging: false
       });
 
@@ -728,18 +806,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const imgHeight = (canvas.height * contentWidth) / canvas.width;
 
       let heightLeft = imgHeight;
-      let position = margin + 15; // Offset for header banner
+      let position = margin + 14;
 
-      // Header Banner
-      pdf.setFillColor(6, 30, 14); // #061E0E
-      pdf.rect(0, 0, pageWidth, 18, 'F');
+      // Top PDF Banner Header
+      pdf.setFillColor(7, 29, 53);
+      pdf.rect(0, 0, pageWidth, 16, 'F');
       pdf.setTextColor(255, 255, 255);
-      pdf.setFontSize(11);
+      pdf.setFontSize(10);
       pdf.setFont('helvetica', 'bold');
-      pdf.text('TRUSTLENS AI — DOCUMENT VERIFICATION REPORT', margin, 12);
+      pdf.text('TRUSTLENS AI — DOCUMENT VERIFICATION AUDIT REPORT', margin, 11);
       pdf.setFontSize(8);
       pdf.setFont('helvetica', 'normal');
-      pdf.text(`Generated: ${new Date().toLocaleString()}`, pageWidth - margin - 55, 12);
+      pdf.text(`Date: ${new Date().toLocaleDateString()}`, pageWidth - margin - 40, 11);
 
       // Render First Page
       pdf.addImage(imgData, 'JPEG', margin, position, contentWidth, imgHeight);
@@ -749,7 +827,7 @@ document.addEventListener('DOMContentLoaded', () => {
       while (heightLeft > 0) {
         position = heightLeft - imgHeight + margin;
         pdf.addPage();
-        pdf.setFillColor(6, 30, 14);
+        pdf.setFillColor(7, 29, 53);
         pdf.rect(0, 0, pageWidth, 12, 'F');
         pdf.setTextColor(255, 255, 255);
         pdf.setFontSize(8);
@@ -765,6 +843,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('PDF Export Error:', err);
       alert('Unable to generate PDF document report.');
     } finally {
+      if (injectedHeader) injectedHeader.remove();
       exportBtns.forEach(btn => btn.style.visibility = 'visible');
     }
   }
@@ -779,7 +858,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (pdfStudioBtn) {
     pdfStudioBtn.addEventListener('click', () => {
-      exportContainerToPDF('analysis-findings-panel', 'Single Verification Report', 'TrustLens_Verification_Report');
+      exportContainerToPDF('analysis-findings-panel', 'Single Document Verification Report', 'TrustLens_Verification_Report');
     });
   }
   if (pngStudioBtn) {
@@ -790,7 +869,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (pdfCompareBtn) {
     pdfCompareBtn.addEventListener('click', () => {
-      exportContainerToPDF('comparison-report-container', 'Document Comparison Report', 'TrustLens_Comparison_Report');
+      exportContainerToPDF('comparison-report-container', 'Document Comparison Audit Report', 'TrustLens_Comparison_Report');
     });
   }
   if (pngCompareBtn) {
@@ -801,7 +880,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (pdfHomeBtn) {
     pdfHomeBtn.addEventListener('click', () => {
-      exportContainerToPDF('task-output-panel', 'AI Analysis Summary', 'TrustLens_AI_Summary');
+      exportContainerToPDF('task-output-panel', 'AI Document Analysis Summary', 'TrustLens_AI_Summary');
     });
   }
   if (pngHomeBtn) {
