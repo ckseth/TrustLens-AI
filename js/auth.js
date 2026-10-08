@@ -606,16 +606,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+
     // Background gradient
     const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-    grad.addColorStop(0, '#031320');
-    grad.addColorStop(1, '#0B293E');
+    if (isLight) {
+      grad.addColorStop(0, '#E0F2FE');
+      grad.addColorStop(1, '#BAE6FD');
+    } else {
+      grad.addColorStop(0, '#031320');
+      grad.addColorStop(1, '#0B293E');
+    }
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Cyber noise lines
-    ctx.strokeStyle = 'rgba(32, 212, 232, 0.35)';
-    ctx.lineWidth = 1;
+    ctx.strokeStyle = isLight ? 'rgba(2, 132, 199, 0.28)' : 'rgba(32, 212, 232, 0.35)';
+    ctx.lineWidth = 1.2;
     for (let i = 0; i < 6; i++) {
       ctx.beginPath();
       ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
@@ -625,14 +632,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Cyber noise dots
     for (let i = 0; i < 25; i++) {
-      ctx.fillStyle = 'rgba(32, 212, 232, 0.5)';
+      ctx.fillStyle = isLight ? 'rgba(2, 132, 199, 0.45)' : 'rgba(32, 212, 232, 0.5)';
       ctx.beginPath();
       ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, 1.2, 0, Math.PI * 2);
       ctx.fill();
     }
 
     // Code characters
-    ctx.font = '900 19px "Courier New", monospace';
+    ctx.font = '900 21px "Courier New", monospace';
     ctx.textBaseline = 'middle';
     const charWidth = canvas.width / (code.length + 0.8);
 
@@ -643,9 +650,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const angle = (Math.random() * 0.3 - 0.15);
       ctx.translate(x, y);
       ctx.rotate(angle);
-      ctx.shadowColor = '#00F0FF';
-      ctx.shadowBlur = 8;
-      ctx.fillStyle = '#00F0FF';
+      ctx.shadowColor = isLight ? 'rgba(3, 105, 161, 0.35)' : '#00F0FF';
+      ctx.shadowBlur = isLight ? 3 : 8;
+      ctx.fillStyle = isLight ? '#0369A1' : '#00F0FF';
       ctx.fillText(code[i], 0, 0);
       ctx.restore();
     }
@@ -653,14 +660,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function refreshCaptcha() {
     activeCaptchaCode = generateCaptchaCode();
-    const formatted = activeCaptchaCode.split('').join(' ');
-
-    const loginCapText = document.getElementById('captcha-code-text');
-    if (loginCapText) loginCapText.innerText = formatted;
-
-    const signupCapText = document.getElementById('captcha-code-text-signup');
-    if (signupCapText) signupCapText.innerText = formatted;
-
     drawCaptchaOnCanvas('captcha-canvas-login', activeCaptchaCode);
     drawCaptchaOnCanvas('captcha-canvas-signup', activeCaptchaCode);
   }
@@ -668,7 +667,7 @@ document.addEventListener('DOMContentLoaded', () => {
   refreshCaptcha();
 
   // Refresh CAPTCHA listeners
-  ['refresh-captcha-btn', 'refresh-captcha-btn-signup', 'captcha-canvas-login', 'captcha-canvas-signup', 'captcha-code-text', 'captcha-code-text-signup'].forEach(id => {
+  ['refresh-captcha-btn', 'refresh-captcha-btn-signup', 'captcha-canvas-login', 'captcha-canvas-signup'].forEach(id => {
     const btn = document.getElementById(id);
     if (btn) btn.addEventListener('click', refreshCaptcha);
   });

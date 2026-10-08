@@ -1,4 +1,5 @@
 const Document = require('../models/Document');
+const AuditLog = require('../models/AuditLog');
 const informationScanner = require('../services/informationScanner');
 const textExtractionService = require('../services/textExtractionService');
 
@@ -30,6 +31,17 @@ const scanPrivacyShield = async (req, res, next) => {
 
     // Run Privacy Scanner without modifying DB document
     const privacyReport = informationScanner.scanPrivacy(text);
+
+    // Record in Audit Log
+    await AuditLog.logEvent({
+      userId: req.user._id,
+      userEmail: req.user.email,
+      action: 'Privacy analysis performed',
+      targetType: 'Document',
+      targetId: document._id.toString(),
+      description: `Privacy scanner executed on "${document.originalName}" (${privacyReport.count} sensitive items detected)`,
+      ipAddress: req.ip || ''
+    });
 
     return res.status(200).json({
       success: true,

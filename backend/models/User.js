@@ -28,6 +28,14 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  emailVerified: {
+    type: Boolean,
+    default: false
+  },
+  isActive: {
+    type: Boolean,
+    default: true
+  },
   verificationToken: {
     type: String,
     default: null
@@ -44,6 +52,28 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: null
   },
+  // Hashed OTP security fields
+  otpHash: {
+    type: String,
+    default: null
+  },
+  otpExpiresAt: {
+    type: Date,
+    default: null
+  },
+  otpAttempts: {
+    type: Number,
+    default: 0
+  },
+  otpLastSentAt: {
+    type: Date,
+    default: null
+  },
+  otpResendCount: {
+    type: Number,
+    default: 0
+  },
+  // Legacy compatibility fields
   otp: {
     type: String,
     default: null

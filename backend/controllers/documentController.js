@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const Document = require('../models/Document');
+const AuditLog = require('../models/AuditLog');
 const textExtractionService = require('../services/textExtractionService');
 const documentService = require('../services/documentService');
 
@@ -79,6 +80,17 @@ const uploadDocument = async (req, res, next) => {
         }
       });
     }
+
+    // Record in Audit Log
+    await AuditLog.logEvent({
+      userId: req.user._id,
+      userEmail: req.user.email,
+      action: 'Document uploaded',
+      targetType: 'Document',
+      targetId: document._id.toString(),
+      description: `Uploaded "${document.originalName}" (${document.fileType.toUpperCase()}, ${(document.fileSize / 1024).toFixed(1)} KB)`,
+      ipAddress: req.ip || ''
+    });
 
     return res.status(201).json({
       success: true,

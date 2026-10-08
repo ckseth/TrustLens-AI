@@ -7,17 +7,24 @@ class EmailService {
   }
 
   async initTransporter() {
-    if (process.env.SMTP_USER && process.env.SMTP_PASS) {
-      this.transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST || 'smtp.gmail.com',
-        port: parseInt(process.env.SMTP_PORT || '587', 10),
-        secure: process.env.SMTP_SECURE === 'true',
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS
-        }
-      });
-      console.log('[EmailService] Configured with environment SMTP credentials.');
+    const user = process.env.EMAIL_USER || process.env.SMTP_USER;
+    const pass = process.env.EMAIL_PASS || process.env.SMTP_PASS;
+
+    if (user && pass) {
+      if (process.env.EMAIL_SERVICE) {
+        this.transporter = nodemailer.createTransport({
+          service: process.env.EMAIL_SERVICE,
+          auth: { user, pass }
+        });
+      } else {
+        this.transporter = nodemailer.createTransport({
+          host: process.env.SMTP_HOST || 'smtp.gmail.com',
+          port: parseInt(process.env.SMTP_PORT || '587', 10),
+          secure: process.env.SMTP_SECURE === 'true',
+          auth: { user, pass }
+        });
+      }
+      console.log('[EmailService] Configured with production email credentials.');
     } else {
       // Create Ethereal test account fallback for instant dev testing
       try {
@@ -31,7 +38,7 @@ class EmailService {
             pass: testAccount.pass
           }
         });
-        console.log(`[EmailService] Dev Ethereal Account initialized: ${testAccount.user}`);
+        console.log(`[EmailService] Dev Ethereal Account initialized for testing: ${testAccount.user}`);
       } catch (err) {
         console.warn('[EmailService] Ethereal initialization warning:', err.message);
       }
@@ -44,37 +51,70 @@ class EmailService {
   async sendOTPEmail(toEmail, otpCode, userName = 'User') {
     if (!this.transporter) await this.initTransporter();
 
+    const fromAddress = process.env.EMAIL_FROM || process.env.EMAIL_USER || process.env.SMTP_USER || '"TrustLens AI" <security@trustlens.ai>';
+
     const mailOptions = {
-      from: `"TrustLens AI Security" <${process.env.SMTP_USER || 'no-reply@trustlens.ai'}>`,
+      from: fromAddress,
       to: toEmail,
-      subject: `🛡️ TrustLens AI Verification Code: ${otpCode}`,
+      subject: `TrustLens AI – Email Verification Code`,
       html: `
-        <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #061E0E; padding: 40px 20px; color: #FFFFFF;">
-          <div style="max-width: 540px; margin: 0 auto; background: #0F2C17; border-radius: 16px; padding: 36px; border: 1px solid rgba(92, 184, 96, 0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-            <div style="text-align: center; margin-bottom: 24px;">
-              <h1 style="color: #5CB860; font-size: 24px; margin: 0; font-weight: 800;">TrustLens AI</h1>
-              <p style="color: #9FD4A2; font-size: 13px; margin-top: 4px;">Secure Identity &amp; Document Verification</p>
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #031320; color: #E2E8F0; margin: 0; padding: 24px; }
+            .card { max-width: 520px; margin: 0 auto; background: #071D35; border-radius: 16px; border: 1px solid rgba(32, 212, 232, 0.35); padding: 36px 32px; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6); }
+            .header { text-align: center; border-bottom: 1px solid rgba(32, 212, 232, 0.15); padding-bottom: 20px; margin-bottom: 24px; }
+            .brand { color: #00F0FF; font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin: 0; }
+            .tag { color: #94A3B8; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 6px; }
+            .title { font-size: 20px; font-weight: 700; color: #FFFFFF; margin-top: 0; margin-bottom: 16px; }
+            .content { font-size: 15px; line-height: 1.6; color: #CBD5E1; }
+            .otp-box { text-align: center; margin: 28px 0; padding: 18px 24px; background: #020C17; border: 2px dashed #20D4E8; border-radius: 12px; }
+            .otp-code { font-family: 'Courier New', Courier, monospace; font-size: 38px; font-weight: 900; letter-spacing: 12px; color: #00F0FF; margin-left: 12px; }
+            .validity { font-size: 13px; color: #38BDF8; font-weight: 600; text-align: center; margin-top: -12px; margin-bottom: 20px; }
+            .footer-note { font-size: 13px; color: #94A3B8; line-height: 1.5; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 20px; margin-top: 28px; }
+            .signoff { font-size: 14px; font-weight: 600; color: #FFFFFF; margin-top: 16px; }
+          </style>
+        </head>
+        <body>
+          <div class="card">
+            <div class="header">
+              <h1 class="brand">TrustLens AI</h1>
+              <div class="tag">Email Verification</div>
             </div>
             
-            <h2 style="font-size: 20px; color: #FFFFFF; margin-bottom: 12px;">Hello ${userName},</h2>
-            <p style="color: #D1E3D6; font-size: 15px; line-height: 1.6;">Use the 6-digit verification code below to verify your identity and complete registration.</p>
-
-            <div style="text-align: center; margin: 28px 0;">
-              <span style="font-family: monospace; font-size: 36px; font-weight: 900; letter-spacing: 8px; color: #5CB860; background: #061E0E; padding: 14px 28px; border-radius: 12px; border: 1.5px dashed #5CB860; display: inline-block;">${otpCode}</span>
+            <div class="content">
+              <p>Hello ${userName || 'User'},</p>
+              <p>Your verification code is:</p>
             </div>
 
-            <p style="color: #A3C4AC; font-size: 13px;">This OTP verification code is valid for <strong>10 minutes</strong>. Please do not share this code with anyone.</p>
-            <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 24px 0;" />
-            <p style="color: #839E8C; font-size: 12px; text-align: center; margin: 0;">&copy; 2026 TrustLens AI. All rights reserved.</p>
+            <div class="otp-box">
+              <span class="otp-code">${otpCode}</span>
+            </div>
+
+            <div class="validity">
+              This OTP is valid for 5 minutes.
+            </div>
+
+            <div class="footer-note">
+              <p style="margin: 0 0 8px 0;">If you did not request this verification code, please ignore this email.</p>
+              <p style="margin: 0; color: #F28B92;">Do not share this OTP with anyone.</p>
+              <div class="signoff">
+                Regards,<br>
+                TrustLens AI Team
+              </div>
+            </div>
           </div>
-        </div>
+        </body>
+        </html>
       `
     };
 
     try {
       if (this.transporter) {
         const info = await this.transporter.sendMail(mailOptions);
-        console.log(`[EmailService] OTP sent to ${toEmail}. Message ID: ${info.messageId}`);
+        console.log(`[EmailService] OTP email dispatched to ${toEmail}. Message ID: ${info.messageId}`);
         if (nodemailer.getTestMessageUrl(info)) {
           console.log(`[EmailService] Preview URL: ${nodemailer.getTestMessageUrl(info)}`);
         }

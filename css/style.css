@@ -3961,6 +3961,41 @@ html[data-theme="light"] .captcha-title {
   gap: 12px;
 }
 
+.captcha-canvas {
+  width: 140px;
+  height: 46px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(32, 212, 232, 0.4);
+  cursor: pointer;
+  display: block;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.captcha-canvas:hover {
+  border-color: #20D4E8;
+  box-shadow: 0 0 14px rgba(32, 212, 232, 0.45);
+  transform: translateY(-1px);
+}
+
+html[data-theme="light"] .captcha-canvas {
+  border: 1.5px solid #0284C7;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.1);
+}
+
+html[data-theme="light"] .captcha-canvas:hover {
+  border-color: #0369A1;
+  box-shadow: 0 0 14px rgba(2, 132, 199, 0.3);
+}
+
+#login-captcha-input,
+#signup-captcha-input {
+  flex: 1;
+  height: 46px;
+  min-width: 120px;
+}
+
 /* Stylized CAPTCHA Text Display Box — ALWAYS VIBRANT CYAN & HIGH VISIBILITY */
 .captcha-code-badge {
   flex: 1;

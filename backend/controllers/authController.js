@@ -2,25 +2,35 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const Device = require('../models/Device');
+const AuditLog = require('../models/AuditLog');
 const emailService = require('../services/emailService');
 
 /**
- * Generate JWT Token
+ * Generate JWT Token (Access token)
  */
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET || 'trustlens_jwt_secret_key_2026', {
-    expiresIn: '30d'
+  const secret = process.env.JWT_ACCESS_SECRET || process.env.JWT_SECRET || 'trustlens_jwt_secret_key_2026';
+  const expiresIn = process.env.JWT_ACCESS_EXPIRES_IN || '30m';
+  return jwt.sign({ id }, secret, {
+    expiresIn
   });
 };
 
 /**
- * @desc    Register a new user & send Email Verification Link
+ * Hash 6-digit numeric OTP securely using SHA-256
+ */
+const hashOTP = (otp) => {
+  return crypto.createHash('sha256').update(String(otp).trim()).digest('hex');
+};
+
+/**
+ * @desc    Register a new user & send Email Verification OTP
  * @route   POST /api/auth/register
  * @access  Public
  */
 const registerUser = async (req, res, next) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({
@@ -36,8 +46,10 @@ const registerUser = async (req, res, next) => {
       });
     }
 
+    const cleanEmail = email.toLowerCase().trim();
+
     // Check duplicate email
-    const existingUser = await User.findOne({ email: email.toLowerCase() });
+    const existingUser = await User.findOne({ email: cleanEmail });
     if (existingUser) {
       return res.status(400).json({
         success: false,
@@ -45,29 +57,46 @@ const registerUser = async (req, res, next) => {
       });
     }
 
-    // Generate secure verification token
-    const verificationToken = crypto.randomBytes(32).toString('hex');
-    const verificationTokenExpires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+    // Generate 6-digit numeric OTP (5 minutes validity)
+    const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+    const otpHash = hashOTP(otpCode);
+    const otpExpiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
 
-    // Create User (unverified)
+    // Create User (Normal registration MUST always force role: 'user')
     const user = await User.create({
-      name,
-      email: email.toLowerCase(),
+      name: name.trim(),
+      email: cleanEmail,
       password,
-      role: role && ['user', 'admin'].includes(role) ? role : 'user',
+      role: 'user', // Forced: public signup can never create admin
+      emailVerified: false,
       isVerified: false,
-      verificationToken,
-      verificationTokenExpires
+      isActive: true,
+      otpHash,
+      otpExpiresAt,
+      otpAttempts: 0,
+      otpLastSentAt: new Date(),
+      otpResendCount: 0
     });
 
-    // Send verification email via NodeMailer
-    emailService.sendSignupVerificationEmail(user.email, user.name, verificationToken);
+    // Send professional OTP verification email
+    emailService.sendOTPEmail(user.email, otpCode, user.name);
+
+    // Record audit event
+    await AuditLog.logEvent({
+      userId: user._id,
+      userEmail: user.email,
+      action: 'User registered',
+      targetType: 'User',
+      targetId: user._id.toString(),
+      description: 'User registered with email OTP pending verification',
+      ipAddress: req.ip || ''
+    });
 
     return res.status(201).json({
       success: true,
       requiresVerification: true,
       email: user.email,
-      message: `Verification link sent to ${user.email}. Please check your inbox to activate your account.`
+      message: `Registration successful! A 6-digit verification code has been sent to ${user.email}.`
     });
   } catch (error) {
     next(error);
@@ -202,22 +231,44 @@ const loginUser = async (req, res, next) => {
       });
     }
 
+    // Check if account is active
+    if (user.isActive === false) {
+      return res.status(403).json({
+        success: false,
+        message: 'Your account has been deactivated. Please contact an administrator.'
+      });
+    }
+
     // Check if account is email-verified
-    if (!user.isVerified) {
-      const verificationToken = crypto.randomBytes(32).toString('hex');
-      user.verificationToken = verificationToken;
-      user.verificationTokenExpires = new Date(Date.now() + 24 * 60 * 60 * 1000);
+    if (!user.emailVerified && !user.isVerified) {
+      // Auto-dispatch a fresh 5-minute hashed OTP
+      const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+      user.otpHash = hashOTP(otpCode);
+      user.otpExpiresAt = new Date(Date.now() + 5 * 60 * 1000);
+      user.otpAttempts = 0;
+      user.otpLastSentAt = new Date();
       await user.save();
 
-      emailService.sendSignupVerificationEmail(user.email, user.name, verificationToken);
+      emailService.sendOTPEmail(user.email, otpCode, user.name);
 
       return res.status(403).json({
         success: false,
         requiresVerification: true,
         email: user.email,
-        message: 'Your account is not verified yet. A verification link has been sent to your inbox.'
+        message: 'Please verify your email before logging in. A new 6-digit verification code has been sent to your email.'
       });
     }
+
+    // Record login in Audit Log
+    await AuditLog.logEvent({
+      userId: user._id,
+      userEmail: user.email,
+      action: user.role === 'admin' ? 'Admin logged in' : 'User logged in',
+      targetType: 'User',
+      targetId: user._id.toString(),
+      description: `${user.role === 'admin' ? 'Administrator' : 'User'} signed in successfully`,
+      ipAddress: req.ip || ''
+    });
 
     // TRUST PASS DEVICE CHECK
     const fingerprint = deviceFingerprint || 'default-browser-fingerprint';
@@ -588,24 +639,33 @@ const sendOTP = async (req, res, next) => {
     if (!email) {
       return res.status(400).json({ success: false, message: 'Email address is required' });
     }
-    const cleanEmail = email.toLowerCase();
+    const cleanEmail = email.toLowerCase().trim();
     let user = await User.findOne({ email: cleanEmail });
 
     const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
-    const otpExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 mins
+    const otpHash = hashOTP(otpCode);
+    const otpExpiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
 
     if (!user) {
       user = await User.create({
         name: 'TrustLens User',
         email: cleanEmail,
         password: crypto.randomBytes(16).toString('hex'),
+        role: 'user',
+        emailVerified: false,
         isVerified: false,
-        otp: otpCode,
-        otpExpires
+        isActive: true,
+        otpHash,
+        otpExpiresAt,
+        otpAttempts: 0,
+        otpLastSentAt: new Date(),
+        otpResendCount: 0
       });
     } else {
-      user.otp = otpCode;
-      user.otpExpires = otpExpires;
+      user.otpHash = otpHash;
+      user.otpExpiresAt = otpExpiresAt;
+      user.otpAttempts = 0;
+      user.otpLastSentAt = new Date();
       await user.save();
     }
 
@@ -613,7 +673,7 @@ const sendOTP = async (req, res, next) => {
 
     return res.status(200).json({
       success: true,
-      message: `6-digit OTP code sent to ${user.email}`,
+      message: `Verification code sent to ${user.email}`,
       email: user.email
     });
   } catch (error) {
@@ -630,35 +690,166 @@ const verifyOTP = async (req, res, next) => {
   try {
     const { email, otp } = req.body;
     if (!email || !otp) {
-      return res.status(400).json({ success: false, message: 'Email and 6-digit OTP are required' });
+      return res.status(400).json({ success: false, message: 'Email and 6-digit verification code are required' });
     }
 
-    const user = await User.findOne({
-      email: email.toLowerCase(),
-      otp: otp.trim(),
-      otpExpires: { $gt: Date.now() }
-    });
+    const cleanEmail = email.toLowerCase().trim();
+    const cleanOtp = String(otp).trim();
+
+    if (!/^\d{6}$/.test(cleanOtp)) {
+      return res.status(400).json({ success: false, message: 'Verification code must be a 6-digit number.' });
+    }
+
+    const user = await User.findOne({ email: cleanEmail });
 
     if (!user) {
-      return res.status(400).json({ success: false, message: 'Invalid or expired OTP code' });
+      return res.status(400).json({ success: false, message: 'Invalid verification request.' });
     }
 
+    if (user.emailVerified || user.isVerified) {
+      return res.status(400).json({ success: false, message: 'Account is already verified. Please sign in directly.' });
+    }
+
+    // Rate limiting attempts (max 5)
+    if (user.otpAttempts >= 5) {
+      return res.status(429).json({
+        success: false,
+        message: 'Too many verification attempts. Please request a new OTP code.'
+      });
+    }
+
+    // Expiration check (5 minutes)
+    const now = Date.now();
+    const expiryTime = user.otpExpiresAt ? user.otpExpiresAt.getTime() : (user.otpExpires ? user.otpExpires.getTime() : 0);
+    if (!expiryTime || expiryTime < now) {
+      return res.status(400).json({
+        success: false,
+        message: 'This OTP has expired. Please request a new code.'
+      });
+    }
+
+    // Verification check (hashed match or legacy plain match)
+    const inputHash = hashOTP(cleanOtp);
+    const matchesHashed = user.otpHash && user.otpHash === inputHash;
+    const matchesLegacy = user.otp && user.otp === cleanOtp;
+
+    if (!matchesHashed && !matchesLegacy) {
+      user.otpAttempts = (user.otpAttempts || 0) + 1;
+      await user.save();
+      const remaining = Math.max(0, 5 - user.otpAttempts);
+      return res.status(400).json({
+        success: false,
+        message: `Invalid verification code. ${remaining} attempt(s) remaining.`
+      });
+    }
+
+    // Verification success: activate user
+    user.emailVerified = true;
     user.isVerified = true;
+    user.otpHash = null;
+    user.otpExpiresAt = null;
+    user.otpAttempts = 0;
     user.otp = null;
     user.otpExpires = null;
+    user.verificationToken = null;
+    user.verificationTokenExpires = null;
     await user.save();
+
+    await AuditLog.logEvent({
+      userId: user._id,
+      userEmail: user.email,
+      action: 'Email verified',
+      targetType: 'User',
+      targetId: user._id.toString(),
+      description: 'Account activated after successful 6-digit email OTP verification',
+      ipAddress: req.ip || ''
+    });
+
+    const token = generateToken(user._id);
 
     return res.status(200).json({
       success: true,
-      message: 'OTP verified successfully! Account active.',
-      token: generateToken(user._id),
+      message: 'Email verified successfully! You can now log in.',
+      token,
       user: {
         _id: user._id,
         name: user.name,
         email: user.email,
         role: user.role,
-        isVerified: user.isVerified
+        emailVerified: true,
+        isVerified: true,
+        createdAt: user.createdAt
       }
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * @desc    Resend 6-Digit OTP Code with Cooldown & Rate Limiting
+ * @route   POST /api/auth/resend-otp
+ * @access  Public
+ */
+const resendOTP = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ success: false, message: 'Email address is required.' });
+    }
+
+    const cleanEmail = email.toLowerCase().trim();
+    const user = await User.findOne({ email: cleanEmail });
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'No account found with this email address.' });
+    }
+
+    if (user.emailVerified || user.isVerified) {
+      return res.status(400).json({ success: false, message: 'This account is already verified. You can log in directly.' });
+    }
+
+    const now = Date.now();
+
+    // 60-second cooldown check
+    if (user.otpLastSentAt) {
+      const elapsed = now - user.otpLastSentAt.getTime();
+      if (elapsed < 60000) {
+        const remainingSec = Math.ceil((60000 - elapsed) / 1000);
+        return res.status(429).json({
+          success: false,
+          message: `Please wait ${remainingSec} seconds before requesting a new OTP.`
+        });
+      }
+    }
+
+    // Hourly rate limit check (max 5 resends)
+    if (user.otpResendCount >= 5) {
+      const oneHourAgo = now - 60 * 60 * 1000;
+      if (user.otpLastSentAt && user.otpLastSentAt.getTime() > oneHourAgo) {
+        return res.status(429).json({
+          success: false,
+          message: 'Maximum OTP resend limit reached. Please wait before requesting another code.'
+        });
+      } else {
+        user.otpResendCount = 0;
+      }
+    }
+
+    // Generate fresh OTP
+    const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+    user.otpHash = hashOTP(otpCode);
+    user.otpExpiresAt = new Date(now + 5 * 60 * 1000); // 5 minutes
+    user.otpAttempts = 0;
+    user.otpLastSentAt = new Date(now);
+    user.otpResendCount = (user.otpResendCount || 0) + 1;
+    await user.save();
+
+    emailService.sendOTPEmail(user.email, otpCode, user.name);
+
+    return res.status(200).json({
+      success: true,
+      message: `A new 6-digit verification code has been sent to ${user.email}.`
     });
   } catch (error) {
     next(error);
@@ -678,5 +869,6 @@ module.exports = {
   socialLogin,
   getUserProfile,
   sendOTP,
-  verifyOTP
+  verifyOTP,
+  resendOTP
 };

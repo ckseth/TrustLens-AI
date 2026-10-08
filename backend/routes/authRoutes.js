@@ -13,7 +13,8 @@ const {
   socialLogin,
   getUserProfile,
   sendOTP,
-  verifyOTP
+  verifyOTP,
+  resendOTP
 } = require('../controllers/authController');
 const { protect } = require('../middleware/authMiddleware');
 
@@ -31,8 +32,9 @@ router.get('/profile', protect, getUserProfile);
 router.get('/security-activity', protect, getSecurityActivity);
 router.post('/revoke-device', protect, revokeDevice);
 
-// Legacy fallback routes
+// OTP Verification endpoints
 router.post('/send-otp', sendOTP);
 router.post('/verify-otp', verifyOTP);
+router.post('/resend-otp', resendOTP);
 
 module.exports = router;

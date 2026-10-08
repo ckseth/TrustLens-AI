@@ -1,5 +1,6 @@
 const Document = require('../models/Document');
 const Comparison = require('../models/Comparison');
+const AuditLog = require('../models/AuditLog');
 const comparisonService = require('../services/comparisonService');
 const textExtractionService = require('../services/textExtractionService');
 
@@ -53,6 +54,17 @@ const compareDocuments = async (req, res, next) => {
       documentB: docB._id,
       changes: diffResult.changes,
       summary: diffResult.summary
+    });
+
+    // Record in Audit Log
+    await AuditLog.logEvent({
+      userId: req.user._id,
+      userEmail: req.user.email,
+      action: 'Comparison performed',
+      targetType: 'Comparison',
+      targetId: comparison._id.toString(),
+      description: `Compared "${docA.originalName}" with "${docB.originalName}" (${diffResult.changes.length} difference(s) detected)`,
+      ipAddress: req.ip || ''
     });
 
     return res.status(200).json({

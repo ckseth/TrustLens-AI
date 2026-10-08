@@ -2,6 +2,7 @@ const path = require('path');
 const Document = require('../models/Document');
 const Analysis = require('../models/Analysis');
 const AIChatHistory = require('../models/AIChatHistory');
+const AuditLog = require('../models/AuditLog');
 const informationScanner = require('../services/informationScanner');
 const aiService = require('../services/aiService');
 const textExtractionService = require('../services/textExtractionService');
@@ -306,6 +307,17 @@ const analyzeDocument = async (req, res, next) => {
     } else {
       analysis = await Analysis.create(analysisPayload);
     }
+
+    // Record in Audit Log
+    await AuditLog.logEvent({
+      userId: req.user._id,
+      userEmail: req.user.email,
+      action: 'Document analyzed',
+      targetType: 'Document',
+      targetId: document._id.toString(),
+      description: `Analyzed document "${document.originalName}" — Risk Level: ${analysis.riskLevel} (${analysis.riskScore}/100)`,
+      ipAddress: req.ip || ''
+    });
 
     return res.status(200).json({
       success: true,
