@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer');
 class EmailService {
   constructor() {
     this.transporter = null;
+    this.isTestTransport = false;
     this.initTransporter();
   }
 
@@ -24,6 +25,7 @@ class EmailService {
           auth: { user, pass }
         });
       }
+      this.isTestTransport = false;
       console.log('[EmailService] Configured with production email credentials.');
     } else {
       // Create Ethereal test account fallback for instant dev testing
@@ -38,6 +40,7 @@ class EmailService {
             pass: testAccount.pass
           }
         });
+        this.isTestTransport = true;
         console.log(`[EmailService] Dev Ethereal Account initialized for testing: ${testAccount.user}`);
       } catch (err) {
         console.warn('[EmailService] Ethereal initialization warning:', err.message);
@@ -112,11 +115,16 @@ class EmailService {
     };
 
     try {
+      console.log(`\n========================================`);
+      console.log(`[DEV EMAIL SIMULATOR] 📧 Outgoing Email to: ${toEmail}`);
+      console.log(`[DEV EMAIL SIMULATOR] 🔑 6-Digit OTP Code: >>> ${otpCode} <<<`);
+      console.log(`========================================\n`);
+
       if (this.transporter) {
         const info = await this.transporter.sendMail(mailOptions);
         console.log(`[EmailService] OTP email dispatched to ${toEmail}. Message ID: ${info.messageId}`);
         if (nodemailer.getTestMessageUrl(info)) {
-          console.log(`[EmailService] Preview URL: ${nodemailer.getTestMessageUrl(info)}`);
+          console.log(`[EmailService] Ethereal Preview URL: ${nodemailer.getTestMessageUrl(info)}`);
         }
       }
       return { success: true };
@@ -162,6 +170,11 @@ class EmailService {
     };
 
     try {
+      console.log(`\n========================================`);
+      console.log(`[DEV EMAIL SIMULATOR] 📧 Verification Link for ${toEmail}:`);
+      console.log(`[DEV EMAIL SIMULATOR] 🔗 ${verifyLink}`);
+      console.log(`========================================\n`);
+
       if (this.transporter) {
         const info = await this.transporter.sendMail(mailOptions);
         console.log(`[EmailService] Signup verification link sent to ${toEmail}. Message ID: ${info.messageId}`);
@@ -233,14 +246,20 @@ class EmailService {
    */
   async sendPasswordResetEmail(toEmail, userName, resetToken) {
     if (!this.transporter) await this.initTransporter();
+    if (!this.transporter) {
+      return { success: false, error: 'Email transporter is not configured.' };
+    }
 
-    const resetLink = `http://localhost:5000/pages/login.html?resetToken=${resetToken}`;
-
-    const mailOptions = {
-      from: `"TrustLens AI Security" <${process.env.SMTP_USER || 'security@trustlens.ai'}>`,
-      to: toEmail,
-      subject: `Reset your TrustLens password`,
-      html: `
+    try {
+      const appUrl = process.env.CLIENT_URL || `http://localhost:${process.env.PORT || 5000}`;
+      const resetUrl = new URL('/pages/login.html', appUrl);
+      resetUrl.searchParams.set('resetToken', resetToken);
+      const resetLink = resetUrl.toString();
+      const mailOptions = {
+        from: process.env.EMAIL_FROM || process.env.EMAIL_USER || process.env.SMTP_USER || '"TrustLens AI Security" <security@trustlens.ai>',
+        to: toEmail,
+        subject: `Reset your TrustLens password`,
+        html: `
         <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #071D35; padding: 40px 20px; color: #FFFFFF;">
           <div style="max-width: 540px; margin: 0 auto; background: #0B2A4A; border-radius: 18px; padding: 40px; border: 1px solid rgba(8, 126, 164, 0.4);">
             <h2 style="color: #20D4E8; font-size: 22px; margin-top: 0;">Reset Your Password</h2>
@@ -255,13 +274,15 @@ class EmailService {
           </div>
         </div>
       `
-    };
+      };
 
-    try {
-      if (this.transporter) {
-        await this.transporter.sendMail(mailOptions);
+      const info = await this.transporter.sendMail(mailOptions);
+      const previewUrl = nodemailer.getTestMessageUrl(info);
+      if (previewUrl) {
+        console.log(`[EmailService] Password reset email preview: ${previewUrl}`);
       }
-      return { success: true, resetLink };
+
+      return { success: true, testMode: this.isTestTransport, previewUrl };
     } catch (err) {
       console.error('[EmailService] Error sending password reset email:', err.message);
       return { success: false, error: err.message };
@@ -303,4 +324,3 @@ class EmailService {
 }
 
 module.exports = new EmailService();
-

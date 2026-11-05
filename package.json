@@ -1,0 +1,25 @@
+{
+  "name": "trustlens-ai",
+  "version": "1.0.0",
+  "description": "TrustLens AI – Intelligent Document Verification, Fraud Detection, and Risk Analysis Platform",
+  "private": true,
+  "scripts": {
+    "start": "npm start --prefix backend",
+    "server": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "test": "node tests/test_data/qa_runner.js"
+  },
+  "keywords": [
+    "document-verification",
+    "fraud-detection",
+    "risk-analysis",
+    "machine-learning",
+    "privacy-shield",
+    "naive-bayes",
+    "ocr",
+    "document-compare"
+  ],
+  "author": "Chhavi Kumari (UID: 25MCA20323)",
+  "license": "ISC"
+}
+

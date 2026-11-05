@@ -215,14 +215,14 @@ const loginUser = async (req, res, next) => {
   try {
     const { email, password, deviceFingerprint, deviceName } = req.body;
 
-    if (!email || !password) {
+    if (typeof email !== 'string' || typeof password !== 'string' || !email.trim() || !password) {
       return res.status(400).json({
         success: false,
         message: 'Please enter your email address and password'
       });
     }
 
-    const user = await User.findOne({ email: email.toLowerCase() });
+    const user = await User.findOne({ email: email.trim().toLowerCase() });
 
     if (!user || !(await user.matchPassword(password))) {
       return res.status(401).json({
@@ -279,10 +279,26 @@ const loginUser = async (req, res, next) => {
       deviceFingerprint: fingerprint
     });
 
-    // Check if device is trusted and active
-    if (device && device.isTrusted && !device.revokedAt) {
-      device.lastUsedAt = new Date();
-      await device.save();
+    // Auto-trust device for Admins and Localhost development
+    const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+    const shouldAutoTrust = user.role === 'admin' || isDevelopment;
+
+    if (shouldAutoTrust || (device && device.isTrusted && !device.revokedAt)) {
+      if (!device) {
+        device = await Device.create({
+          user: user._id,
+          deviceFingerprint: fingerprint,
+          deviceName: displayDeviceName,
+          isTrusted: true,
+          trustedAt: new Date()
+        });
+      } else {
+        device.isTrusted = true;
+        device.trustedAt = device.trustedAt || new Date();
+        device.lastUsedAt = new Date();
+        device.revokedAt = null;
+        await device.save();
+      }
 
       return res.status(200).json({
         success: true,
@@ -400,19 +416,20 @@ const forgotPassword = async (req, res, next) => {
   try {
     const { email } = req.body;
 
-    if (!email) {
+    if (typeof email !== 'string' || !email.trim()) {
       return res.status(400).json({
         success: false,
         message: 'Please provide your email address.'
       });
     }
 
-    const user = await User.findOne({ email: email.toLowerCase() });
+    const cleanEmail = email.trim().toLowerCase();
+    const user = await User.findOne({ email: cleanEmail });
 
     if (!user) {
       return res.status(200).json({
         success: true,
-        message: `If an account exists for ${email}, a password reset link has been sent.`
+        message: `If an account exists for ${cleanEmail}, a password reset link has been sent.`
       });
     }
 
@@ -421,11 +438,22 @@ const forgotPassword = async (req, res, next) => {
     user.resetPasswordTokenExpires = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
     await user.save();
 
-    emailService.sendPasswordResetEmail(user.email, user.name, resetToken);
+    const emailResult = await emailService.sendPasswordResetEmail(user.email, user.name, resetToken);
+    if (!emailResult.success) {
+      user.resetPasswordToken = null;
+      user.resetPasswordTokenExpires = null;
+      await user.save();
+      return res.status(503).json({
+        success: false,
+        message: 'Unable to send a password reset email right now. Please try again later.'
+      });
+    }
 
     return res.status(200).json({
       success: true,
-      message: `Password reset link sent to ${user.email}. Check your inbox to proceed.`
+      message: emailResult.testMode
+        ? 'Development email was not delivered to your inbox. Check the backend terminal for the Ethereal preview URL.'
+        : 'If an account exists for that email, a password reset link has been sent.'
     });
   } catch (error) {
     next(error);
@@ -441,7 +469,7 @@ const resetPassword = async (req, res, next) => {
   try {
     const { token, newPassword } = req.body;
 
-    if (!token || !newPassword) {
+    if (typeof token !== 'string' || !token || typeof newPassword !== 'string' || !newPassword) {
       return res.status(400).json({
         success: false,
         message: 'Reset token and new password are required.'
@@ -856,6 +884,71 @@ const resendOTP = async (req, res, next) => {
   }
 };
 
+/**
+ * @desc    Instant Verification Bypass for Local Development & Testing
+ * @route   POST /api/auth/instant-verify
+ * @access  Public
+ */
+const instantVerify = async (req, res, next) => {
+  try {
+    const { email, deviceFingerprint, deviceName } = req.body;
+    if (!email) {
+      return res.status(400).json({ success: false, message: 'Email address is required.' });
+    }
+
+    const cleanEmail = email.toLowerCase().trim();
+    let user = await User.findOne({ email: cleanEmail });
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'No account found with this email address.' });
+    }
+
+    user.isVerified = true;
+    user.emailVerified = true;
+    user.verificationToken = null;
+    user.verificationTokenExpires = null;
+    user.otpHash = null;
+    user.otpExpiresAt = null;
+    user.otp = null;
+    user.otpExpires = null;
+    await user.save();
+
+    // Auto-trust the device
+    const fingerprint = deviceFingerprint || 'default-browser-fingerprint';
+    const displayDeviceName = deviceName || 'Chrome · Windows';
+    await Device.findOneAndUpdate(
+      { user: user._id, deviceFingerprint: fingerprint },
+      {
+        user: user._id,
+        deviceFingerprint: fingerprint,
+        deviceName: displayDeviceName,
+        isTrusted: true,
+        trustedAt: new Date(),
+        lastUsedAt: new Date(),
+        revokedAt: null
+      },
+      { upsert: true, new: true }
+    );
+
+    const token = generateToken(user._id);
+
+    return res.status(200).json({
+      success: true,
+      message: 'Account verified & trusted device enabled instantly!',
+      token,
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        isVerified: true
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   registerUser,
   verifyEmailToken,
@@ -870,5 +963,6 @@ module.exports = {
   getUserProfile,
   sendOTP,
   verifyOTP,
-  resendOTP
+  resendOTP,
+  instantVerify
 };

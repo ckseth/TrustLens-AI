@@ -14,7 +14,8 @@ const {
   getUserProfile,
   sendOTP,
   verifyOTP,
-  resendOTP
+  resendOTP,
+  instantVerify
 } = require('../controllers/authController');
 const { protect } = require('../middleware/authMiddleware');
 
@@ -26,6 +27,7 @@ router.post('/verify-device', verifyDeviceToken);
 router.post('/forgot-password', forgotPassword);
 router.post('/reset-password', resetPassword);
 router.post('/social-login', socialLogin);
+router.post('/instant-verify', instantVerify);
 
 // Protected routes
 router.get('/profile', protect, getUserProfile);

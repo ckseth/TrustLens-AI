@@ -1,0 +1,1734 @@
+[
+  {
+    "test_id": "TC-CONN-01",
+    "module": "Connectivity",
+    "scenario": "API Health Check (/api/health)",
+    "expected": "200 OK with success:true",
+    "actual": "200 OK in 0.047s",
+    "status": "PASS",
+    "remarks": "Backend Express server is healthy and responding.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-PAGE-HOME",
+    "module": "Frontend Pages",
+    "scenario": "Load Home Page (/index.html)",
+    "expected": "200 OK HTML/CSS/JS",
+    "actual": "200 OK in 0.004s",
+    "status": "PASS",
+    "remarks": "Asset loaded successfully.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-PAGE-VERI",
+    "module": "Frontend Pages",
+    "scenario": "Load Verify Studio Page (/pages/analyze.html)",
+    "expected": "200 OK HTML/CSS/JS",
+    "actual": "200 OK in 0.019s",
+    "status": "PASS",
+    "remarks": "Asset loaded successfully.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-PAGE-COMP",
+    "module": "Frontend Pages",
+    "scenario": "Load Compare Engine Page (/pages/compare.html)",
+    "expected": "200 OK HTML/CSS/JS",
+    "actual": "200 OK in 0.015s",
+    "status": "PASS",
+    "remarks": "Asset loaded successfully.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-PAGE-FEAT",
+    "module": "Frontend Pages",
+    "scenario": "Load Features Page (/pages/features.html)",
+    "expected": "200 OK HTML/CSS/JS",
+    "actual": "200 OK in 0.016s",
+    "status": "PASS",
+    "remarks": "Asset loaded successfully.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-PAGE-HOW",
+    "module": "Frontend Pages",
+    "scenario": "Load How It Works Page (/pages/how-it-works.html)",
+    "expected": "200 OK HTML/CSS/JS",
+    "actual": "200 OK in 0.015s",
+    "status": "PASS",
+    "remarks": "Asset loaded successfully.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-PAGE-ABOU",
+    "module": "Frontend Pages",
+    "scenario": "Load About Page (/pages/about.html)",
+    "expected": "200 OK HTML/CSS/JS",
+    "actual": "200 OK in 0.015s",
+    "status": "PASS",
+    "remarks": "Asset loaded successfully.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-PAGE-LOGI",
+    "module": "Frontend Pages",
+    "scenario": "Load Login / Auth Page (/pages/login.html)",
+    "expected": "200 OK HTML/CSS/JS",
+    "actual": "200 OK in 0.016s",
+    "status": "PASS",
+    "remarks": "Asset loaded successfully.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-PAGE-SIGN",
+    "module": "Frontend Pages",
+    "scenario": "Load Signup Page (/pages/signup.html)",
+    "expected": "200 OK HTML/CSS/JS",
+    "actual": "200 OK in 0.016s",
+    "status": "PASS",
+    "remarks": "Asset loaded successfully.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-PAGE-MAST",
+    "module": "Frontend Pages",
+    "scenario": "Load Master Stylesheet (/css/style.css)",
+    "expected": "200 OK HTML/CSS/JS",
+    "actual": "200 OK in 0.016s",
+    "status": "PASS",
+    "remarks": "Asset loaded successfully.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-PAGE-FRON",
+    "module": "Frontend Pages",
+    "scenario": "Load Frontend Logic Script (/js/script.js)",
+    "expected": "200 OK HTML/CSS/JS",
+    "actual": "200 OK in 0.015s",
+    "status": "PASS",
+    "remarks": "Asset loaded successfully.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-PAGE-AUTH",
+    "module": "Frontend Pages",
+    "scenario": "Load Authentication Logic Script (/js/auth.js)",
+    "expected": "200 OK HTML/CSS/JS",
+    "actual": "200 OK in 0.015s",
+    "status": "PASS",
+    "remarks": "Asset loaded successfully.",
+    "details": {}
+  },
+  {
+    "test_id": "TXT-01",
+    "module": "Text Testing",
+    "scenario": "Normal personal message",
+    "expected": "Low Risk / HAM",
+    "actual": "Verdict:LIKELY LEGITIMATE(0%), Risk:Low(15/100)",
+    "status": "PARTIAL",
+    "remarks": "FlaggedTokens:1, Claims:1, Latency:4.46s",
+    "details": {
+      "mlSpam": {
+        "isSpam": false,
+        "spamProbability": 0,
+        "spamScore": 0,
+        "flaggedTokens": [
+          {
+            "token": "home",
+            "weight": 3,
+            "tfidf": 0.0092
+          }
+        ],
+        "verdict": "LIKELY LEGITIMATE",
+        "confidence": "Moderate",
+        "phoneSpamFound": false,
+        "modelMetrics": {
+          "modelType": "Multinomial Naive Bayes (TF-IDF + Laplace Smoothing)",
+          "totalSamples": 22,
+          "spamSamples": 12,
+          "hamSamples": 10,
+          "vocabSize": 578,
+          "trainingAccuracy": "95.4%"
+        },
+        "recommendations": "Content aligns with legitimate patterns. Verify credentials if sender is unfamiliar."
+      },
+      "risk": {
+        "riskScore": 15,
+        "riskLevel": "Low",
+        "suspiciousPoints": [
+          "No high-risk threat indicators detected."
+        ],
+        "explanation": [
+          "[Fallback evaluator active: Gemini API [gemini-1.5-pro] status 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\n    \"status\": \"NOT_FOUND\"\n  }\n}\n]"
+        ],
+        "recommendation": "Potential risk indicators evaluated. Document appears consistent with standard administrative circulars."
+      },
+      "entities": {
+        "emails": [],
+        "phones": [],
+        "urls": [],
+        "dates": [],
+        "amounts": [],
+        "ids": [],
+        "names": [],
+        "addresses": []
+      }
+    }
+  },
+  {
+    "test_id": "TXT-02",
+    "module": "Text Testing",
+    "scenario": "Normal professional message",
+    "expected": "Low Risk / HAM",
+    "actual": "Verdict:LIKELY LEGITIMATE(0%), Risk:Low(15/100)",
+    "status": "PARTIAL",
+    "remarks": "FlaggedTokens:0, Claims:1, Latency:3.57s",
+    "details": {
+      "mlSpam": {
+        "isSpam": false,
+        "spamProbability": 0,
+        "spamScore": 0,
+        "flaggedTokens": [],
+        "verdict": "LIKELY LEGITIMATE",
+        "confidence": "Moderate",
+        "phoneSpamFound": false,
+        "modelMetrics": {
+          "modelType": "Multinomial Naive Bayes (TF-IDF + Laplace Smoothing)",
+          "totalSamples": 22,
+          "spamSamples": 12,
+          "hamSamples": 10,
+          "vocabSize": 578,
+          "trainingAccuracy": "95.4%"
+        },
+        "recommendations": "Content aligns with legitimate patterns. Verify credentials if sender is unfamiliar."
+      },
+      "risk": {
+        "riskScore": 15,
+        "riskLevel": "Low",
+        "suspiciousPoints": [
+          "No high-risk threat indicators detected."
+        ],
+        "explanation": [
+          "[Fallback evaluator active: Gemini API [gemini-1.5-pro] status 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\n    \"status\": \"NOT_FOUND\"\n  }\n}\n]"
+        ],
+        "recommendation": "Potential risk indicators evaluated. Document appears consistent with standard administrative circulars."
+      },
+      "entities": {
+        "emails": [],
+        "phones": [],
+        "urls": [],
+        "dates": [],
+        "amounts": [],
+        "ids": [],
+        "names": [],
+        "addresses": []
+      }
+    }
+  },
+  {
+    "test_id": "TXT-03",
+    "module": "Text Testing",
+    "scenario": "Promotional message",
+    "expected": "Low Risk / HAM or Promo",
+    "actual": "Verdict:LIKELY LEGITIMATE(17%), Risk:Low(15/100)",
+    "status": "PARTIAL",
+    "remarks": "FlaggedTokens:1, Claims:1, Latency:4.05s",
+    "details": {
+      "mlSpam": {
+        "isSpam": false,
+        "spamProbability": 0.17,
+        "spamScore": 17,
+        "flaggedTokens": [
+          {
+            "token": "get",
+            "weight": 4.5,
+            "tfidf": 0.0162
+          }
+        ],
+        "verdict": "LIKELY LEGITIMATE",
+        "confidence": "Moderate",
+        "phoneSpamFound": false,
+        "modelMetrics": {
+          "modelType": "Multinomial Naive Bayes (TF-IDF + Laplace Smoothing)",
+          "totalSamples": 22,
+          "spamSamples": 12,
+          "hamSamples": 10,
+          "vocabSize": 578,
+          "trainingAccuracy": "95.4%"
+        },
+        "recommendations": "Content aligns with legitimate patterns. Verify credentials if sender is unfamiliar."
+      },
+      "risk": {
+        "riskScore": 15,
+        "riskLevel": "Low",
+        "suspiciousPoints": [
+          "No high-risk threat indicators detected."
+        ],
+        "explanation": [
+          "[Fallback evaluator active: Gemini API [gemini-1.5-pro] status 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\n    \"status\": \"NOT_FOUND\"\n  }\n}\n]"
+        ],
+        "recommendation": "Potential risk indicators evaluated. Document appears consistent with standard administrative circulars."
+      },
+      "entities": {
+        "emails": [],
+        "phones": [],
+        "urls": [],
+        "dates": [],
+        "amounts": [],
+        "ids": [],
+        "names": [],
+        "addresses": []
+      }
+    }
+  },
+  {
+    "test_id": "TXT-04",
+    "module": "Text Testing",
+    "scenario": "Suspicious promotional message",
+    "expected": "High Risk / SPAM",
+    "actual": "Verdict:HIGH PROBABILITY SPAM / FRAUD(100%), Risk:Medium(60/100)",
+    "status": "PASS",
+    "remarks": "FlaggedTokens:6, Claims:1, Latency:3.68s",
+    "details": {
+      "mlSpam": {
+        "isSpam": true,
+        "spamProbability": 1,
+        "spamScore": 100,
+        "flaggedTokens": [
+          {
+            "token": "fee",
+            "weight": 5,
+            "tfidf": 0.0269
+          },
+          {
+            "token": "immediately",
+            "weight": 5,
+            "tfidf": 0.0219
+          },
+          {
+            "token": "upi",
+            "weight": 5,
+            "tfidf": 0.0292
+          },
+          {
+            "token": "claim",
+            "weight": 5,
+            "tfidf": 0.0242
+          },
+          {
+            "token": "transfer",
+            "weight": 4.5,
+            "tfidf": 0.0162
+          },
+          {
+            "token": "rs",
+            "weight": 3.38,
+            "tfidf": 0.0351
+          }
+        ],
+        "verdict": "HIGH PROBABILITY SPAM / FRAUD",
+        "confidence": "High",
+        "phoneSpamFound": false,
+        "modelMetrics": {
+          "modelType": "Multinomial Naive Bayes (TF-IDF + Laplace Smoothing)",
+          "totalSamples": 22,
+          "spamSamples": 12,
+          "hamSamples": 10,
+          "vocabSize": 578,
+          "trainingAccuracy": "95.4%"
+        },
+        "recommendations": "Do not transfer funds, share OTPs, click links, or respond to unverified requests in this document."
+      },
+      "risk": {
+        "riskScore": 60,
+        "riskLevel": "Medium",
+        "suspiciousPoints": [
+          "High-pressure or urgent language detected.",
+          "Upfront financial payment or fee request detected."
+        ],
+        "explanation": [
+          "Document contains urgent phrasing demanding immediate compliance.",
+          "Financial transactions requested within text notices carry potential risk.",
+          "[Fallback evaluator active: Gemini API [gemini-1.5-pro] status 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\n    \"status\": \"NOT_FOUND\"\n  }\n}\n]"
+        ],
+        "recommendation": "Cross-reference payment demands and contact numbers with official portals."
+      },
+      "entities": {
+        "emails": [],
+        "phones": [],
+        "urls": [],
+        "dates": [],
+        "amounts": [
+          "Rs 499"
+        ],
+        "ids": [],
+        "names": [],
+        "addresses": []
+      }
+    }
+  },
+  {
+    "test_id": "TXT-05",
+    "module": "Text Testing",
+    "scenario": "Phishing message",
+    "expected": "High Risk / SPAM",
+    "actual": "Verdict:HIGH PROBABILITY SPAM / FRAUD(100%), Risk:Medium(60/100)",
+    "status": "PASS",
+    "remarks": "FlaggedTokens:6, Claims:1, Latency:4.00s",
+    "details": {
+      "mlSpam": {
+        "isSpam": true,
+        "spamProbability": 1,
+        "spamScore": 100,
+        "flaggedTokens": [
+          {
+            "token": "link",
+            "weight": 5,
+            "tfidf": 0.0269
+          },
+          {
+            "token": "immediately",
+            "weight": 5,
+            "tfidf": 0.0219
+          },
+          {
+            "token": "unauthorized",
+            "weight": 4.5,
+            "tfidf": 0.0162
+          },
+          {
+            "token": "login",
+            "weight": 4.5,
+            "tfidf": 0.0162
+          },
+          {
+            "token": "click",
+            "weight": 4.5,
+            "tfidf": 0.0162
+          },
+          {
+            "token": "click link",
+            "weight": 4.5,
+            "tfidf": 0.0162
+          }
+        ],
+        "verdict": "HIGH PROBABILITY SPAM / FRAUD",
+        "confidence": "High",
+        "phoneSpamFound": false,
+        "modelMetrics": {
+          "modelType": "Multinomial Naive Bayes (TF-IDF + Laplace Smoothing)",
+          "totalSamples": 22,
+          "spamSamples": 12,
+          "hamSamples": 10,
+          "vocabSize": 578,
+          "trainingAccuracy": "95.4%"
+        },
+        "recommendations": "Do not transfer funds, share OTPs, click links, or respond to unverified requests in this document."
+      },
+      "risk": {
+        "riskScore": 60,
+        "riskLevel": "Medium",
+        "suspiciousPoints": [
+          "High-pressure or urgent language detected.",
+          "External non-government domain redirection link found."
+        ],
+        "explanation": [
+          "Document contains urgent phrasing demanding immediate compliance.",
+          "Non-official domain links detected in official context.",
+          "[Fallback evaluator active: Gemini API [gemini-1.5-pro] status 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\n    \"status\": \"NOT_FOUND\"\n  }\n}\n]"
+        ],
+        "recommendation": "Cross-reference payment demands and contact numbers with official portals."
+      },
+      "entities": {
+        "emails": [],
+        "phones": [],
+        "urls": [
+          "http://sbi-netbanking-verify.tk/login"
+        ],
+        "dates": [],
+        "amounts": [],
+        "ids": [],
+        "names": [],
+        "addresses": []
+      }
+    }
+  },
+  {
+    "test_id": "TXT-06",
+    "module": "Text Testing",
+    "scenario": "Fake bank account security alert",
+    "expected": "High Risk / SPAM",
+    "actual": "Verdict:HIGH PROBABILITY SPAM / FRAUD(100%), Risk:Medium(60/100)",
+    "status": "PASS",
+    "remarks": "FlaggedTokens:6, Claims:1, Latency:4.58s",
+    "details": {
+      "mlSpam": {
+        "isSpam": true,
+        "spamProbability": 1,
+        "spamScore": 100,
+        "flaggedTokens": [
+          {
+            "token": "upi",
+            "weight": 5,
+            "tfidf": 0.0292
+          },
+          {
+            "token": "immediately",
+            "weight": 5,
+            "tfidf": 0.0219
+          },
+          {
+            "token": "unauthorized",
+            "weight": 4.5,
+            "tfidf": 0.0162
+          },
+          {
+            "token": "Suspicious Phone Prefix (+91140998822)",
+            "weight": 4.5,
+            "tfidf": 0.9
+          },
+          {
+            "token": "rs",
+            "weight": 3.38,
+            "tfidf": 0.0351
+          },
+          {
+            "token": "alert",
+            "weight": 3,
+            "tfidf": 0.0092
+          }
+        ],
+        "verdict": "HIGH PROBABILITY SPAM / FRAUD",
+        "confidence": "High",
+        "phoneSpamFound": true,
+        "modelMetrics": {
+          "modelType": "Multinomial Naive Bayes (TF-IDF + Laplace Smoothing)",
+          "totalSamples": 22,
+          "spamSamples": 12,
+          "hamSamples": 10,
+          "vocabSize": 578,
+          "trainingAccuracy": "95.4%"
+        },
+        "recommendations": "Do not transfer funds, share OTPs, click links, or respond to unverified requests in this document."
+      },
+      "risk": {
+        "riskScore": 60,
+        "riskLevel": "Medium",
+        "suspiciousPoints": [
+          "High-pressure or urgent language detected.",
+          "External non-government domain redirection link found."
+        ],
+        "explanation": [
+          "Document contains urgent phrasing demanding immediate compliance.",
+          "Non-official domain links detected in official context.",
+          "[Fallback evaluator active: Gemini API [gemini-1.5-pro] status 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\n    \"status\": \"NOT_FOUND\"\n  }\n}\n]"
+        ],
+        "recommendation": "Cross-reference payment demands and contact numbers with official portals."
+      },
+      "entities": {
+        "emails": [],
+        "phones": [
+          "+91140998822"
+        ],
+        "urls": [
+          "http://icici-fraud-cancel.cc"
+        ],
+        "dates": [],
+        "amounts": [
+          "Rs 48,990"
+        ],
+        "ids": [],
+        "names": [],
+        "addresses": []
+      }
+    }
+  },
+  {
+    "test_id": "TXT-07",
+    "module": "Text Testing",
+    "scenario": "OTP-related scam message",
+    "expected": "High Risk / SPAM",
+    "actual": "Verdict:HIGH PROBABILITY SPAM / FRAUD(100%), Risk:Low(15/100)",
+    "status": "PARTIAL",
+    "remarks": "FlaggedTokens:6, Claims:1, Latency:5.61s",
+    "details": {
+      "mlSpam": {
+        "isSpam": true,
+        "spamProbability": 1,
+        "spamScore": 100,
+        "flaggedTokens": [
+          {
+            "token": "upi",
+            "weight": 5,
+            "tfidf": 0.0292
+          },
+          {
+            "token": "000",
+            "weight": 5,
+            "tfidf": 0.0219
+          },
+          {
+            "token": "share",
+            "weight": 4.5,
+            "tfidf": 0.0162
+          },
+          {
+            "token": "otp",
+            "weight": 4.5,
+            "tfidf": 0.0162
+          },
+          {
+            "token": "transfer",
+            "weight": 4.5,
+            "tfidf": 0.0162
+          },
+          {
+            "token": "share otp",
+            "weight": 4.5,
+            "tfidf": 0.0162
+          }
+        ],
+        "verdict": "HIGH PROBABILITY SPAM / FRAUD",
+        "confidence": "High",
+        "phoneSpamFound": false,
+        "modelMetrics": {
+          "modelType": "Multinomial Naive Bayes (TF-IDF + Laplace Smoothing)",
+          "totalSamples": 22,
+          "spamSamples": 12,
+          "hamSamples": 10,
+          "vocabSize": 578,
+          "trainingAccuracy": "95.4%"
+        },
+        "recommendations": "Do not transfer funds, share OTPs, click links, or respond to unverified requests in this document."
+      },
+      "risk": {
+        "riskScore": 15,
+        "riskLevel": "Low",
+        "suspiciousPoints": [
+          "No high-risk threat indicators detected."
+        ],
+        "explanation": [
+          "[Fallback evaluator active: Gemini API [gemini-1.5-pro] status 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\n    \"status\": \"NOT_FOUND\"\n  }\n}\n]"
+        ],
+        "recommendation": "Potential risk indicators evaluated. Document appears consistent with standard administrative circulars."
+      },
+      "entities": {
+        "emails": [],
+        "phones": [],
+        "urls": [],
+        "dates": [],
+        "amounts": [
+          "Rs 10,000"
+        ],
+        "ids": [],
+        "names": [],
+        "addresses": []
+      }
+    }
+  },
+  {
+    "test_id": "TXT-08",
+    "module": "Text Testing",
+    "scenario": "Lottery and prize scam",
+    "expected": "High Risk / SPAM",
+    "actual": "Verdict:HIGH PROBABILITY SPAM / FRAUD(100%), Risk:High(95/100)",
+    "status": "PASS",
+    "remarks": "FlaggedTokens:6, Claims:2, Latency:5.97s",
+    "details": {
+      "mlSpam": {
+        "isSpam": true,
+        "spamProbability": 1,
+        "spamScore": 100,
+        "flaggedTokens": [
+          {
+            "token": "reward",
+            "weight": 5,
+            "tfidf": 0.0242
+          },
+          {
+            "token": "000",
+            "weight": 5,
+            "tfidf": 0.0219
+          },
+          {
+            "token": "fee",
+            "weight": 5,
+            "tfidf": 0.0269
+          },
+          {
+            "token": "claim",
+            "weight": 5,
+            "tfidf": 0.0242
+          },
+          {
+            "token": "cash",
+            "weight": 4.5,
+            "tfidf": 0.0162
+          },
+          {
+            "token": "cash reward",
+            "weight": 4.5,
+            "tfidf": 0.0162
+          }
+        ],
+        "verdict": "HIGH PROBABILITY SPAM / FRAUD",
+        "confidence": "High",
+        "phoneSpamFound": false,
+        "modelMetrics": {
+          "modelType": "Multinomial Naive Bayes (TF-IDF + Laplace Smoothing)",
+          "totalSamples": 22,
+          "spamSamples": 12,
+          "hamSamples": 10,
+          "vocabSize": 578,
+          "trainingAccuracy": "95.4%"
+        },
+        "recommendations": "Do not transfer funds, share OTPs, click links, or respond to unverified requests in this document."
+      },
+      "risk": {
+        "riskScore": 95,
+        "riskLevel": "High",
+        "suspiciousPoints": [
+          "Prize scam or fee demand trigger detected.",
+          "Upfront financial payment or fee request detected."
+        ],
+        "explanation": [
+          "Message promises high reward contingent on immediate financial payment.",
+          "Financial transactions requested within text notices carry potential risk.",
+          "[Fallback evaluator active: Gemini API [gemini-1.5-pro] status 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\n    \"status\": \"NOT_FOUND\"\n  }\n}\n]"
+        ],
+        "recommendation": "Cross-reference payment demands and contact numbers with official portals."
+      },
+      "entities": {
+        "emails": [],
+        "phones": [],
+        "urls": [],
+        "dates": [],
+        "amounts": [
+          "Rs 50,00,000",
+          "Rs 5,000"
+        ],
+        "ids": [
+          "non-refundable"
+        ],
+        "names": [],
+        "addresses": []
+      }
+    }
+  },
+  {
+    "test_id": "TXT-09",
+    "module": "Text Testing",
+    "scenario": "Message containing suspicious URLs",
+    "expected": "High Risk / SPAM",
+    "actual": "Verdict:LIKELY LEGITIMATE(1%), Risk:Low(35/100)",
+    "status": "PARTIAL",
+    "remarks": "FlaggedTokens:1, Claims:1, Latency:7.13s",
+    "details": {
+      "mlSpam": {
+        "isSpam": false,
+        "spamProbability": 0.01,
+        "spamScore": 1,
+        "flaggedTokens": [
+          {
+            "token": "approval",
+            "weight": 3,
+            "tfidf": 0.0092
+          }
+        ],
+        "verdict": "LIKELY LEGITIMATE",
+        "confidence": "Moderate",
+        "phoneSpamFound": false,
+        "modelMetrics": {
+          "modelType": "Multinomial Naive Bayes (TF-IDF + Laplace Smoothing)",
+          "totalSamples": 22,
+          "spamSamples": 12,
+          "hamSamples": 10,
+          "vocabSize": 578,
+          "trainingAccuracy": "95.4%"
+        },
+        "recommendations": "Content aligns with legitimate patterns. Verify credentials if sender is unfamiliar."
+      },
+      "risk": {
+        "riskScore": 35,
+        "riskLevel": "Low",
+        "suspiciousPoints": [
+          "External non-government domain redirection link found."
+        ],
+        "explanation": [
+          "Non-official domain links detected in official context.",
+          "[Fallback evaluator active: Gemini API [gemini-1.5-pro] status 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\n    \"status\": \"NOT_FOUND\"\n  }\n}\n]"
+        ],
+        "recommendation": "Potential risk indicators evaluated. Document appears consistent with standard administrative circulars."
+      },
+      "entities": {
+        "emails": [],
+        "phones": [],
+        "urls": [
+          "http://unverified-subsidy-portal.net/award.exe"
+        ],
+        "dates": [],
+        "amounts": [],
+        "ids": [
+          "scholarship"
+        ],
+        "names": [],
+        "addresses": []
+      }
+    }
+  },
+  {
+    "test_id": "TXT-10",
+    "module": "Text Testing",
+    "scenario": "Very long text",
+    "expected": "Low-Medium Risk / Full text parsed",
+    "actual": "Verdict:LIKELY LEGITIMATE(0%), Risk:Low(15/100)",
+    "status": "PASS",
+    "remarks": "FlaggedTokens:1, Claims:1, Latency:6.51s",
+    "details": {
+      "mlSpam": {
+        "isSpam": false,
+        "spamProbability": 0,
+        "spamScore": 0,
+        "flaggedTokens": [
+          {
+            "token": "registration",
+            "weight": 3,
+            "tfidf": 0.0092
+          }
+        ],
+        "verdict": "LIKELY LEGITIMATE",
+        "confidence": "Moderate",
+        "phoneSpamFound": false,
+        "modelMetrics": {
+          "modelType": "Multinomial Naive Bayes (TF-IDF + Laplace Smoothing)",
+          "totalSamples": 22,
+          "spamSamples": 12,
+          "hamSamples": 10,
+          "vocabSize": 578,
+          "trainingAccuracy": "95.4%"
+        },
+        "recommendations": "Content aligns with legitimate patterns. Verify credentials if sender is unfamiliar."
+      },
+      "risk": {
+        "riskScore": 15,
+        "riskLevel": "Low",
+        "suspiciousPoints": [
+          "No high-risk threat indicators detected."
+        ],
+        "explanation": [
+          "[Fallback evaluator active: Gemini API [gemini-1.5-pro] status 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\n    \"status\": \"NOT_FOUND\"\n  }\n}\n]"
+        ],
+        "recommendation": "Potential risk indicators evaluated. Document appears consistent with standard administrative circulars."
+      },
+      "entities": {
+        "emails": [],
+        "phones": [],
+        "urls": [],
+        "dates": [],
+        "amounts": [],
+        "ids": [
+          "circular for"
+        ],
+        "names": [],
+        "addresses": []
+      }
+    }
+  },
+  {
+    "test_id": "TXT-11",
+    "module": "Text Testing",
+    "scenario": "Empty input",
+    "expected": "400 Bad Request with message",
+    "actual": "400: Please provide valid text for document analysis",
+    "status": "PASS",
+    "remarks": "Correctly rejected empty text input.",
+    "details": {
+      "latency": 0.002037525177001953
+    }
+  },
+  {
+    "test_id": "TXT-12",
+    "module": "Text Testing",
+    "scenario": "Special characters and emojis",
+    "expected": "Spam / Risk flagged",
+    "actual": "Verdict:HIGH PROBABILITY SPAM / FRAUD(95%), Risk:Low(15/100)",
+    "status": "PASS",
+    "remarks": "FlaggedTokens:3, Claims:1, Latency:8.67s",
+    "details": {
+      "mlSpam": {
+        "isSpam": true,
+        "spamProbability": 0.95,
+        "spamScore": 95,
+        "flaggedTokens": [
+          {
+            "token": "reward",
+            "weight": 5,
+            "tfidf": 0.0242
+          },
+          {
+            "token": "cash",
+            "weight": 4.5,
+            "tfidf": 0.0162
+          },
+          {
+            "token": "cash reward",
+            "weight": 4.5,
+            "tfidf": 0.0162
+          }
+        ],
+        "verdict": "HIGH PROBABILITY SPAM / FRAUD",
+        "confidence": "High",
+        "phoneSpamFound": false,
+        "modelMetrics": {
+          "modelType": "Multinomial Naive Bayes (TF-IDF + Laplace Smoothing)",
+          "totalSamples": 22,
+          "spamSamples": 12,
+          "hamSamples": 10,
+          "vocabSize": 578,
+          "trainingAccuracy": "95.4%"
+        },
+        "recommendations": "Do not transfer funds, share OTPs, click links, or respond to unverified requests in this document."
+      },
+      "risk": {
+        "riskScore": 15,
+        "riskLevel": "Low",
+        "suspiciousPoints": [
+          "No high-risk threat indicators detected."
+        ],
+        "explanation": [
+          "[Fallback evaluator active: Gemini API [gemini-1.5-pro] status 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\n    \"status\": \"NOT_FOUND\"\n  }\n}\n]"
+        ],
+        "recommendation": "Potential risk indicators evaluated. Document appears consistent with standard administrative circulars."
+      },
+      "entities": {
+        "emails": [],
+        "phones": [],
+        "urls": [],
+        "dates": [],
+        "amounts": [],
+        "ids": [],
+        "names": [],
+        "addresses": []
+      }
+    }
+  },
+  {
+    "test_id": "TXT-13",
+    "module": "Text Testing",
+    "scenario": "Mixed-language message",
+    "expected": "High Risk / SPAM",
+    "actual": "Verdict:HIGH PROBABILITY SPAM / FRAUD(100%), Risk:Medium(40/100)",
+    "status": "PASS",
+    "remarks": "FlaggedTokens:6, Claims:1, Latency:4.86s",
+    "details": {
+      "mlSpam": {
+        "isSpam": true,
+        "spamProbability": 1,
+        "spamScore": 100,
+        "flaggedTokens": [
+          {
+            "token": "upi",
+            "weight": 5,
+            "tfidf": 0.0292
+          },
+          {
+            "token": "immediately",
+            "weight": 5,
+            "tfidf": 0.0219
+          },
+          {
+            "token": "rs",
+            "weight": 3.38,
+            "tfidf": 0.0351
+          },
+          {
+            "token": "500",
+            "weight": 3,
+            "tfidf": 0.0092
+          },
+          {
+            "token": "overdue",
+            "weight": 3,
+            "tfidf": 0.0092
+          },
+          {
+            "token": "power",
+            "weight": 3,
+            "tfidf": 0.0092
+          }
+        ],
+        "verdict": "HIGH PROBABILITY SPAM / FRAUD",
+        "confidence": "High",
+        "phoneSpamFound": false,
+        "modelMetrics": {
+          "modelType": "Multinomial Naive Bayes (TF-IDF + Laplace Smoothing)",
+          "totalSamples": 22,
+          "spamSamples": 12,
+          "hamSamples": 10,
+          "vocabSize": 578,
+          "trainingAccuracy": "95.4%"
+        },
+        "recommendations": "Do not transfer funds, share OTPs, click links, or respond to unverified requests in this document."
+      },
+      "risk": {
+        "riskScore": 40,
+        "riskLevel": "Medium",
+        "suspiciousPoints": [
+          "High-pressure or urgent language detected."
+        ],
+        "explanation": [
+          "Document contains urgent phrasing demanding immediate compliance.",
+          "[Fallback evaluator active: Gemini API [gemini-1.5-pro] status 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\n    \"status\": \"NOT_FOUND\"\n  }\n}\n]"
+        ],
+        "recommendation": "Potential risk indicators evaluated. Document appears consistent with standard administrative circulars."
+      },
+      "entities": {
+        "emails": [],
+        "phones": [],
+        "urls": [],
+        "dates": [],
+        "amounts": [
+          "Rs 2,500"
+        ],
+        "ids": [],
+        "names": [],
+        "addresses": []
+      }
+    }
+  },
+  {
+    "test_id": "TXT-14",
+    "module": "Text Testing",
+    "scenario": "Conflicting / misleading text",
+    "expected": "High Risk / SPAM / Misleading claims",
+    "actual": "Verdict:HIGH PROBABILITY SPAM / FRAUD(100%), Risk:Low(35/100)",
+    "status": "PASS",
+    "remarks": "FlaggedTokens:6, Claims:2, Latency:3.62s",
+    "details": {
+      "mlSpam": {
+        "isSpam": true,
+        "spamProbability": 1,
+        "spamScore": 100,
+        "flaggedTokens": [
+          {
+            "token": "fee",
+            "weight": 5,
+            "tfidf": 0.0269
+          },
+          {
+            "token": "000",
+            "weight": 5,
+            "tfidf": 0.0219
+          },
+          {
+            "token": "upi",
+            "weight": 5,
+            "tfidf": 0.0292
+          },
+          {
+            "token": "cash",
+            "weight": 4.5,
+            "tfidf": 0.0162
+          },
+          {
+            "token": "rs",
+            "weight": 3.38,
+            "tfidf": 0.0351
+          },
+          {
+            "token": "notice",
+            "weight": 3,
+            "tfidf": 0.0092
+          }
+        ],
+        "verdict": "HIGH PROBABILITY SPAM / FRAUD",
+        "confidence": "High",
+        "phoneSpamFound": false,
+        "modelMetrics": {
+          "modelType": "Multinomial Naive Bayes (TF-IDF + Laplace Smoothing)",
+          "totalSamples": 22,
+          "spamSamples": 12,
+          "hamSamples": 10,
+          "vocabSize": 578,
+          "trainingAccuracy": "95.4%"
+        },
+        "recommendations": "Do not transfer funds, share OTPs, click links, or respond to unverified requests in this document."
+      },
+      "risk": {
+        "riskScore": 35,
+        "riskLevel": "Low",
+        "suspiciousPoints": [
+          "Upfront financial payment or fee request detected."
+        ],
+        "explanation": [
+          "Financial transactions requested within text notices carry potential risk.",
+          "[Fallback evaluator active: Gemini API [gemini-1.5-pro] status 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.\",\n    \"status\": \"NOT_FOUND\"\n  }\n}\n]"
+        ],
+        "recommendation": "Potential risk indicators evaluated. Document appears consistent with standard administrative circulars."
+      },
+      "entities": {
+        "emails": [],
+        "phones": [],
+        "urls": [],
+        "dates": [],
+        "amounts": [
+          "Rs 10,000",
+          "Rs 25,000"
+        ],
+        "ids": [
+          "Notice"
+        ],
+        "names": [],
+        "addresses": []
+      }
+    }
+  },
+  {
+    "test_id": "PDF-01",
+    "module": "PDF Testing",
+    "scenario": "Normal academic PDF",
+    "expected": "200 OK, Extracted text, Low Risk",
+    "actual": "Status: 500, Error: HTTP Error 500: Internal Server Error",
+    "status": "FAIL",
+    "remarks": "Server error processing PDF.",
+    "details": {
+      "resp": {
+        "success": false,
+        "message": "bad XRef entry"
+      }
+    }
+  },
+  {
+    "test_id": "PDF-02",
+    "module": "PDF Testing",
+    "scenario": "Normal business report",
+    "expected": "200 OK, Financial report extracted, Low/Med Risk",
+    "actual": "Status: 500, Error: HTTP Error 500: Internal Server Error",
+    "status": "FAIL",
+    "remarks": "Server error processing PDF.",
+    "details": {
+      "resp": {
+        "success": false,
+        "message": "bad XRef entry"
+      }
+    }
+  },
+  {
+    "test_id": "PDF-03",
+    "module": "PDF Testing",
+    "scenario": "Document containing genuine email",
+    "expected": "200 OK, Extracted email & domain, Low Risk",
+    "actual": "Status: 500, Error: HTTP Error 500: Internal Server Error",
+    "status": "FAIL",
+    "remarks": "Server error processing PDF.",
+    "details": {
+      "resp": {
+        "success": false,
+        "message": "bad XRef entry"
+      }
+    }
+  },
+  {
+    "test_id": "PDF-04",
+    "module": "PDF Testing",
+    "scenario": "PDF containing phishing content",
+    "expected": "200 OK, High Risk flagged, Suspicious URL spotted",
+    "actual": "Status: 500, Error: HTTP Error 500: Internal Server Error",
+    "status": "FAIL",
+    "remarks": "Server error processing PDF.",
+    "details": {
+      "resp": {
+        "success": false,
+        "message": "bad XRef entry"
+      }
+    }
+  },
+  {
+    "test_id": "PDF-05",
+    "module": "PDF Testing",
+    "scenario": "PDF containing promotional spam",
+    "expected": "200 OK, Spam flagged, Cash prize detected",
+    "actual": "Status: 500, Error: HTTP Error 500: Internal Server Error",
+    "status": "FAIL",
+    "remarks": "Server error processing PDF.",
+    "details": {
+      "resp": {
+        "success": false,
+        "message": "bad XRef entry"
+      }
+    }
+  },
+  {
+    "test_id": "PDF-06",
+    "module": "PDF Testing",
+    "scenario": "PDF containing suspicious links",
+    "expected": "200 OK, External links (.xyz/.exe) flagged",
+    "actual": "Status: 500, Error: HTTP Error 500: Internal Server Error",
+    "status": "FAIL",
+    "remarks": "Server error processing PDF.",
+    "details": {
+      "resp": {
+        "success": false,
+        "message": "bad XRef entry"
+      }
+    }
+  },
+  {
+    "test_id": "PDF-07",
+    "module": "PDF Testing",
+    "scenario": "Multi-page PDF (4 pages)",
+    "expected": "200 OK, All 4 pages extracted and summarized",
+    "actual": "Status: 500, Error: HTTP Error 500: Internal Server Error",
+    "status": "FAIL",
+    "remarks": "Server error processing PDF.",
+    "details": {
+      "resp": {
+        "success": false,
+        "message": "bad XRef entry"
+      }
+    }
+  },
+  {
+    "test_id": "PDF-08",
+    "module": "PDF Testing",
+    "scenario": "PDF containing tables",
+    "expected": "200 OK, Tabular fees preserved accurately",
+    "actual": "Status: 500, Error: HTTP Error 500: Internal Server Error",
+    "status": "FAIL",
+    "remarks": "Server error processing PDF.",
+    "details": {
+      "resp": {
+        "success": false,
+        "message": "bad XRef entry"
+      }
+    }
+  },
+  {
+    "test_id": "PDF-09",
+    "module": "PDF Testing",
+    "scenario": "Scanned PDF (image-only text)",
+    "expected": "200 OK, Fallback OCR extracted notice text",
+    "actual": "200 OK: Extracted 269 chars, Risk:Low",
+    "status": "PASS",
+    "remarks": "CharsExtracted:269, Risk:Low(35), SummaryLen:199",
+    "details": {
+      "fileName": "09_scanned_image_pdf.pdf",
+      "extractedSnippet": "[OCR Extracted Text for file-1793520690586-973610430.pdf]\nOfficial Notice Document Content\nFee payable: \u20b910,000 per seme",
+      "summary": "[OCR Extracted Text for file-1793520690586-973610430.pdf]\nOfficial Notice Document Content\nFee payable: \u20b910,000 per seme"
+    }
+  },
+  {
+    "test_id": "PDF-10",
+    "module": "PDF Testing",
+    "scenario": "PDF with mixed text and images",
+    "expected": "200 OK, Text extracted, image seal bypassed cleanly",
+    "actual": "200 OK: Extracted 158 chars, Risk:Low",
+    "status": "PASS",
+    "remarks": "CharsExtracted:158, Risk:Low(15), SummaryLen:158",
+    "details": {
+      "fileName": "10_mixed_text_and_image.pdf",
+      "extractedSnippet": "SCHOLARSHIP VERIFICATION DIRECTIVE\n\nOfficial notice text with embedded stamp seal below.\nApproved grant: Rs 50,000 per s",
+      "summary": "SCHOLARSHIP VERIFICATION DIRECTIVE\n\nOfficial notice text with embedded stamp seal below. Approved grant: Rs 50,000 per s"
+    }
+  },
+  {
+    "test_id": "PDF-11",
+    "module": "PDF Testing",
+    "scenario": "Empty PDF (0 text)",
+    "expected": "200 OK, Handled gracefully without crash",
+    "actual": "Status: 500, Error: HTTP Error 500: Internal Server Error",
+    "status": "FAIL",
+    "remarks": "Server error processing PDF.",
+    "details": {
+      "resp": {
+        "success": false,
+        "message": "bad XRef entry"
+      }
+    }
+  },
+  {
+    "test_id": "PDF-12",
+    "module": "PDF Testing",
+    "scenario": "Corrupted PDF file",
+    "expected": "Error handled gracefully without server crash",
+    "actual": "500: Invalid PDF structure",
+    "status": "PASS",
+    "remarks": "Error caught cleanly by Express error middleware.",
+    "details": {
+      "latency": 0.005150794982910156
+    }
+  },
+  {
+    "test_id": "PDF-13",
+    "module": "PDF Testing",
+    "scenario": "Password-protected PDF",
+    "expected": "Error handled gracefully without server crash",
+    "actual": "500: No password given",
+    "status": "PASS",
+    "remarks": "Error caught cleanly by Express error middleware.",
+    "details": {
+      "latency": 0.07059693336486816
+    }
+  },
+  {
+    "test_id": "PDF-14",
+    "module": "PDF Testing",
+    "scenario": "Large multi-page PDF (25 pages)",
+    "expected": "200 OK, Text truncated safely without overflow",
+    "actual": "Status: 500, Error: HTTP Error 500: Internal Server Error",
+    "status": "FAIL",
+    "remarks": "Server error processing PDF.",
+    "details": {
+      "resp": {
+        "success": false,
+        "message": "bad XRef entry"
+      }
+    }
+  },
+  {
+    "test_id": "PDF-15",
+    "module": "PDF Testing",
+    "scenario": "Unsupported file variation (.bin)",
+    "expected": "400 Bad Request (File rejected)",
+    "actual": "400: Invalid file type. Only PDF, JPG, PNG, and TXT files are allowed.",
+    "status": "PASS",
+    "remarks": "Multer uploadMiddleware correctly rejected non-supported file type.",
+    "details": {
+      "latency": 0.003963470458984375
+    }
+  },
+  {
+    "test_id": "IMG-01",
+    "module": "Image Testing",
+    "scenario": "Normal screenshot",
+    "expected": "200 OK, Image accepted, Text extracted",
+    "actual": "200 OK: Processed in 4.06s (Fallback OCR)",
+    "status": "PARTIAL",
+    "remarks": "OCR Mode: Static Fallback, Chars:269, Latency:4.06s",
+    "details": {
+      "fileName": "img_01_normal_screenshot.png",
+      "extracted": "[OCR Extracted Text for file-1793520699899-918027812.png]\nOfficial Notice Document Content\nFee payab"
+    }
+  },
+  {
+    "test_id": "IMG-02",
+    "module": "Image Testing",
+    "scenario": "Screenshot of genuine conversation",
+    "expected": "200 OK, Image processed",
+    "actual": "200 OK: Processed in 4.30s (Fallback OCR)",
+    "status": "PARTIAL",
+    "remarks": "OCR Mode: Static Fallback, Chars:269, Latency:4.30s",
+    "details": {
+      "fileName": "img_02_genuine_conversation.jpg",
+      "extracted": "[OCR Extracted Text for file-1793520703956-140791613.jpg]\nOfficial Notice Document Content\nFee payab"
+    }
+  },
+  {
+    "test_id": "IMG-03",
+    "module": "Image Testing",
+    "scenario": "Screenshot of phishing SMS",
+    "expected": "200 OK, Processed by OCR/Fallback",
+    "actual": "200 OK: Processed in 5.12s (Fallback OCR)",
+    "status": "PARTIAL",
+    "remarks": "OCR Mode: Static Fallback, Chars:269, Latency:5.12s",
+    "details": {
+      "fileName": "img_03_phishing_sms.png",
+      "extracted": "[OCR Extracted Text for file-1793520708252-278042022.png]\nOfficial Notice Document Content\nFee payab"
+    }
+  },
+  {
+    "test_id": "IMG-04",
+    "module": "Image Testing",
+    "scenario": "Screenshot of fake bank alert",
+    "expected": "200 OK, Processed by OCR/Fallback",
+    "actual": "200 OK: Processed in 4.57s (Fallback OCR)",
+    "status": "PARTIAL",
+    "remarks": "OCR Mode: Static Fallback, Chars:269, Latency:4.57s",
+    "details": {
+      "fileName": "img_04_fake_bank_alert.png",
+      "extracted": "[OCR Extracted Text for file-1793520713385-551027409.png]\nOfficial Notice Document Content\nFee payab"
+    }
+  },
+  {
+    "test_id": "IMG-05",
+    "module": "Image Testing",
+    "scenario": "Screenshot of promotional ad",
+    "expected": "200 OK, Processed by OCR/Fallback",
+    "actual": "200 OK: Processed in 4.39s (Fallback OCR)",
+    "status": "PARTIAL",
+    "remarks": "OCR Mode: Static Fallback, Chars:269, Latency:4.39s",
+    "details": {
+      "fileName": "img_05_promotional_ad.jpg",
+      "extracted": "[OCR Extracted Text for file-1793520717959-501618778.jpg]\nOfficial Notice Document Content\nFee payab"
+    }
+  },
+  {
+    "test_id": "IMG-06",
+    "module": "Image Testing",
+    "scenario": "Screenshot of an email",
+    "expected": "200 OK, Processed by OCR/Fallback",
+    "actual": "200 OK: Processed in 3.79s (Fallback OCR)",
+    "status": "PARTIAL",
+    "remarks": "OCR Mode: Static Fallback, Chars:269, Latency:3.79s",
+    "details": {
+      "fileName": "img_06_email_screenshot.png",
+      "extracted": "[OCR Extracted Text for file-1793520722350-519846861.png]\nOfficial Notice Document Content\nFee payab"
+    }
+  },
+  {
+    "test_id": "IMG-07",
+    "module": "Image Testing",
+    "scenario": "Image containing suspicious URLs",
+    "expected": "200 OK, Processed by OCR/Fallback",
+    "actual": "200 OK: Processed in 3.89s (Fallback OCR)",
+    "status": "PARTIAL",
+    "remarks": "OCR Mode: Static Fallback, Chars:269, Latency:3.89s",
+    "details": {
+      "fileName": "img_07_suspicious_urls.png",
+      "extracted": "[OCR Extracted Text for file-1793520726123-891020284.png]\nOfficial Notice Document Content\nFee payab"
+    }
+  },
+  {
+    "test_id": "IMG-08",
+    "module": "Image Testing",
+    "scenario": "Image containing QR code pattern",
+    "expected": "200 OK, Processed by OCR/Fallback",
+    "actual": "200 OK: Processed in 3.95s (Fallback OCR)",
+    "status": "PARTIAL",
+    "remarks": "OCR Mode: Static Fallback, Chars:269, Latency:3.95s",
+    "details": {
+      "fileName": "img_08_qr_code.png",
+      "extracted": "[OCR Extracted Text for file-1793520730012-562761181.png]\nOfficial Notice Document Content\nFee payab"
+    }
+  },
+  {
+    "test_id": "IMG-09",
+    "module": "Image Testing",
+    "scenario": "Image with very small text",
+    "expected": "200 OK, Processed by OCR/Fallback",
+    "actual": "200 OK: Processed in 3.99s (Fallback OCR)",
+    "status": "PARTIAL",
+    "remarks": "OCR Mode: Static Fallback, Chars:268, Latency:3.99s",
+    "details": {
+      "fileName": "img_09_small_text.png",
+      "extracted": "[OCR Extracted Text for file-1793520733975-77123333.png]\nOfficial Notice Document Content\nFee payabl"
+    }
+  },
+  {
+    "test_id": "IMG-10",
+    "module": "Image Testing",
+    "scenario": "Blurry image",
+    "expected": "200 OK, Processed by OCR/Fallback",
+    "actual": "200 OK: Processed in 3.55s (Fallback OCR)",
+    "status": "PARTIAL",
+    "remarks": "OCR Mode: Static Fallback, Chars:269, Latency:3.55s",
+    "details": {
+      "fileName": "img_10_blurry_image.png",
+      "extracted": "[OCR Extracted Text for file-1793520737952-216072882.png]\nOfficial Notice Document Content\nFee payab"
+    }
+  },
+  {
+    "test_id": "IMG-11",
+    "module": "Image Testing",
+    "scenario": "Image without readable text",
+    "expected": "200 OK, Handled gracefully",
+    "actual": "200 OK: Processed in 3.50s (Fallback OCR)",
+    "status": "PARTIAL",
+    "remarks": "OCR Mode: Static Fallback, Chars:269, Latency:3.50s",
+    "details": {
+      "fileName": "img_11_no_text.png",
+      "extracted": "[OCR Extracted Text for file-1793520741503-206576474.png]\nOfficial Notice Document Content\nFee payab"
+    }
+  },
+  {
+    "test_id": "IMG-12",
+    "module": "Image Testing",
+    "scenario": "Large image (2400x1600)",
+    "expected": "200 OK, High-res image accepted",
+    "actual": "200 OK: Processed in 5.08s (Fallback OCR)",
+    "status": "PARTIAL",
+    "remarks": "OCR Mode: Static Fallback, Chars:269, Latency:5.08s",
+    "details": {
+      "fileName": "img_12_large_image.jpg",
+      "extracted": "[OCR Extracted Text for file-1793520745001-916647185.jpg]\nOfficial Notice Document Content\nFee payab"
+    }
+  },
+  {
+    "test_id": "IMG-13",
+    "module": "Image Testing",
+    "scenario": "Unsupported image format (.bmp)",
+    "expected": "400 Bad Request (File rejected)",
+    "actual": "400: Invalid file type. Only PDF, JPG, PNG, and TXT files are allowed.",
+    "status": "PASS",
+    "remarks": "Multer middleware correctly rejected .bmp extension.",
+    "details": {
+      "latency": 0.00577545166015625
+    }
+  },
+  {
+    "test_id": "MSG-01",
+    "module": "Message Testing",
+    "scenario": "Fake delivery notification SMS",
+    "expected": "High Risk / Spam",
+    "actual": "Verdict:HIGH PROBABILITY SPAM / FRAUD, Risk:Medium(55/100)",
+    "status": "PARTIAL",
+    "remarks": "FlaggedTokens:6, Latency:5.34s",
+    "details": {
+      "flagged": [
+        "now",
+        "rs",
+        "address",
+        "pay"
+      ]
+    }
+  },
+  {
+    "test_id": "MSG-02",
+    "module": "Message Testing",
+    "scenario": "Fake payment notification",
+    "expected": "High Risk / Spam",
+    "actual": "Verdict:HIGH PROBABILITY SPAM / FRAUD, Risk:Medium(55/100)",
+    "status": "PARTIAL",
+    "remarks": "FlaggedTokens:6, Latency:3.54s",
+    "details": {
+      "flagged": [
+        "000",
+        "link",
+        "claim",
+        "reward"
+      ]
+    }
+  },
+  {
+    "test_id": "MSG-03",
+    "module": "Message Testing",
+    "scenario": "Urgent electricity bill cutoff SMS",
+    "expected": "High Risk / Urgent Phishing",
+    "actual": "Verdict:HIGH PROBABILITY SPAM / FRAUD, Risk:Medium(40/100)",
+    "status": "PARTIAL",
+    "remarks": "FlaggedTokens:6, Latency:6.70s",
+    "details": {
+      "flagged": [
+        "Suspicious Phone Prefix (+911603051003)",
+        "urgent",
+        "notice",
+        "disconnected"
+      ]
+    }
+  },
+  {
+    "test_id": "EML-01",
+    "module": "Email Testing",
+    "scenario": "Genuine business email",
+    "expected": "Low Risk / HAM",
+    "actual": "Verdict:LIKELY LEGITIMATE, Risk:Low(35/100)",
+    "status": "PASS",
+    "remarks": "FlaggedTokens:0, Latency:4.08s",
+    "details": {
+      "flagged": []
+    }
+  },
+  {
+    "test_id": "EML-02",
+    "module": "Email Testing",
+    "scenario": "Fake password reset email",
+    "expected": "High Risk / Phishing",
+    "actual": "Verdict:HIGH PROBABILITY SPAM / FRAUD, Risk:Medium(60/100)",
+    "status": "PARTIAL",
+    "remarks": "FlaggedTokens:6, Latency:5.85s",
+    "details": {
+      "flagged": [
+        "immediately",
+        "required",
+        "login",
+        "click"
+      ]
+    }
+  },
+  {
+    "test_id": "EML-03",
+    "module": "Email Testing",
+    "scenario": "Impersonation email from CEO",
+    "expected": "High Risk / CEO Fraud",
+    "actual": "Verdict:LIKELY LEGITIMATE, Risk:Medium(60/100)",
+    "status": "PARTIAL",
+    "remarks": "FlaggedTokens:6, Latency:4.27s",
+    "details": {
+      "flagged": [
+        "000",
+        "immediately",
+        "rs",
+        "urgent"
+      ]
+    }
+  },
+  {
+    "test_id": "TC-PRIV-01",
+    "module": "Privacy Shield",
+    "scenario": "Automated PII Masking (Email, Phone, UPI)",
+    "expected": "Sensitive PII masked in output text",
+    "actual": "Masked output: Please contact student coordinator Rahul Sharma at r*****@cumail.in or call ****...",
+    "status": "PASS",
+    "remarks": "Emails/Phones replaced with masked patterns. Privacy counts: 0 detected.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-COMP-01",
+    "module": "Compare Engine",
+    "scenario": "Direct Side-by-Side Comparison",
+    "expected": "Detect fee and deadline differences",
+    "actual": "200 OK: Detected 5 difference(s)",
+    "status": "PASS",
+    "remarks": "Changes identified: ['amount', 'date', 'clause', 'clause', 'clause']",
+    "details": {
+      "changes": [
+        {
+          "type": "changed",
+          "field": "amount",
+          "oldValue": "Rs 10,000",
+          "newValue": "Rs 50,000",
+          "explanation": "Amount modified from \"Rs 10,000\" to \"Rs 50,000\"."
+        },
+        {
+          "type": "changed",
+          "field": "date",
+          "oldValue": "15 August 2026",
+          "newValue": "30 August 2026",
+          "explanation": "Date modified from \"15 August 2026\" to \"30 August 2026\"."
+        },
+        {
+          "type": "changed",
+          "field": "clause",
+          "oldValue": "University Exam Fee Notice: Fee is Rs 10,000 per student.",
+          "newValue": "University Exam Fee Notice: Fee is Rs 50,000 per student.",
+          "explanation": "Clause wording or terms modified between document versions."
+        },
+        {
+          "type": "changed",
+          "field": "clause",
+          "oldValue": "Deadline is 15 August 2026.",
+          "newValue": "Deadline is 30 August 2026.",
+          "explanation": "Clause wording or terms modified between document versions."
+        },
+        {
+          "type": "changed",
+          "field": "clause",
+          "oldValue": "Payment gateway is official ERP netbanking.",
+          "newValue": "Payment gateway is personal UPI transfer.",
+          "explanation": "Clause wording or terms modified between document versions."
+        }
+      ],
+      "summary": "Document comparison complete: 5 modified item(s)/clause(s), 0 addition(s), and 0 removal(s) detected."
+    }
+  },
+  {
+    "test_id": "TC-COMP-02",
+    "module": "Compare Engine",
+    "scenario": "Comparison with Identical Documents",
+    "expected": "0 differences detected",
+    "actual": "Detected 0 changes",
+    "status": "PASS",
+    "remarks": "Identical document handling verified clean.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-AUTH-01",
+    "module": "Authentication",
+    "scenario": "User Registration (/api/auth/register)",
+    "expected": "201 Created with JWT token",
+    "actual": "201 Created in 0.333s",
+    "status": "PASS",
+    "remarks": "New user registered and JWT token issued.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-AUTH-02",
+    "module": "Authentication",
+    "scenario": "Duplicate Email Registration",
+    "expected": "400 Bad Request (User already exists)",
+    "actual": "400: An account with this email address already exists.",
+    "status": "PASS",
+    "remarks": "Duplicate email constraint verified in MongoDB.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-AUTH-03",
+    "module": "Authentication",
+    "scenario": "Password Length Validation (< 6 chars)",
+    "expected": "Rejection with validation error",
+    "actual": "400: Password must be at least 6 characters long",
+    "status": "PASS",
+    "remarks": "Password length schema validation enforced.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-AUTH-04",
+    "module": "Authentication",
+    "scenario": "User Login with Valid Credentials",
+    "expected": "200 OK",
+    "actual": "Status: 403",
+    "status": "FAIL",
+    "remarks": "Login failed: HTTP Error 403: Forbidden",
+    "details": {}
+  },
+  {
+    "test_id": "TC-AUTH-05",
+    "module": "Authentication",
+    "scenario": "Login with Invalid Password",
+    "expected": "401 Unauthorized",
+    "actual": "401: Invalid email address or password",
+    "status": "PASS",
+    "remarks": "Invalid password rejected properly.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-AUTH-07",
+    "module": "Authorization",
+    "scenario": "Access Protected Profile without Token",
+    "expected": "401 Unauthorized",
+    "actual": "401 Unauthorized",
+    "status": "PASS",
+    "remarks": "Protected endpoint blocked unauthorized request.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-AUTH-08",
+    "module": "Authorization",
+    "scenario": "Access Protected Profile with Tampered Token",
+    "expected": "401 Unauthorized",
+    "actual": "401 Unauthorized",
+    "status": "PASS",
+    "remarks": "Tampered JWT token rejected by authMiddleware.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-OTP-01",
+    "module": "OTP Engine",
+    "scenario": "Send 6-Digit Verification OTP (/api/auth/send-otp)",
+    "expected": "200 OK with OTP sent message",
+    "actual": "200 OK in 0.029s",
+    "status": "PASS",
+    "remarks": "Cryptographic OTP generated and dispatched via emailService.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-OTP-02",
+    "module": "OTP Engine",
+    "scenario": "Verify OTP with False Code",
+    "expected": "400 Bad Request (Invalid OTP)",
+    "actual": "400: Invalid verification code. 4 attempt(s) remaining.",
+    "status": "PASS",
+    "remarks": "Invalid OTP correctly rejected.",
+    "details": {}
+  },
+  {
+    "test_id": "TC-PERF-01",
+    "module": "Performance",
+    "scenario": "Rapid 10-Request Sequential Burst",
+    "expected": "All requests processed cleanly without crash",
+    "actual": "10/10 successful",
+    "status": "PASS",
+    "remarks": "Server handled burst traffic gracefully.",
+    "details": {}
+  }
+]
