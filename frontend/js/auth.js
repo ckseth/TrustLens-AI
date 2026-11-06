@@ -283,6 +283,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await res.json();
 
         if (data.success) {
+          if (data.token && data.user) {
+            localStorage.setItem('trustlens_token', data.token);
+            localStorage.setItem('trustlens_user', JSON.stringify(data.user));
+            showToast('✓ Account created & activated! Entering studio...', 'success');
+            setTimeout(() => { window.location.href = 'analyze.html'; }, 1000);
+            return;
+          }
           currentTargetEmail = email;
           const emailDisplay = document.getElementById('display-verification-email');
           if (emailDisplay) emailDisplay.innerText = email;

@@ -199,6 +199,28 @@ class MLSpamDetector {
       }
     });
 
+    // Contextual Fraud / Phishing Patterns Feature Extraction
+    const lower = text.toLowerCase();
+
+    // 1. Upfront Fee / Deposit demanded in notice or scholarship
+    if ((lower.includes('fee') || lower.includes('deposit') || lower.includes('payment') || lower.includes('pay rs') || lower.includes('₹')) &&
+        (lower.includes('claim') || lower.includes('portal link') || lower.includes('scholarship') || lower.includes('reward') || lower.includes('prize'))) {
+      logProbSpam += 4.2;
+      flaggedTokens.push({ token: 'Upfront Fee / Deposit Demand', weight: 5.0, tfidf: 0.95 });
+    }
+
+    // 2. Unofficial Public Email in Official Context
+    if (/@(gmail|yahoo|hotmail|outlook)\.com/i.test(text) && (lower.includes('notice') || lower.includes('scholarship') || lower.includes('official') || lower.includes('government'))) {
+      logProbSpam += 3.8;
+      flaggedTokens.push({ token: 'Free Webmail for Official Notice', weight: 4.8, tfidf: 0.88 });
+    }
+
+    // 3. Third-party link claim / verify / deposit
+    if (/(?:claim|verify|deposit|pay|apply)\b.*?(?:https?:\/\/|\.com|\.xyz|\.top|\.online)/i.test(text)) {
+      logProbSpam += 3.2;
+      flaggedTokens.push({ token: 'Suspicious Third-Party Link', weight: 4.5, tfidf: 0.82 });
+    }
+
     // Compute Posterior Probability via Sigmoid on Log Odds Difference
     const logOddsDiff = logProbSpam - logProbHam;
     const spamProbability = parseFloat((1 / (1 + Math.exp(-logOddsDiff))).toFixed(2));
